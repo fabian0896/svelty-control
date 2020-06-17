@@ -15,6 +15,7 @@ import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import TabletMacIcon from '@material-ui/icons/TabletMac';
+import { VerifiedUser, ThumbDown, Warning} from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -85,21 +86,21 @@ const UsersByDevice = props => {
 
   const devices = [
     {
-      title: 'Desktop',
+      title: 'Sin novedad',
       value: '63',
-      icon: <LaptopMacIcon />,
+      icon: <VerifiedUser />,
       color: theme.palette.primary.main
     },
     {
-      title: 'Tablet',
+      title: 'Devoluciones',
       value: '15',
-      icon: <TabletMacIcon />,
+      icon: <ThumbDown />,
       color: theme.palette.error.main
     },
     {
-      title: 'Mobile',
+      title: 'Cambios',
       value: '23',
-      icon: <PhoneIphoneIcon />,
+      icon: <Warning />,
       color: theme.palette.warning.main
     }
   ];
@@ -115,7 +116,7 @@ const UsersByDevice = props => {
             <RefreshIcon />
           </IconButton>
         }
-        title="Users By Device"
+        title="Estado de los pedidos"
       />
       <Divider />
       <CardContent>

@@ -46,43 +46,50 @@ const Routes = () => {
           layout={MainLayout}
           path="/dashboard"
         />
-        <RouteWithLayout
+        <RouteWithLayoutPrivate
+          user={user}
           component={UserListView}
           exact
           layout={MainLayout}
           path="/users"
         />
-        <RouteWithLayout
+        <RouteWithLayoutPrivate
+          user={user}
           component={ProductListView}
           exact
           layout={MainLayout}
           path="/products"
         />
-        <RouteWithLayout
+        <RouteWithLayoutPrivate
+          user={user}
           component={TypographyView}
           exact
           layout={MainLayout}
           path="/typography"
         />
-        <RouteWithLayout
+        <RouteWithLayoutPrivate
+          user={user}
           component={IconsView}
           exact
           layout={MainLayout}
           path="/icons"
         />
-        <RouteWithLayout
+        <RouteWithLayoutPrivate
+          user={user}
           component={AccountView}
           exact
           layout={MainLayout}
           path="/account"
         />
-        <RouteWithLayout
+        <RouteWithLayoutPrivate
+          user={user}
           component={SettingsView}
           exact
           layout={MainLayout}
           path="/settings"
         />
-        <RouteWithLayout
+        <RouteWithLayoutPrivate
+          user={user} 
           component={NotFoundView}
           exact
           layout={MinimalLayout}
