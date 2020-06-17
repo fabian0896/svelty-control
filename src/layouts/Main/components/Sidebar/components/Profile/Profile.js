@@ -29,7 +29,7 @@ const Profile = props => {
   const user = {
     name: userInfo.displayName,
     avatar: userInfo.photoURL,
-    bio: 'Administrador'
+    bio: userInfo.email
   };
 
   return (
