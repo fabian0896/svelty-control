@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Sidebar = props => {
-  const { open, variant, onClose, className, ...rest } = props;
+  const { open, variant, onClose, className,user, ...rest } = props;
 
   const classes = useStyles();
 
@@ -97,7 +97,7 @@ const Sidebar = props => {
         {...rest}
         className={clsx(classes.root, className)}
       >
-        <Profile />
+        <Profile user={user} />
         <Divider className={classes.divider} />
         <SidebarNav
           className={classes.nav}

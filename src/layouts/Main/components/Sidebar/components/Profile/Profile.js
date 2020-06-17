@@ -22,13 +22,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Profile = props => {
-  const { className, ...rest } = props;
+  const { className, user:userInfo, ...rest } = props;
 
   const classes = useStyles();
 
   const user = {
-    name: 'Jaime Riascos',
-    avatar: '/images/avatars/avatar_11.png',
+    name: userInfo.displayName,
+    avatar: userInfo.photoURL,
     bio: 'Administrador'
   };
 
@@ -47,6 +47,7 @@ const Profile = props => {
       <Typography
         className={classes.name}
         variant="h4"
+        align="center"
       >
         {user.name}
       </Typography>

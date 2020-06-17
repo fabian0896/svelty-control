@@ -16,3 +16,24 @@ export async function signInFacebook(){
     }
 
 }
+
+
+
+
+export  function isAuth(cb){
+    firebase.auth().onAuthStateChanged(user => {
+      if(user){
+        console.log(user)
+        cb(user)
+      }else{
+        console.log("sin Usuario")
+        cb(null)
+      }
+    })
+}
+
+
+export async function logOut(){
+    await firebase.auth().signOut()
+    return
+}
