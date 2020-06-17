@@ -62,7 +62,7 @@ const TotalUsers = props => {
               gutterBottom
               variant="body2"
             >
-              TOTAL USERS
+              SALDO PENDIENTE
             </Typography>
             <Typography variant="h3">1,600</Typography>
           </Grid>
