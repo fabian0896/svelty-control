@@ -2,15 +2,17 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+
+
 const RouteWithLayoutPrivate = props => {
-  const { layout: Layout, component: Component, ...rest } = props;
+  const { layout: Layout, component: Component,user: User ,...rest } = props;
 
   return (
     <Route
       {...rest}
       render={matchProps => (
-        true ? 
-        <Layout>
+        !!User ? 
+        <Layout user={User}>
           <Component {...matchProps} />
         </Layout>
         :

@@ -7,6 +7,8 @@ import { AppBar, Toolbar, Badge, Hidden, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
+import { logOut } from '../../../../services/authService'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,6 +28,12 @@ const Topbar = props => {
   const classes = useStyles();
 
   const [notifications] = useState([]);
+
+  const handleSignOut = async () =>{
+      await logOut()
+      console.log("se cerro la cuenta")
+
+  }
 
   return (
     <AppBar
@@ -52,6 +60,7 @@ const Topbar = props => {
             </Badge>
           </IconButton>
           <IconButton
+            onClick={handleSignOut}
             className={classes.signOutButton}
             color="inherit"
           >

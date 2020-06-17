@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 
 import { RouteWithLayout, RouteWithLayoutPrivate } from './components';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
+
+
+import { isAuth } from './services/authService'
 
 import {
   Dashboard as DashboardView,
@@ -18,6 +21,14 @@ import {
 } from './views';
 
 const Routes = () => {
+
+  const [user, setUser] = useState()
+  
+  isAuth((actualUser)=>{
+    setUser(actualUser)
+  })
+
+
   return (
     <Switch>
       <Redirect
@@ -26,6 +37,7 @@ const Routes = () => {
         to="/dashboard"
       />
       <RouteWithLayoutPrivate
+        user={user}
         component={DashboardView}
         exact
         layout={MainLayout}
