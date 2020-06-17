@@ -15,6 +15,9 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
 
+
+import { signInFacebook } from '../../services/authService'
+
 const schema = {
   email: {
     presence: { allowEmpty: false, message: 'is required' },
@@ -170,9 +173,16 @@ const SignIn = props => {
     }));
   };
 
-  const handleSignIn = event => {
+  const handleSignIn = async event => {
     event.preventDefault();
-    history.push('/');
+    try{
+      const user = await signInFacebook()
+      if(user){
+        history.push('/');
+      }
+    }catch(err){
+        console.log(err)
+    }
   };
 
   const hasError = field =>
