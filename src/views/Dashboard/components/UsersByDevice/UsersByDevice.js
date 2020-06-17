@@ -11,10 +11,8 @@ import {
   Divider,
   Typography
 } from '@material-ui/core';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
+
 import RefreshIcon from '@material-ui/icons/Refresh';
-import TabletMacIcon from '@material-ui/icons/TabletMac';
 import { VerifiedUser, ThumbDown, Warning} from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
