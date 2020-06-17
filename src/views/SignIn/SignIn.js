@@ -205,21 +205,20 @@ const SignIn = props => {
                 className={classes.quoteText}
                 variant="h1"
               >
-                Hella narwhal Cosby sweater McSweeney's, salvia kitsch before
-                they sold out High Life.
+                Si puedes superar el miedo y tomar riesgos, conseguirás cosas sorprendentes
               </Typography>
               <div className={classes.person}>
                 <Typography
                   className={classes.name}
                   variant="body1"
                 >
-                  Takamaru Ayako
+                  Marissa Mayer
                 </Typography>
                 <Typography
                   className={classes.bio}
                   variant="body2"
                 >
-                  Manager at inVision
+                  presidenta y CEO de Yahoo
                 </Typography>
               </div>
             </div>
@@ -246,38 +245,40 @@ const SignIn = props => {
                   className={classes.title}
                   variant="h2"
                 >
-                  Sign in
+                  Ingresar
                 </Typography>
                 <Typography
                   color="textSecondary"
                   gutterBottom
                 >
-                  Sign in with social media
+                  Ingresa con tus redes sociales
                 </Typography>
                 <Grid
                   className={classes.socialButtons}
                   container
                   spacing={2}
                 >
-                  <Grid item>
+                  <Grid md={12} item>
                     <Button
+                      fullWidth
                       color="primary"
                       onClick={handleSignIn}
                       size="large"
                       variant="contained"
                     >
                       <FacebookIcon className={classes.socialIcon} />
-                      Login with Facebook
+                      Ingresa con Facebook
                     </Button>
                   </Grid>
-                  <Grid item>
+                  <Grid md={12} item>
                     <Button
+                      fullWidth
                       onClick={handleSignIn}
                       size="large"
                       variant="contained"
                     >
                       <GoogleIcon className={classes.socialIcon} />
-                      Login with Google
+                      Ingresa con Google
                     </Button>
                   </Grid>
                 </Grid>
@@ -287,7 +288,7 @@ const SignIn = props => {
                   color="textSecondary"
                   variant="body1"
                 >
-                  or login with email address
+                  o ingresa con la dirección de correo electronico
                 </Typography>
                 <TextField
                   className={classes.textField}
@@ -296,7 +297,7 @@ const SignIn = props => {
                   helperText={
                     hasError('email') ? formState.errors.email[0] : null
                   }
-                  label="Email address"
+                  label="Correo electronico"
                   name="email"
                   onChange={handleChange}
                   type="text"
@@ -310,7 +311,7 @@ const SignIn = props => {
                   helperText={
                     hasError('password') ? formState.errors.password[0] : null
                   }
-                  label="Password"
+                  label="Contraseña"
                   name="password"
                   onChange={handleChange}
                   type="password"
@@ -326,19 +327,19 @@ const SignIn = props => {
                   type="submit"
                   variant="contained"
                 >
-                  Sign in now
+                  Ingresar
                 </Button>
                 <Typography
                   color="textSecondary"
                   variant="body1"
                 >
-                  Don't have an account?{' '}
+                  No tienes una cuenta?{' '}
                   <Link
                     component={RouterLink}
                     to="/sign-up"
                     variant="h6"
                   >
-                    Sign up
+                    Registrate
                   </Link>
                 </Typography>
               </form>
