@@ -210,21 +210,20 @@ const SignUp = props => {
                 className={classes.quoteText}
                 variant="h1"
               >
-                Hella narwhal Cosby sweater McSweeney's, salvia kitsch before
-                they sold out High Life.
+                El éxito no es definitivo, el fracaso no es fatal: lo que realmente cuenta es el valor para continuar
               </Typography>
               <div className={classes.person}>
                 <Typography
                   className={classes.name}
                   variant="body1"
                 >
-                  Takamaru Ayako
+                  Winston Churchill
                 </Typography>
                 <Typography
                   className={classes.bio}
                   variant="body2"
                 >
-                  Manager at inVision
+                  Primer Ministro de Gran Bretaña
                 </Typography>
               </div>
             </div>
@@ -251,13 +250,13 @@ const SignUp = props => {
                   className={classes.title}
                   variant="h2"
                 >
-                  Create new account
+                  Crear una nueva cuenta
                 </Typography>
                 <Typography
                   color="textSecondary"
                   gutterBottom
                 >
-                  Use your email to create new account
+                  Usa tu correo electronico para crear una cuenta
                 </Typography>
                 <TextField
                   className={classes.textField}
@@ -328,7 +327,7 @@ const SignUp = props => {
                     color="textSecondary"
                     variant="body1"
                   >
-                    I have read the{' '}
+                    He leido los{' '}
                     <Link
                       color="primary"
                       component={RouterLink}
@@ -336,7 +335,7 @@ const SignUp = props => {
                       underline="always"
                       variant="h6"
                     >
-                      Terms and Conditions
+                      Terminos y condiciones
                     </Link>
                   </Typography>
                 </div>
@@ -354,19 +353,19 @@ const SignUp = props => {
                   type="submit"
                   variant="contained"
                 >
-                  Sign up now
+                  Registrarse
                 </Button>
                 <Typography
                   color="textSecondary"
                   variant="body1"
                 >
-                  Have an account?{' '}
+                  Ya tienes una cuenta?{' '}
                   <Link
                     component={RouterLink}
                     to="/sign-in"
                     variant="h6"
                   >
-                    Sign in
+                    Ingresar
                   </Link>
                 </Typography>
               </form>
