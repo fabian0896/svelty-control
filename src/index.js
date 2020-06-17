@@ -20,7 +20,11 @@ const firebaseConfig = {
     measurementId: "G-SXCXXM7Z52"
 }
 
+
+
 firebase.initializeApp(firebaseConfig)
+
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
