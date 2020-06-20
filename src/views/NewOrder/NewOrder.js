@@ -39,9 +39,9 @@ const Account = () => {
         </Grid>
         <Grid
           item
-          lg={4}
-          md={6}
-          xl={4}
+          lg={12}
+          md={12}
+          xl={12}
           xs={12}
         >
           <ProductList />

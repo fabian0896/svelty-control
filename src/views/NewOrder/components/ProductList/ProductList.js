@@ -7,11 +7,9 @@ import {
   Card,
   CardActions,
   CardContent,
-  Avatar,
   Typography,
   Divider,
   Button,
-  LinearProgress
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -57,23 +55,16 @@ const ProductList = props => {
           <div>
             <Typography
               gutterBottom
-              variant="h2"
+              variant="h5"
             >
               Chaleco 4h tira ancha
             </Typography>
             <Typography
               className={classes.locationText}
               color="textSecondary"
-              variant="body1"
+              variant="subtitle2"
             >
               Fajas internacionales
-            </Typography>
-            <Typography
-              className={classes.dateText}
-              color="textSecondary"
-              variant="body1"
-            >
-               65.000
             </Typography>
           </div>
           
