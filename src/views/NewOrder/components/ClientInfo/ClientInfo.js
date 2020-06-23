@@ -221,7 +221,7 @@ const ClientInfo = props => {
               <Autocomplete       
                 options={cityOptions}
                 getOptionLabel={(option)=> `${option.city}(${option.department})`}
-                renderInput={(params) => <TextField {...params} autoComplete="off" label="Locación" margin="dense" variant="outlined" />}
+                renderInput={(params) => <TextField {...params} autoComplete="off" label="Destino" margin="dense" variant="outlined" />}
               />
             </Grid>
 
@@ -239,7 +239,6 @@ const ClientInfo = props => {
             >
               <Typography align="center" variant="h1">{numeral(getTotal(values.products)).format('$0,0')}</Typography>
               <Typography align="center" variant="subtitle1" color="textSecondary">total</Typography>
-
             </Grid>
 
 
