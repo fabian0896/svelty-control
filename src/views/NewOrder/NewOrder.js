@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
 import { ClientInfo , ProducstInfo, ProductList } from './components';
-import { value } from 'numeral';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Account = () => {
+const NewOrder = () => {
   const classes = useStyles();
 
   const [products, setProducts] = useState([])
@@ -28,6 +28,9 @@ const Account = () => {
     actions.resetForm()
   } 
 
+  const handleSaveOrder = (values, actions)=>{
+      console.log(values)
+  }
 
   return (
     <div className={classes.root}>
@@ -52,7 +55,9 @@ const Account = () => {
           xl={6}
           xs={12}
         >
-          <ClientInfo products={products} />
+          <ClientInfo
+            onSaveOrder={handleSaveOrder} 
+            products={products} />
         </Grid>
   
       </Grid>
@@ -60,4 +65,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default NewOrder;
