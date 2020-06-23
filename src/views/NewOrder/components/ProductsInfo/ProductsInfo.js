@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, {useEffect}  from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -35,12 +35,19 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ProductsInfo = props => {
-  const { className, onAddProduct, isEditing, ...rest } = props;
+  const { className, onAddProduct, isEditing, products, ...rest } = props;
 
   const classes = useStyles();
 
+  useEffect(()=>{
+    if(isEditing >= 0){
+      //poner los valores de la edicion em el formulario
+      setValues(products[isEditing])
+    }
+  },[isEditing])
 
-  const {handleChange, handleBlur, values, errors, touched, handleSubmit} = useFormik({
+
+  const {handleChange, handleBlur, values, errors, touched, handleSubmit, setValues} = useFormik({
     initialValues:{
       name: '',
       size: '',
@@ -51,6 +58,9 @@ const ProductsInfo = props => {
     onSubmit: onAddProduct
   })
  
+
+  
+
 
   return (
     <Card
@@ -182,7 +192,9 @@ const ProductsInfo = props => {
 
 ProductsInfo.propTypes = {
   className: PropTypes.string,
-  onAddProduct: PropTypes.func
+  onAddProduct: PropTypes.func,
+  isEditing: PropTypes.number,
+  products: PropTypes.array
 };
 
 export default ProductsInfo;

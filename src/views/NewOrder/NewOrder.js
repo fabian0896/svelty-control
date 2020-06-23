@@ -86,14 +86,12 @@ const NewOrder = () => {
 
 
   const handleDeleteProduct = (index) => () =>{
-      console.log("se elemina el index " + index)
       const newArray = [...formik.values.products]
       newArray.splice(index,1)
       setFieldValue("products", [...newArray])
   }
 
   const handleEdit = (index)=>()=>{
-    console.log("se va a editar el index " + index)
     setEditingProduct(index)
   }
 
@@ -112,6 +110,7 @@ const NewOrder = () => {
           xs={12}
         >
           <ProducstInfo
+            products={formik.values.products}
             isEditing={editingProduct}
             onAddProduct={handleAddProduct} />
           <ProductList
