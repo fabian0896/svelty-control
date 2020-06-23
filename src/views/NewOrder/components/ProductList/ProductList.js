@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import moment from 'moment';
 import { makeStyles } from '@material-ui/styles';
 import {
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-  Divider,
-  Button,
+  Grid
 } from '@material-ui/core';
 
+
+import Product from './Product'
+
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {
+    marginTop: theme.spacing(2)
+  },
   details: {
-    display: 'flex'
+    display: 'flex',
+    width: "100%",
   },
   avatar: {
     marginLeft: 'auto',
@@ -29,64 +28,49 @@ const useStyles = makeStyles(theme => ({
   },
   uploadButton: {
     marginRight: theme.spacing(2)
+  },
+  name:{
+    flex: 2
+  },
+  size: {
+    flex: 1
+  },
+  color:{
+    flex: 1
+  },
+  price:{
+    flex: 1,
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center"
   }
 }));
 
+
+
 const ProductList = props => {
-  const { className, ...rest } = props;
+  const { className, products, ...rest } = props;
 
   const classes = useStyles();
 
-  const user = {
-    name: 'Shen Zhi',
-    city: 'Los Angeles',
-    country: 'USA',
-    timezone: 'GTM-7',
-    avatar: '/images/avatars/avatar_11.png'
-  };
-
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
-      <CardContent>
-        <div className={classes.details}>
-          <div>
-            <Typography
-              gutterBottom
-              variant="h5"
-            >
-              Chaleco 4h tira ancha
-            </Typography>
-            <Typography
-              className={classes.locationText}
-              color="textSecondary"
-              variant="subtitle2"
-            >
-              Fajas internacionales
-            </Typography>
-          </div>
-          
-        </div>
-      </CardContent>
-      <Divider />
-      <CardActions>
-        <Button
-          className={classes.uploadButton}
-          color="primary"
-          variant="text"
-        >
-          Editar
-        </Button>
-        <Button variant="text">Eliminar</Button>
-      </CardActions>
-    </Card>
+    <Grid className={classes.root} container spacing={1}>
+      {
+        products.map((product, index)=>{
+          return(
+            <Grid key={index} item xs={12}>
+            <Product value={product} />
+          </Grid>
+          )
+        })
+      }
+    </Grid>
   );
 };
 
 ProductList.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  products: PropTypes.array
 };
 
 export default ProductList;
