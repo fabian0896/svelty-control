@@ -40,23 +40,24 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ClientInfo = props => {
-  const { className, products, ...rest } = props;
+  const { className, products, onSaveOrder, ...rest } = props;
 
   const classes = useStyles()
   ;
 
 
-  const { handleChange, handleBlur, touched, values, errors } = useFormik({
+  const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid } = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
       email: '',
       phone: '',
       city: '',
-      adrress: '',
+      address: '',
       paymentMethod: 'mipaquete'
     },
-    validationSchema: validationSchema
+    validationSchema: validationSchema,
+    onSubmit: onSaveOrder
   })
 
 
@@ -75,6 +76,7 @@ const ClientInfo = props => {
       <form
         autoComplete="off"
         noValidate
+        onSubmit={handleSubmit}
       >
         <CardHeader
           subheader="Agregue los datos generales del pedido"
@@ -214,14 +216,14 @@ const ClientInfo = props => {
             >
               <TextField
                 fullWidth
-                helperText={errors.adrress}
+                helperText={errors.address}
                 label="Dirección"
                 margin="dense"
                 name="address"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required
-                error={errors.adrress  && touched.adrress}
+                error={errors.address  && touched.address}
                 value={values.address}
                 variant="outlined"
               />
@@ -252,8 +254,10 @@ const ClientInfo = props => {
         <Divider />
         <CardActions>
           <Button
+            disabled={!isValid}
             color="primary"
             variant="contained"
+            type="submit"
           >
             Guardar
           </Button>
@@ -265,7 +269,8 @@ const ClientInfo = props => {
 
 ClientInfo.propTypes = {
   className: PropTypes.string,
-  products: PropTypes.array
+  products: PropTypes.array,
+  onSaveOrder: PropTypes.func
 };
 
 export default ClientInfo;
