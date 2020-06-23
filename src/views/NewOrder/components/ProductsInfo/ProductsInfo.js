@@ -12,8 +12,22 @@ import {
   Button,
   TextField
 } from '@material-ui/core';
+
+import NumberFormatCustom from '../../../../components/NumberFormatCustom'
+
 import { sizes } from '../../../../enviroment'
 
+import {useFormik} from 'formik'
+import * as Yup from 'yup'
+
+
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required("El nombre es necesario"),
+  size: Yup.string().required("Selecciona una talla"),
+  color: Yup.string().required("El color es necesario"),
+  price: Yup.string().required("El valor de venta es necesario")
+})
 
 
 const useStyles = makeStyles(() => ({
@@ -21,40 +35,22 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ProductsInfo = props => {
-  const { className, ...rest } = props;
+  const { className, onAddProduct, ...rest } = props;
 
   const classes = useStyles();
 
-  const [values, setValues] = useState({
-    firstName: 'Shen',
-    lastName: 'Zhi',
-    email: 'shen.zhi@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
-  });
 
-  const handleChange = event => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
-  };
-
-  const states = [
-    {
-      value: 'alabama',
-      label: 'Alabama'
+  const {handleChange, handleBlur, values, errors, touched, handleSubmit} = useFormik({
+    initialValues:{
+      name: '',
+      size: '',
+      color: '',
+      price: ''
     },
-    {
-      value: 'new-york',
-      label: 'New York'
-    },
-    {
-      value: 'san-francisco',
-      label: 'San Francisco'
-    }
-  ];
+    validationSchema: validationSchema,
+    onSubmit: onAddProduct
+  })
+ 
 
   return (
     <Card
@@ -64,6 +60,7 @@ const ProductsInfo = props => {
       <form
         autoComplete="off"
         noValidate
+        onSubmit={handleSubmit}
       >
         <CardHeader
           subheader="Agrega Prendas al pedido"
@@ -86,8 +83,11 @@ const ProductsInfo = props => {
                 margin="dense"
                 name="name"
                 onChange={handleChange}
+                onBlur={handleBlur}
                 required
-                value={values.firstName}
+                value={values.name}
+                error={errors.name && touched.name}
+                helperText={errors.name}
                 variant="outlined"
               />
             </Grid>
@@ -100,13 +100,16 @@ const ProductsInfo = props => {
                 fullWidth
                 label="Talla"
                 margin="dense"
-                name="state"
+                name="size"
                 onChange={handleChange}
+                onBlur={handleBlur}
                 required
                 select
                 // eslint-disable-next-line react/jsx-sort-props
                 SelectProps={{ native: true }}
-                value={values.state}
+                value={values.size}
+                error={errors.size && touched.size}
+                helperText={errors.size}
                 variant="outlined"
               >
                 {sizes.map(option => (
@@ -128,10 +131,13 @@ const ProductsInfo = props => {
                 fullWidth
                 label="Color"
                 margin="dense"
-                name="lastName"
+                name="color"
                 onChange={handleChange}
+                onBlur={handleBlur}
                 required
-                value={values.lastName}
+                value={values.color}
+                error={errors.color && touched.color}
+                helperText={errors.color}
                 variant="outlined"
               />
             </Grid>
@@ -144,11 +150,17 @@ const ProductsInfo = props => {
                 fullWidth
                 label="Precio de venta"
                 margin="dense"
-                name="email"
+                name="price"
                 onChange={handleChange}
+                onBlur={handleBlur}
                 required
-                value={values.email}
+                value={values.price}
+                error={errors.price && touched.price}
+                helperText={errors.price}
                 variant="outlined"
+                InputProps={{
+                  inputComponent: NumberFormatCustom,
+                }}
               />
             </Grid>
           </Grid>
@@ -156,6 +168,7 @@ const ProductsInfo = props => {
         <Divider />
         <CardActions>
           <Button
+            type="submit"
             color="primary"
             variant="contained"
           >
@@ -168,7 +181,8 @@ const ProductsInfo = props => {
 };
 
 ProductsInfo.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  onAddProduct: PropTypes.func
 };
 
 export default ProductsInfo;

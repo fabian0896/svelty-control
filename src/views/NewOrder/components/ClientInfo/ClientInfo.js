@@ -10,21 +10,27 @@ import {
   Divider,
   Grid,
   Button,
-  TextField
+  TextField,
+  Typography
 } from '@material-ui/core';
 
 
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
+import numeral from 'numeral'
+
+
+
 
 const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("Por favor ingresa el nombre"),
-    lastName: Yup.string().required("Por favor ingresa el apellido"),
-    email: Yup.string().email("El correo no es valido"),
-    phone: Yup.number().required("Por favor ingresa el telefono"),
-    city: Yup.string().required("Por favor ingresa la ciudad"),
-    address: Yup.string().required("Por favor ingresa la direción")
+  firstName: Yup.string().required("Por favor ingresa el nombre"),
+  lastName: Yup.string().required("Por favor ingresa el apellido"),
+  email: Yup.string().email("El correo no es valido"),
+  phone: Yup.number().required("Por favor ingresa el telefono"),
+  city: Yup.string().required("Por favor ingresa la ciudad"),
+  address: Yup.string().required("Por favor ingresa la direción"),
+  paymentMethod: Yup.string().required()
 })
 
 
@@ -34,26 +40,32 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ClientInfo = props => {
-  const { className, ...rest } = props;
-  
-  const classes = useStyles();
+  const { className, products, ...rest } = props;
+
+  const classes = useStyles()
+  ;
 
 
-  const {handleChange, handleBlur, touched, values, errors} = useFormik({
-      initialValues:{
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          city: '',
-          adrress: ''
-      },
-      validationSchema: validationSchema
+  const { handleChange, handleBlur, touched, values, errors } = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      city: '',
+      adrress: '',
+      paymentMethod: 'mipaquete'
+    },
+    validationSchema: validationSchema
   })
 
 
+  const getTotal = (list=[]) =>{
+    return list.reduce((prev, curr)=>{
+      return prev + curr.price
+    }, 0)
+  }
 
-  
 
   return (
     <Card
@@ -65,8 +77,8 @@ const ClientInfo = props => {
         noValidate
       >
         <CardHeader
-          subheader="Agregue los datos de envio del pedido"
-          title="Información del cliente"
+          subheader="Agregue los datos generales del pedido"
+          title="Información general"
         />
         <Divider />
         <CardContent>
@@ -169,9 +181,35 @@ const ClientInfo = props => {
                 variant="outlined"
               />
             </Grid>
+
             <Grid
               item
               md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                helperText={errors.paymentMethod}
+                label="Medio de pago"
+                margin="dense"
+                name="paymentMethod"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+                error={errors.paymentMethod && touched.paymentMethod}
+                value={values.paymentMethod}
+                variant="outlined"
+                select
+                SelectProps={{ native: true }}
+              >
+                <option value="mipaquete">Pago contra entrega</option>
+                <option value="consignment">Consignación</option>
+              </TextField>
+            </Grid>
+
+            <Grid
+              item
+              md={12}
               xs={12}
             >
               <TextField
@@ -183,11 +221,32 @@ const ClientInfo = props => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required
-                error={errors.adrress}
-                value={values.address && touched.adrress}
+                error={errors.adrress  && touched.adrress}
+                value={values.address}
                 variant="outlined"
               />
+
+
             </Grid>
+
+
+
+
+            <Grid item md={12}>
+              <Divider />
+            </Grid>
+
+            <Grid
+              item
+              md={12}
+              xs={12}
+            >
+              <Typography align="center" variant="h1">{numeral(getTotal(products)).format('$0,0')}</Typography>
+              <Typography align="center" variant="subtitle1" color="textSecondary">total</Typography>
+
+            </Grid>
+
+
           </Grid>
         </CardContent>
         <Divider />
@@ -205,7 +264,8 @@ const ClientInfo = props => {
 };
 
 ClientInfo.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  products: PropTypes.array
 };
 
 export default ClientInfo;
