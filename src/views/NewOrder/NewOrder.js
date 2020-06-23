@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
@@ -34,6 +34,7 @@ const NewOrder = () => {
   const classes = useStyles();
 
   
+  const [editingProduct, setEditingProduct] = useState(()=> -1)
 
 
 
@@ -59,16 +60,43 @@ const NewOrder = () => {
 
 
   const handleAddProduct = (values, actions) =>{
+    
+    let newArray = [...formik.values.products]
+    
     const newProduct = {
       ...values,
       price: parseInt(values.price),
       provider: null,
       wholesalePrice: null,
-      state: "pending"
+      state: "pending",
+      stock: false
     }
-    setFieldValue("products", [...formik.values.products, newProduct])
+
+    console.log("is editing esta en " +  editingProduct)
+    if(editingProduct >= 0){ //se esta editando una prenda
+        newArray[editingProduct] = newProduct
+    }else{
+      newArray = [...newArray, newProduct]
+    }
+
+    setFieldValue("products", newArray)
+    setEditingProduct(-1)
     actions.resetForm()
   } 
+
+
+  const handleDeleteProduct = (index) => () =>{
+      console.log("se elemina el index " + index)
+      const newArray = [...formik.values.products]
+      newArray.splice(index,1)
+      setFieldValue("products", [...newArray])
+  }
+
+  const handleEdit = (index)=>()=>{
+    console.log("se va a editar el index " + index)
+    setEditingProduct(index)
+  }
+
 
   return (
     <div className={classes.root}>
@@ -83,8 +111,14 @@ const NewOrder = () => {
           xl={6}
           xs={12}
         >
-          <ProducstInfo onAddProduct={handleAddProduct} />
-          <ProductList products={formik.values.products} />
+          <ProducstInfo
+            isEditing={editingProduct}
+            onAddProduct={handleAddProduct} />
+          <ProductList
+            isEditing={editingProduct}
+            onEdit={handleEdit}
+            onDelete={handleDeleteProduct} 
+            products={formik.values.products} />
         </Grid>
         <Grid
           item

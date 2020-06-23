@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const ProductList = props => {
-  const { className, products, ...rest } = props;
+  const { className, products, onDelete, onEdit, isEditing, ...rest } = props;
 
   const classes = useStyles();
 
@@ -58,8 +58,12 @@ const ProductList = props => {
       {
         products.map((product, index)=>{
           return(
-            <Grid key={index} item xs={12}>
-            <Product value={product} />
+          <Grid key={index} item xs={12}>
+            <Product 
+              isEditing={isEditing === index} 
+              onEdit={onEdit(index)} 
+              onDelete={onDelete(index)} 
+              value={product} />
           </Grid>
           )
         })
@@ -70,7 +74,10 @@ const ProductList = props => {
 
 ProductList.propTypes = {
   className: PropTypes.string,
-  products: PropTypes.array
+  products: PropTypes.array,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  isEditing: PropTypes.number
 };
 
 export default ProductList;
