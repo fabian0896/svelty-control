@@ -1,0 +1,3536 @@
+{
+    "coordinadora": [
+        {
+            "city": "MONTERÍA",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "FUSAGASUGÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "VILLAVICENCIO",
+            "Department": "META",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TUNJA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CALARCÁ",
+            "Department": "QUINDÍO",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CHINCHINÁ",
+            "Department": "CALDAS",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GALAPA",
+            "Department": "ATLÁNTICO",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MONTENEGRO",
+            "Department": "QUINDÍO",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TENJO",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "BUCARAMANGA",
+            "Department": "SANTANDER",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MIRANDA",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TIBASOSA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SAN ANTONIO DE PRADO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "RIOHACHA",
+            "Department": "LA GUAJIRA",
+            "deliveryDays": "4",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "ARMENIA",
+            "Department": "QUINDÍO",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "BOGOTÁ D.C.",
+            "Department": "BOGOTÁ D.C.",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "PRADERA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CALI",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4500",
+            "insurance": "0.008",
+            "minInsurance": "400",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "LOS PATIOS",
+            "Department": "NORTE DE SANTANDER",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "ITAGUI",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "LORICA",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SOGAMOSO",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "FUNZA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "ZIPAQUIRÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "ANDALUCÍA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CARTAGENA",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "IBAGUÉ",
+            "Department": "TOLIMA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GIRÓN",
+            "Department": "SANTANDER",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GIRARDOT",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SAMPUÉS",
+            "Department": "SUCRE",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CARTAGO",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MELGAR",
+            "Department": "TOLIMA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "RETIRO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SABANETA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "COROZAL",
+            "Department": "SUCRE",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "VILLA RICA",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TABIO",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SINCÉ",
+            "Department": "SUCRE",
+            "deliveryDays": "5",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "FUNDACIÓN",
+            "Department": "MAGDALENA",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "LA CEJA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "EL SANTUARIO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "PUERTO TEJADA",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "COTA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CIÉNAGA DE ORO",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SINCELEJO",
+            "Department": "SUCRE",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "DUITAMA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SANTA MARTA",
+            "Department": "MAGDALENA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "PEREIRA",
+            "Department": "RISARALDA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "QUIMBAYA",
+            "Department": "QUINDÍO",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MALAMBO",
+            "Department": "ATLÁNTICO",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "COVEÑAS",
+            "Department": "SUCRE",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CALOTO",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "ENVIGADO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CHÍA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TOLÚ VIEJO",
+            "Department": "SUCRE",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SOPÓ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SAHAGÚN",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CERETÉ",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "FLANDES",
+            "Department": "TOLIMA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "YOPAL",
+            "Department": "CASANARE",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MOSQUERA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "BELLO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SANTA ROSA DE CABAL",
+            "Department": "RISARALDA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "DOSQUEBRADAS",
+            "Department": "RISARALDA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "ARACATACA",
+            "Department": "MAGDALENA",
+            "deliveryDays": "6",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "BUENAVENTURA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "RIONEGRO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "POPAYÁN",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "PASTO",
+            "Department": "NARIÑO",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "BOSCONIA",
+            "Department": "CESAR",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SOLEDAD",
+            "Department": "ATLÁNTICO",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "IPIALES",
+            "Department": "NARIÑO",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "ESPINAL",
+            "Department": "TOLIMA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "JAMUNDÍ",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4500",
+            "insurance": "0.008",
+            "minInsurance": "400",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TAGANGA",
+            "Department": "MAGDALENA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CHIQUINQUIRÁ",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GUADALAJARA DE BUGA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CAJICÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "FLORIDABLANCA",
+            "Department": "SANTANDER",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "VILLAMARÍA",
+            "Department": "CALDAS",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CIRCASIA",
+            "Department": "QUINDÍO",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "BARBOSA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TOLÚ",
+            "Department": "SUCRE",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "BARRANQUILLA",
+            "Department": "ATLÁNTICO",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TURBACO",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GACHANCIPÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "BUGALAGRANDE",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "PIEDECUESTA",
+            "Department": "SANTANDER",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "FACATATIVÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CHINÚ",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "5",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "LA ESTRELLA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GINEBRA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TULUÁ",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SIBATÉ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SAN PEDRO",
+            "Department": "SUCRE",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "VIJES",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "ALCALÁ",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GAIRA",
+            "Department": "MAGDALENA",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "EL CARMEN DE VIBORAL",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "TOCANCIPÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MANIZALES",
+            "Department": "CALDAS",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "PALMIRA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4500",
+            "insurance": "0.008",
+            "minInsurance": "400",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SANTANDER DE QUILICHAO",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MEDELLÍN",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "LA TEBAIDA",
+            "Department": "QUINDÍO",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "VALLEDUPAR",
+            "Department": "CESAR",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GIRARDOTA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GUARNE",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "YUMBO",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4500",
+            "insurance": "0.008",
+            "minInsurance": "400",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "FLORIDA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MADRID",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "EL CERRITO",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4500",
+            "insurance": "0.008",
+            "minInsurance": "400",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "COPACABANA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "SOACHA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CALDAS",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MARINILLA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "GUACARÍ",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CIÉNAGA",
+            "Department": "MAGDALENA",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "VILLA DEL ROSARIO",
+            "Department": "NORTE DE SANTANDER",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "RICAURTE",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "8",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "NEIVA",
+            "Department": "HUILA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "MORROA",
+            "Department": "SUCRE",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "LA CALERA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "PAIPA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        },
+        {
+            "city": "CÚCUTA",
+            "Department": "NORTE DE SANTANDER",
+            "deliveryDays": "3",
+            "value": "10100",
+            "insurance": "0.015",
+            "minInsurance": "430",
+            "serviceCost": "0.04",
+            "minServiceCost": "5400"
+        }
+    ],
+    "tcc": [
+        {
+            "city": "BARBOSA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "4",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BELLO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CALDAS",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "3",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CAUCASIA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "3",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CISNEROS",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CONCEPCIÓN",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "COPACABANA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "EL CARMEN DE VIBORAL",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "EL SANTUARIO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ENVIGADO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GIRARDOTA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GRANADA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GUARNE",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ITAGUI",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LA CEJA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LA ESTRELLA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LA UNIÓN",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MARINILLA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MEDELLÍN",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MONTEBELLO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "5",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "RETIRO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "RIONEGRO",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SABANETA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ZARAGOZA",
+            "Department": "ANTIOQUIA",
+            "deliveryDays": "5",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BARRANQUILLA",
+            "Department": "ATLÁNTICO",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CANDELARIA",
+            "Department": "ATLÁNTICO",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MALAMBO",
+            "Department": "ATLÁNTICO",
+            "deliveryDays": "3",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SOLEDAD",
+            "Department": "ATLÁNTICO",
+            "deliveryDays": "3",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BOGOTÁ D.C.",
+            "Department": "BOGOTÁ D.C.",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ARJONA",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CARTAGENA",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CLEMENCIA",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "EL CARMEN DE BOLÍVAR",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MAGANGUÉ",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "5",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MAHATES",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MARÍA LA BAJA",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN ESTANISLAO",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "4",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN JACINTO",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN JUAN NEPOMUCENO",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SANTA CATALINA",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SOPLAVIENTO",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TURBACO",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TURBANÁ",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VILLANUEVA",
+            "Department": "BOLÍVAR",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "AQUITANIA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ARCABUCO",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BETÉITIVA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BUSBANZÁ",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CHIQUINQUIRÁ",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CORRALES",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CUÍTIVA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "DUITAMA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FIRAVITOBA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FLORESTA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GAMEZA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "IZA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MONGUA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MONGUÍ",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MONIQUIRÁ",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "NOBSA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PAIPA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PAJARITO",
+            "Department": "BOYACÁ",
+            "deliveryDays": "6",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PESCA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "RÁQUIRA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SÁCHICA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAMACÁ",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SOGAMOSO",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SORACÁ",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SUTAMARCHÁN",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TASCO",
+            "Department": "BOYACÁ",
+            "deliveryDays": "4",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TIBASOSA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TINJACÁ",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TÓPAGA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TOTA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TUNJA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VENTAQUEMADA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VILLA DE LEYVA",
+            "Department": "BOYACÁ",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MANIZALES",
+            "Department": "CALDAS",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VILLAMARÍA",
+            "Department": "CALDAS",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "AGUAZUL",
+            "Department": "CASANARE",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "YOPAL",
+            "Department": "CASANARE",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BUENOS AIRES",
+            "Department": "CAUCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CALOTO",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CORINTO",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LA VEGA",
+            "Department": "CAUCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MIRANDA",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PADILLA",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "POPAYÁN",
+            "Department": "CAUCA",
+            "deliveryDays": "2",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PUERTO TEJADA",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SUÁREZ",
+            "Department": "CAUCA",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VILLA RICA",
+            "Department": "CAUCA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BOSCONIA",
+            "Department": "CESAR",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "EL COPEY",
+            "Department": "CESAR",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN MARTÍN",
+            "Department": "CESAR",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VALLEDUPAR",
+            "Department": "CESAR",
+            "deliveryDays": "3",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CERETÉ",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "2",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CHINÚ",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CIÉNAGA DE ORO",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MONTERÍA",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "2",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAHAGÚN",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "2",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN ANTERO",
+            "Department": "CÓRDOBA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "AGUA DE DIOS",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ALBÁN",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ANAPOIMA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ANOLAIMA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "APULO",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ARBELÁEZ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BOJACÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CACHIPAY",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CAJICÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CARMEN DE CARUPA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CHÍA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CHOCONTÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "COGUA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CUCUNUBÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "EL COLEGIO",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "EL ROSAL",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FACATATIVÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FUNZA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FÚQUENE",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FUSAGASUGÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GACHANCIPÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GUACHETÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GUADUAS",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LA CALERA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LA MESA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LENGUAZAQUE",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MADRID",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MOSQUERA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "NEMOCÓN",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "NIMAIMA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "NOCAIMA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PANDI",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "33000",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PASCA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN BERNARDO",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SASAIMA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SESQUILÉ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SIBATÉ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SILVANIA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SIMIJACA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SOACHA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SOPÓ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SUBACHOQUE",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SUESCA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SUSA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SUTATAUSA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TABIO",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TAUSA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TENA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TENJO",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TOCAIMA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TOCANCIPÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VILLAPINZÓN",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VILLETA",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VIOTÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ZIPACÓN",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ZIPAQUIRÁ",
+            "Department": "CUNDINAMARCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "AIPE",
+            "Department": "HUILA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "NEIVA",
+            "Department": "HUILA",
+            "deliveryDays": "1",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MAICAO",
+            "Department": "LA GUAJIRA",
+            "deliveryDays": "3",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "RIOHACHA",
+            "Department": "LA GUAJIRA",
+            "deliveryDays": "3",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ALGARROBO",
+            "Department": "MAGDALENA",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ARACATACA",
+            "Department": "MAGDALENA",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CIÉNAGA",
+            "Department": "MAGDALENA",
+            "deliveryDays": "3",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "EL RETÉN",
+            "Department": "MAGDALENA",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FUNDACIÓN",
+            "Department": "MAGDALENA",
+            "deliveryDays": "3",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GUAMAL",
+            "Department": "MAGDALENA",
+            "deliveryDays": "7",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SANTA MARTA",
+            "Department": "MAGDALENA",
+            "deliveryDays": "3",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ACACIAS",
+            "Department": "META",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CASTILLA LA NUEVA",
+            "Department": "META",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CUBARRAL",
+            "Department": "META",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FUENTE DE ORO",
+            "Department": "META",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "RESTREPO",
+            "Department": "META",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "IPIALES",
+            "Department": "NARIÑO",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PASTO",
+            "Department": "NARIÑO",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN PABLO",
+            "Department": "NARIÑO",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CÚCUTA",
+            "Department": "NORTE DE SANTANDER",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LOS PATIOS",
+            "Department": "NORTE DE SANTANDER",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VILLA DEL ROSARIO",
+            "Department": "NORTE DE SANTANDER",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ARMENIA",
+            "Department": "QUINDÍO",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CALARCÁ",
+            "Department": "QUINDÍO",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CIRCASIA",
+            "Department": "QUINDÍO",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LA TEBAIDA",
+            "Department": "QUINDÍO",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "DOSQUEBRADAS",
+            "Department": "RISARALDA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PEREIRA",
+            "Department": "RISARALDA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BUCARAMANGA",
+            "Department": "SANTANDER",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CIMITARRA",
+            "Department": "SANTANDER",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FLORIDABLANCA",
+            "Department": "SANTANDER",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GIRÓN",
+            "Department": "SANTANDER",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LANDÁZURI",
+            "Department": "SANTANDER",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PIEDECUESTA",
+            "Department": "SANTANDER",
+            "deliveryDays": "2",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PUENTE NACIONAL",
+            "Department": "SANTANDER",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN GIL",
+            "Department": "SANTANDER",
+            "deliveryDays": "3",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SOCORRO",
+            "Department": "SANTANDER",
+            "deliveryDays": "3",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VÉLEZ",
+            "Department": "SANTANDER",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "COROZAL",
+            "Department": "SUCRE",
+            "deliveryDays": "2",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "COVEÑAS",
+            "Department": "SUCRE",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN MARCOS",
+            "Department": "SUCRE",
+            "deliveryDays": "4",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SINCELEJO",
+            "Department": "SUCRE",
+            "deliveryDays": "2",
+            "value": "12450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TOLÚ VIEJO",
+            "Department": "SUCRE",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CARMEN DE APICALA",
+            "Department": "TOLIMA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "IBAGUÉ",
+            "Department": "TOLIMA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ICONONZO",
+            "Department": "TOLIMA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "MELGAR",
+            "Department": "TOLIMA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SAN ANTONIO",
+            "Department": "TOLIMA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "ANDALUCÍA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BUENAVENTURA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "2",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "BUGALAGRANDE",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CALI",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4450",
+            "insurance": "0.006",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "CARTAGO",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "DAGUA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "EL CERRITO",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4450",
+            "insurance": "0.006",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "FLORIDA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "2",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GINEBRA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GUACARÍ",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "2",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "GUADALAJARA DE BUGA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "2",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "JAMUNDÍ",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4450",
+            "insurance": "0.006",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "LA CUMBRE",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "3",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PALMIRA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4450",
+            "insurance": "0.006",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PRADERA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "RIOFRÍO",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "SEVILLA",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "10000",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TRUJILLO",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "TULUÁ",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "VIJES",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "YOTOCO",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "5450",
+            "insurance": "0.01",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "YUMBO",
+            "Department": "VALLE DEL CAUCA",
+            "deliveryDays": "1",
+            "value": "4450",
+            "insurance": "0.006",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        },
+        {
+            "city": "PALERMO",
+            "Department": "HUILA",
+            "deliveryDays": "2",
+            "value": "14800",
+            "insurance": "0.02",
+            "minInsurance": "350",
+            "serviceCost": "0.04",
+            "minServiceCost": "4900"
+        }
+    ]
+}

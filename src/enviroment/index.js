@@ -1,3 +1,6 @@
+
+
+
 export const sizes = [
     {
         letter: "2XS",
@@ -48,3 +51,4 @@ export const sizes = [
         number: 50
     },
 ]
+

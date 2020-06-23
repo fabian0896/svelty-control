@@ -10,7 +10,9 @@ import {
   Divider,
   Grid,
   Button,
-  TextField
+  TextField,
+  FormControlLabel,
+  Switch
 } from '@material-ui/core';
 
 import NumberFormatCustom from '../../../../components/NumberFormatCustom'
@@ -75,6 +77,13 @@ const ProductsInfo = props => {
         <CardHeader
           subheader="Agrega Prendas al pedido"
           title="Prendas"
+          action={
+            <FormControlLabel
+              control={<Switch color="primary"/>}
+              label="En stock"
+              labelPlacement="bottom"
+            />
+          }
         />
         <Divider />
         <CardContent>
