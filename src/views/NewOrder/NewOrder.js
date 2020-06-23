@@ -72,7 +72,6 @@ const NewOrder = () => {
       stock: false
     }
 
-    console.log("is editing esta en " +  editingProduct)
     if(editingProduct >= 0){ //se esta editando una prenda
         newArray[editingProduct] = newProduct
     }else{
