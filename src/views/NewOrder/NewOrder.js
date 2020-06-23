@@ -13,7 +13,7 @@ const validationSchema = Yup.object().shape({
   lastName: Yup.string().required("Por favor ingresa el apellido"),
   email: Yup.string().email("El correo no es valido"),
   phone: Yup.number().required("Por favor ingresa el telefono"),
-  city: Yup.string().required("Por favor ingresa la ciudad"),
+  city: Yup.object().required("Selecciona un destion"),
   address: Yup.string().required("Por favor ingresa la direción"),
   paymentMethod: Yup.string().required(),
   products: Yup.array().min(1, "El pedido debe tener por lo menos una prenda")
@@ -42,13 +42,16 @@ const NewOrder = () => {
     console.log(values)
   }
 
-  const {setFieldValue ,...formik} = useFormik({
+  const formik = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
       email: '',
       phone: '',
-      city: '',
+      city: {
+        city: "CALI",
+        department: "VALLE DEL CAUCA"
+      },
       address: '',
       paymentMethod: 'mipaquete',
       products: []
@@ -78,7 +81,7 @@ const NewOrder = () => {
       newArray = [...newArray, newProduct]
     }
 
-    setFieldValue("products", newArray)
+    formik.setFieldValue("products", newArray)
     setEditingProduct(-1)
     actions.resetForm()
   } 
@@ -87,7 +90,7 @@ const NewOrder = () => {
   const handleDeleteProduct = (index) => () =>{
       const newArray = [...formik.values.products]
       newArray.splice(index,1)
-      setFieldValue("products", [...newArray])
+      formik.setFieldValue("products", [...newArray])
   }
 
   const handleEdit = (index)=>()=>{

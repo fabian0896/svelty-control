@@ -36,7 +36,7 @@ const ClientInfo = props => {
 
   const [cityOptions, setCityOptions] = useState(()=>[])
 
-  const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid } = formik
+  const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid, setFieldValue} = formik
 
   const classes = useStyles()
 
@@ -53,6 +53,10 @@ const ClientInfo = props => {
     setCityOptions(data)
   },[])
 
+
+  const handleAutocompleteChange = (e, value) =>{
+      setFieldValue("city", value)
+  }
 
   return (
     <Card
@@ -150,23 +154,21 @@ const ClientInfo = props => {
                 variant="outlined"
               />
             </Grid>
-            <Grid
-              item
+            
+            <Grid 
+              item 
               md={6}
-              xs={12}
-            >
-              <TextField
+              xs={12}>
+              <Autocomplete
                 fullWidth
-                helperText={errors.city}
-                label="Ciudad"
-                margin="dense"
-                name="city"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                required
+                getOptionSelected={(option, value)=> {
+                  return (option.city === value.city) && (option.department === value.department)
+                }}
                 value={values.city}
-                error={errors.city && touched.city}
-                variant="outlined"
+                onChange={handleAutocompleteChange}       
+                options={cityOptions}
+                getOptionLabel={(option)=> `${option.city}(${option.department})`}
+                renderInput={(params) => <TextField {...params} autoComplete="off" label="Destino" margin="dense" variant="outlined" />}
               />
             </Grid>
 
@@ -217,13 +219,6 @@ const ClientInfo = props => {
 
             </Grid>
 
-            <Grid item xs={6}>
-              <Autocomplete       
-                options={cityOptions}
-                getOptionLabel={(option)=> `${option.city}(${option.department})`}
-                renderInput={(params) => <TextField {...params} autoComplete="off" label="Destino" margin="dense" variant="outlined" />}
-              />
-            </Grid>
 
 
 
