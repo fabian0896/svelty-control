@@ -6,22 +6,48 @@ import {
   Card,
   CardContent,
   Typography,
-  Divider,
+  IconButton,
 } from '@material-ui/core';
+import { Delete, Edit } from '@material-ui/icons'
 import numeral from 'numeral'
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {
+    transition: '.2s',
+    '&:hover':{
+      background: theme.palette.primary.main
+    },
+    '&:hover $subtitles':{
+      color: theme.palette.primary.contrastText
+    },
+    '&:hover $title':{
+      color: theme.palette.primary.contrastText
+    },
+    '&:hover $size':{
+      display: 'none'
+    },
+    '&:hover $color':{
+      display: 'none'
+    },
+    '&:hover $price':{
+      display: 'none'
+    },
+    '&:hover $edit':{
+      display: 'flex'
+    },
+    '&:hover $delete':{
+      display: 'flex'
+    },
+  },
+  subtitles:{
+    color: theme.palette.text.secondary,
+  },
+  title:{
+    color: theme.palette.text.primary
+  },
   details: {
     display: 'flex',
     width: "100%",
-  },
-  avatar: {
-    marginLeft: 'auto',
-    height: 110,
-    width: 100,
-    flexShrink: 0,
-    flexGrow: 0
   },
   progress: {
     marginTop: theme.spacing(2)
@@ -51,13 +77,32 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "flex-end",
     alignItems: "center"
+  },
+  edit:{
+    flex: 1,
+    display: 'none',
+    color: theme.palette.primary.contrastText,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
+  delete:{
+    flex: 1,
+    display: 'none',
+    color: theme.palette.primary.contrastText,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
+  editting:{
+    border: `2px solid ${theme.palette.primary.main}`
   }
 }));
 
 
 
 const Product = props => {
-  const { className, value, ...rest } = props;
+  const { className, value, onDelete, onEdit, isEditing, ...rest } = props;
 
   const classes = useStyles();
 
@@ -75,45 +120,62 @@ const Product = props => {
   return (
     <Card
       {...rest}
-      className={clsx(classes.root, className)}
+      className={clsx(className, {[classes.editting]: isEditing, [classes.root]: !isEditing})}
     >
       <CardContent>
         <div className={classes.details}>
           <div className={classes.name}>
             <Typography
               variant="h5"
+              className={classes.title}
+              color="inherit"
             >
               {name}
             </Typography>
             <Typography
-              color="textSecondary"
+              className={classes.subtitles}
+              color="inherit"
               variant="subtitle2"
             >
               {provider? provider: "Sin proveedor"}
             </Typography>
           </div>
           <div className={classes.size}>
-            <Typography align="center" variant="h6" >{size}</Typography>
-            <Typography align="center" color="textSecondary" variant="subtitle2">Talla</Typography>
+            <Typography className={classes.title} color="inherit" align="center" variant="h6" >{size}</Typography>
+            <Typography className={classes.subtitles} align="center" color="inherit" variant="subtitle2">Talla</Typography>
           </div>
           <div className={classes.color}>
-            <Typography align="center" variant="h6" >{color}</Typography>
-            <Typography align="center" color="textSecondary" variant="subtitle2">Color</Typography>
+            <Typography className={classes.title} color="inherit" align="center" variant="h6" >{color}</Typography>
+            <Typography className={classes.subtitles} align="center" color="inherit" variant="subtitle2">Color</Typography>
           </div>
           <div className={classes.price}>
-            <Typography align="right" variant="h5">{numeral(price).format('$0,0')}</Typography>
+            <Typography className={classes.title} color="inherit" align="right" variant="h5">{numeral(price).format('$0,0')}</Typography>
+          </div>
+          <div className={classes.delete}>
+            <IconButton onClick={onDelete} size="medium" color="inherit">
+              <Delete/>
+            </IconButton>
+            <Typography color="inherit" variant="subtitle2">Borrar</Typography>
+          </div>
+          <div className={classes.edit}>
+              <IconButton onClick={onEdit} size="medium" color="inherit">
+                <Edit/>
+              </IconButton>
+              <Typography color="inherit" variant="subtitle2">Editar</Typography>
           </div>
 
         </div>
       </CardContent>
-      <Divider />
     </Card>
   );
 };
 
 Product.propTypes = {
   className: PropTypes.string,
-  value: PropTypes.object
+  value: PropTypes.object,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool
 };
 
 export default Product;

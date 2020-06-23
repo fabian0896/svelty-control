@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ProductsInfo = props => {
-  const { className, onAddProduct, ...rest } = props;
+  const { className, onAddProduct, isEditing, ...rest } = props;
 
   const classes = useStyles();
 
@@ -172,7 +172,7 @@ const ProductsInfo = props => {
             color="primary"
             variant="contained"
           >
-            Agregar Prenda
+            {isEditing >= 0? "Editar" : "Agregar Prenda"}
           </Button>
         </CardActions>
       </form>
