@@ -1,6 +1,3 @@
-
-
-
 export const sizes = [
     {
         letter: "2XS",

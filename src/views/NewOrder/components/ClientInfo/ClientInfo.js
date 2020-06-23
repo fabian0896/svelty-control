@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useEffect, useState }  from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -14,7 +14,12 @@ import {
   Typography
 } from '@material-ui/core';
 
+import { Autocomplete } from '@material-ui/lab'
+
 import numeral from 'numeral'
+import shippingRates from '../../../../enviroment/shippingRates.json'
+import {getCityList} from '../../../../helpers'
+
 
 
 const useStyles = makeStyles(() => ({
@@ -28,6 +33,9 @@ const ClientInfo = props => {
     ...rest 
   } = props;
 
+
+  const [cityOptions, setCityOptions] = useState(()=>[])
+
   const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid } = formik
 
   const classes = useStyles()
@@ -39,6 +47,11 @@ const ClientInfo = props => {
     }, 0)
   }
 
+
+  useEffect(()=>{
+    const data = getCityList(shippingRates)
+    setCityOptions(data)
+  },[])
 
 
   return (
@@ -202,6 +215,14 @@ const ClientInfo = props => {
               />
 
 
+            </Grid>
+
+            <Grid item xs={6}>
+              <Autocomplete       
+                options={cityOptions}
+                getOptionLabel={(option)=> `${option.city}(${option.department})`}
+                renderInput={(params) => <TextField {...params} autoComplete="off" label="Locación" margin="dense" variant="outlined" />}
+              />
             </Grid>
 
 
