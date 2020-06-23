@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -14,25 +14,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-
 import numeral from 'numeral'
-
-
-
-
-const validationSchema = Yup.object().shape({
-  firstName: Yup.string().required("Por favor ingresa el nombre"),
-  lastName: Yup.string().required("Por favor ingresa el apellido"),
-  email: Yup.string().email("El correo no es valido"),
-  phone: Yup.number().required("Por favor ingresa el telefono"),
-  city: Yup.string().required("Por favor ingresa la ciudad"),
-  address: Yup.string().required("Por favor ingresa la direción"),
-  paymentMethod: Yup.string().required()
-})
-
 
 
 const useStyles = makeStyles(() => ({
@@ -40,25 +22,15 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ClientInfo = props => {
-  const { className, products, onSaveOrder, ...rest } = props;
+  const { 
+    className, 
+    formik,
+    ...rest 
+  } = props;
+
+  const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid } = formik
 
   const classes = useStyles()
-  ;
-
-
-  const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid } = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      city: '',
-      address: '',
-      paymentMethod: 'mipaquete'
-    },
-    validationSchema: validationSchema,
-    onSubmit: onSaveOrder
-  })
 
 
   const getTotal = (list=[]) =>{
@@ -66,6 +38,7 @@ const ClientInfo = props => {
       return prev + curr.price
     }, 0)
   }
+
 
 
   return (
@@ -243,7 +216,7 @@ const ClientInfo = props => {
               md={12}
               xs={12}
             >
-              <Typography align="center" variant="h1">{numeral(getTotal(products)).format('$0,0')}</Typography>
+              <Typography align="center" variant="h1">{numeral(getTotal(values.products)).format('$0,0')}</Typography>
               <Typography align="center" variant="subtitle1" color="textSecondary">total</Typography>
 
             </Grid>
@@ -269,8 +242,7 @@ const ClientInfo = props => {
 
 ClientInfo.propTypes = {
   className: PropTypes.string,
-  products: PropTypes.array,
-  onSaveOrder: PropTypes.func
+  formik: PropTypes.object.isRequired  
 };
 
 export default ClientInfo;

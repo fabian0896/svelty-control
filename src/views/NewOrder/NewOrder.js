@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
 import { ClientInfo , ProducstInfo, ProductList } from './components';
+
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+
+
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string().required("Por favor ingresa el nombre"),
+  lastName: Yup.string().required("Por favor ingresa el apellido"),
+  email: Yup.string().email("El correo no es valido"),
+  phone: Yup.number().required("Por favor ingresa el telefono"),
+  city: Yup.string().required("Por favor ingresa la ciudad"),
+  address: Yup.string().required("Por favor ingresa la direción"),
+  paymentMethod: Yup.string().required(),
+  products: Yup.array().min(1, "El pedido debe tener por lo menos una prenda")
+})
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -11,10 +27,36 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
+
+
 const NewOrder = () => {
   const classes = useStyles();
 
-  const [products, setProducts] = useState([])
+  
+
+
+
+  const handleSaveOrder = (values, actions)=>{
+    console.log(values)
+  }
+
+  const {setFieldValue ,...formik} = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      city: '',
+      address: '',
+      paymentMethod: 'mipaquete',
+      products: []
+    },
+    validationSchema: validationSchema,
+    onSubmit: handleSaveOrder
+  })
+
+
 
   const handleAddProduct = (values, actions) =>{
     const newProduct = {
@@ -24,13 +66,9 @@ const NewOrder = () => {
       wholesalePrice: null,
       state: "pending"
     }
-    setProducts(prev => [...prev, newProduct])
+    setFieldValue("products", [...formik.values.products, newProduct])
     actions.resetForm()
   } 
-
-  const handleSaveOrder = (values, actions)=>{
-      console.log(values)
-  }
 
   return (
     <div className={classes.root}>
@@ -46,7 +84,7 @@ const NewOrder = () => {
           xs={12}
         >
           <ProducstInfo onAddProduct={handleAddProduct} />
-          <ProductList products={products} />
+          <ProductList products={formik.values.products} />
         </Grid>
         <Grid
           item
@@ -56,8 +94,8 @@ const NewOrder = () => {
           xs={12}
         >
           <ClientInfo
-            onSaveOrder={handleSaveOrder} 
-            products={products} />
+            formik={formik}
+          />
         </Grid>
   
       </Grid>
