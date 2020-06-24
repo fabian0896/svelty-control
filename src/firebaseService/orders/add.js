@@ -22,7 +22,6 @@ export default async function(value){
         creatorName: user.displayName
     }
 
-
     
     await db.collection(ORDERS).doc(orderId).set(order)
     const algoliaId = await algoliaOrders.add(order)
