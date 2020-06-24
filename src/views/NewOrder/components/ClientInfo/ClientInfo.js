@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -18,44 +18,54 @@ import { Autocomplete } from '@material-ui/lab'
 
 import numeral from 'numeral'
 import shippingRates from '../../../../enviroment/shippingRates.json'
-import {getCityList} from '../../../../helpers'
+import colombiaCities from '../../../../enviroment/colombiaCities.json'
+import { getCityList, calculateShippingDays } from '../../../../helpers'
 
 
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
+  resumeContainer: {
+    display: 'flex',
+    '& > div': {
+      flex: 1
+    }
+  }
 }));
 
 const ClientInfo = props => {
-  const { 
-    className, 
+  const {
+    className,
     formik,
-    ...rest 
+    ...rest
   } = props;
 
 
-  const [cityOptions, setCityOptions] = useState(()=>[])
+  const [cityOptions, setCityOptions] = useState(() => [])
+  const [deliveryDays, setDeliveryDays] = useState(() => "---")
 
-  const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid, setFieldValue} = formik
+  const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid, setFieldValue } = formik
 
   const classes = useStyles()
 
 
-  const getTotal = (list=[]) =>{
-    return list.reduce((prev, curr)=>{
+  const getTotal = (list = []) => {
+    return list.reduce((prev, curr) => {
       return prev + curr.price
     }, 0)
   }
 
 
-  useEffect(()=>{
+  useEffect(() => {
     const data = getCityList(shippingRates)
     setCityOptions(data)
-  },[])
+  }, [])
 
 
-  const handleAutocompleteChange = (e, value) =>{
-      setFieldValue("city", value)
+  const handleAutocompleteChange = (e, value) => {
+    setFieldValue("city", value)
+    const days = calculateShippingDays(value)
+    setDeliveryDays(days)
   }
 
   return (
@@ -154,23 +164,6 @@ const ClientInfo = props => {
                 variant="outlined"
               />
             </Grid>
-            
-            <Grid 
-              item 
-              md={6}
-              xs={12}>
-              <Autocomplete
-                fullWidth
-                getOptionSelected={(option, value)=> {
-                  return (option.city === value.city) && (option.department === value.department)
-                }}
-                value={values.city}
-                onChange={handleAutocompleteChange}       
-                options={cityOptions}
-                getOptionLabel={(option)=> `${option.city}(${option.department})`}
-                renderInput={(params) => <TextField {...params} autoComplete="off" label="Destino" margin="dense" variant="outlined" />}
-              />
-            </Grid>
 
             <Grid
               item
@@ -197,6 +190,26 @@ const ClientInfo = props => {
               </TextField>
             </Grid>
 
+
+            <Grid
+              item
+              md={6}
+              xs={12}>
+              <Autocomplete
+                fullWidth
+                getOptionSelected={(option, value) => {
+                  return (option.city === value.city) && (option.department === value.department)
+                }}
+                value={values.city}
+                onChange={handleAutocompleteChange}
+                options={values.paymentMethod === "mipaquete" ? cityOptions : colombiaCities}
+                getOptionLabel={(option) => `${option.city}(${option.department})`}
+                renderInput={(params) => <TextField {...params} autoComplete="off" label="Destino" margin="dense" variant="outlined" />}
+              />
+            </Grid>
+
+
+
             <Grid
               item
               md={12}
@@ -211,7 +224,7 @@ const ClientInfo = props => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required
-                error={errors.address  && touched.address}
+                error={errors.address && touched.address}
                 value={values.address}
                 variant="outlined"
               />
@@ -232,8 +245,20 @@ const ClientInfo = props => {
               md={12}
               xs={12}
             >
-              <Typography align="center" variant="h1">{numeral(getTotal(values.products)).format('$0,0')}</Typography>
-              <Typography align="center" variant="subtitle1" color="textSecondary">total</Typography>
+              <div className={classes.resumeContainer}>
+                <div>
+                  <Typography align="center" variant="h1">{numeral(getTotal(values.products)).format('$0,0')}</Typography>
+                  <Typography align="center" variant="subtitle1" color="textSecondary">total</Typography>
+                </div>
+                <div>
+                  <Typography align="center" variant="h1">{values.products.length}</Typography>
+                  <Typography align="center" variant="subtitle1" color="textSecondary">{values.products.length > 1 ? "Prendas" : "Prenda"}</Typography>
+                </div>
+                <div>
+                  <Typography align="center" variant="h1">{values.paymentMethod === 'mipaquete' ? deliveryDays : '---'}</Typography>
+                  <Typography align="center" variant="subtitle1" color="textSecondary">Dias de envio</Typography>
+                </div>
+              </div>
             </Grid>
 
 
@@ -257,7 +282,7 @@ const ClientInfo = props => {
 
 ClientInfo.propTypes = {
   className: PropTypes.string,
-  formik: PropTypes.object.isRequired  
+  formik: PropTypes.object.isRequired
 };
 
 export default ClientInfo;
