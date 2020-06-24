@@ -1,6 +1,7 @@
 import * as firebase from 'firebase'
 import 'firebase/firestore'
 import 'firebase/auth'
+import { orders as algoliaOrders } from '../../algoliaService'
 
 const ORDERS = 'orders'
 
@@ -9,9 +10,11 @@ export default async function(value){
     const user = firebase.auth().currentUser
     const db = firebase.firestore()
 
+    const orderId = await db.collection(ORDERS).doc().id
 
 
     const order = {
+        id: orderId,
         ...value,
         state: "pending",
         createdAt: new Date(),
@@ -19,7 +22,11 @@ export default async function(value){
         creatorName: user.displayName
     }
 
-    const result = await db.collection(ORDERS).add(order)
 
-    return result.id
+    
+    await db.collection(ORDERS).doc(orderId).set(order)
+    const algoliaId = await algoliaOrders.add(order)
+    console.log(algoliaId)
+
+    return orderId
 }
