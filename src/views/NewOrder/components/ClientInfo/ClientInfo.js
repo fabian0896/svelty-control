@@ -44,7 +44,7 @@ const ClientInfo = props => {
   const [cityOptions, setCityOptions] = useState(() => [])
   const [deliveryDays, setDeliveryDays] = useState(() => "---")
 
-  const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid, setFieldValue } = formik
+  const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid, setFieldValue, isSubmitting } = formik
 
   const classes = useStyles()
 
@@ -267,7 +267,7 @@ const ClientInfo = props => {
         <Divider />
         <CardActions>
           <Button
-            disabled={!isValid}
+            disabled={!isValid || isSubmitting}
             color="primary"
             variant="contained"
             type="submit"

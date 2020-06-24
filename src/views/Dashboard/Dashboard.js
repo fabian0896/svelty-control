@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
@@ -13,6 +13,8 @@ import {
   LatestOrders
 } from './components';
 
+import * as orders from '../../firebaseService/orders'
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
@@ -21,6 +23,10 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = () => {
   const classes = useStyles();
+
+  useEffect(()=>{
+    
+  },[])
 
   return (
     <div className={classes.root}>
