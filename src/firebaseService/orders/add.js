@@ -10,7 +10,7 @@ export default async function(value){
     const user = firebase.auth().currentUser
     const db = firebase.firestore()
 
-    const orderId = await db.collection(ORDERS).doc().id
+    const orderId =  db.collection(ORDERS).doc().id
 
 
     const order = {
