@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid } from '@material-ui/core';
+import { Grid, Backdrop, CircularProgress } from '@material-ui/core';
 
 import { ClientInfo , ProducstInfo, ProductList } from './components';
 
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+
+import * as orders from '../../firebaseService/orders'
+
+import { useHistory } from 'react-router-dom'
 
 
 const validationSchema = Yup.object().shape({
@@ -24,7 +28,11 @@ const validationSchema = Yup.object().shape({
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
-  }
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
 }));
 
 
@@ -35,11 +43,17 @@ const NewOrder = () => {
 
   
   const [editingProduct, setEditingProduct] = useState(()=> -1)
+  const [loading, setLoading] = useState(false)
+  const history = useHistory()
 
-
-
-  const handleSaveOrder = (values, actions)=>{
-    console.log(values)
+  const handleSaveOrder = async (values, actions)=>{
+    console.log("se va a gregar")
+    setLoading(true)
+    await orders.add(values)
+    setLoading(false)
+    console.log("se agrego")
+    history.push({pathname: '/users'})
+    return
   }
 
   const formik = useFormik({
@@ -100,6 +114,9 @@ const NewOrder = () => {
 
   return (
     <div className={classes.root}>
+      <Backdrop className={classes.backdrop} open={loading}>
+          <CircularProgress color="inherit"/>
+      </Backdrop>
       <Grid
         container
         spacing={4}
