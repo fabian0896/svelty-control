@@ -19,8 +19,10 @@ import { MoreVert } from '@material-ui/icons'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import numeral from 'numeral'
+import moment from 'moment'
+import { ORDER_STATES } from '../../../../enviroment'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   imageContainer: {
     height: 64,
@@ -42,8 +44,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   statsIcon: {
-    color: theme.palette.icon,
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   divider: {
     marginBottom: theme.spacing(1)
@@ -56,18 +57,24 @@ const useStyles = makeStyles(theme => ({
     '& > div': {
       flex: 1
     }
-  }
+  },
+  footer: props=>({
+    background: ORDER_STATES[props.order.state].color,
+    color: theme.palette.getContrastText(ORDER_STATES[props.order.state].color),
+  })
 }));
 
 const OrderCard = props => {
   const { className, order, ...rest } = props;
 
-  const classes = useStyles();
+  const classes = useStyles(props);
 
   const getTotalPrice = (products=[])=>{
     return products.reduce((prev, curr)=> prev + curr.price,0)
   }
   
+  const StateIcon = ORDER_STATES[order.state].icon
+
   return (
     <Card
       {...rest}
@@ -137,7 +144,7 @@ const OrderCard = props => {
                 align="right"
                 variant="body1"
               >
-                Coordinadora
+                {order.currier || "Sin asignar"}
           </Typography>
               <Typography
                 align="right"
@@ -151,7 +158,7 @@ const OrderCard = props => {
                 align="right"
                 variant="body1"
               >
-                98130530799
+                {order.trackNumber || "Sin guia"}
           </Typography>
               <Typography
                 align="right"
@@ -182,7 +189,7 @@ const OrderCard = props => {
         </CardContent>
       </CardActionArea>
       <Divider />
-      <CardActions>
+      <CardActions className={classes.footer}>
         <Grid
           container
           justify="space-between"
@@ -191,24 +198,26 @@ const OrderCard = props => {
             className={classes.statsItem}
             item
           >
-            <AccessTimeIcon className={classes.statsIcon} />
+            <AccessTimeIcon color="inherit" className={classes.statsIcon} />
             <Typography
+              color="inherit"
               display="inline"
               variant="body2"
             >
-              24 de Junio de 2020
+              {moment(order.createdAt.seconds*1000).format('DD/MM/YYYY')}
             </Typography>
           </Grid>
           <Grid
             className={classes.statsItem}
             item
           >
-            <GetAppIcon className={classes.statsIcon} />
+            <StateIcon color="inherit" className={classes.statsIcon} />
             <Typography
+              color="inherit"
               display="inline"
               variant="body2"
             >
-              Enviado
+              {ORDER_STATES[order.state].name}
             </Typography>
           </Grid>
         </Grid>

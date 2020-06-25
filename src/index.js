@@ -5,8 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import * as firebase from 'firebase/app'
 
-import 'firebase/auth'
-import 'firebase/firestore'
+
 
 
 const firebaseConfig = {
