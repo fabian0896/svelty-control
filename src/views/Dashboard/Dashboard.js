@@ -13,7 +13,6 @@ import {
   LatestOrders
 } from './components';
 
-import * as orders from '../../firebaseService/orders'
 
 const useStyles = makeStyles(theme => ({
   root: {

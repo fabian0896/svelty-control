@@ -139,7 +139,6 @@ const ClientInfo = props => {
                 name="email"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                required
                 value={values.email}
                 error={errors.email && touched.email}
                 variant="outlined"
@@ -187,6 +186,7 @@ const ClientInfo = props => {
               >
                 <option value="mipaquete">Pago contra entrega</option>
                 <option value="consignment">Consignación</option>
+                <option value="cash">Efectivo</option>
               </TextField>
             </Grid>
 

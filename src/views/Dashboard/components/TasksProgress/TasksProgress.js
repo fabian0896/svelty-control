@@ -62,7 +62,7 @@ const TasksProgress = props => {
             >
               TOTAL
             </Typography>
-            <Typography variant="h3">75.5%</Typography>
+            <Typography variant="h3">$10.567.900</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
