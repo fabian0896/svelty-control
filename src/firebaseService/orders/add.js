@@ -2,6 +2,7 @@ import * as firebase from 'firebase'
 import 'firebase/firestore'
 import 'firebase/auth'
 import { orders as algoliaOrders } from '../../algoliaService'
+import {getRandomColor} from '../../helpers'
 
 const ORDERS = 'orders'
 
@@ -12,6 +13,7 @@ export default async function(value){
 
     const orderId =  db.collection(ORDERS).doc().id
 
+    const color = await getRandomColor()
 
     const order = {
         id: orderId,
@@ -19,7 +21,8 @@ export default async function(value){
         state: "pending",
         createdAt: new Date(),
         creatorId: user.uid,
-        creatorName: user.displayName
+        creatorName: user.displayName,
+        color
     }
 
     

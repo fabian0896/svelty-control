@@ -18,7 +18,8 @@ import {
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
-  NewOrder as NewOrderView
+  NewOrder as NewOrderView,
+  OrderList as OrderListView
 } from './views';
 
 const Routes = () => {
@@ -56,10 +57,10 @@ const Routes = () => {
         />
         <RouteWithLayoutPrivate
           user={user}
-          component={ProductListView}
+          component={OrderListView}
           exact
           layout={MainLayout}
-          path="/products"
+          path="/pedidos"
         />
         <RouteWithLayoutPrivate
           user={user}
@@ -94,7 +95,7 @@ const Routes = () => {
             component={NewOrderView}
             exact
             layout={MainLayout}
-            path="/order/new"
+            path="/pedido/nuevo"
           />
         <RouteWithLayoutPrivate
           user={user} 
