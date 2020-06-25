@@ -18,6 +18,7 @@ import {
 import { MoreVert } from '@material-ui/icons'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import numeral from 'numeral'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -59,10 +60,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const OrderCard = props => {
-  const { className, product, ...rest } = props;
+  const { className, order, ...rest } = props;
 
   const classes = useStyles();
 
+  const getTotalPrice = (products=[])=>{
+    return products.reduce((prev, curr)=> prev + curr.price,0)
+  }
+  
   return (
     <Card
       {...rest}
@@ -72,7 +77,8 @@ const OrderCard = props => {
       <CardHeader
         avatar={
           <Avatar className={classes.avatar}>
-            FD
+            {order.firstName.charAt(0).toUpperCase()}
+            {order.lastName.charAt(0).toUpperCase()}
           </Avatar>
         }
         action={
@@ -87,8 +93,8 @@ const OrderCard = props => {
         titleTypographyProps={{
           variant: 'h5',
         }}
-        title="Fabian David Dueñas Garcia"
-        subheader="CALI(VALLE DEL CAUCA)"
+        title={`${order.firstName} ${order.lastName}`}
+        subheader={`${order.city.city}(${order.city.department})`}
       />
       <Divider />
       <CardActionArea>
@@ -163,12 +169,12 @@ const OrderCard = props => {
 
           <div className={classes.resumeContainer}>
             <div>
-              <Typography align="center" variant="h4">$78.000</Typography>
+      <Typography align="center" variant="h4">{numeral(getTotalPrice(order.products)).format('$0,0')}</Typography>
               <Typography align="center" variant="body1" color="textSecondary">Total</Typography>
             </div>
             <div>
-              <Typography align="center" variant="h4">1</Typography>
-              <Typography align="center" variant="body1" color="textSecondary">Prenda</Typography>
+      <Typography align="center" variant="h4">{order.products.length}</Typography>
+      <Typography align="center" variant="body1" color="textSecondary">{order.products.length === 1? "prenda" : "Prendas"}</Typography>
             </div>
           </div>
 
@@ -213,7 +219,7 @@ const OrderCard = props => {
 
 OrderCard.propTypes = {
   className: PropTypes.string,
-  product: PropTypes.object.isRequired
+  order: PropTypes.object.isRequired
 };
 
 export default OrderCard;
