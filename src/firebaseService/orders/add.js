@@ -13,7 +13,7 @@ export default async function(value){
 
     const orderId =  db.collection(ORDERS).doc().id
 
-    const color = await getRandomColor()
+    const color = getRandomColor()
 
     const order = {
         id: orderId,

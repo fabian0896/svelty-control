@@ -47,7 +47,7 @@ const OrderToolbar = props => {
           variant="contained"
           onClick={onAddOrder}
         >
-          Agregar un pedido
+          Agregar pedido
         </Button>
       </div>
       <div className={classes.row}>

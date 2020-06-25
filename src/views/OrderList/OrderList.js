@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { IconButton, Grid, Typography } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -8,6 +8,9 @@ import { OrderToolbar, OrderCard } from './components';
 import mockData from './data';
 
 import { useHistory } from 'react-router-dom'
+
+
+import * as orders from '../../firebaseService/orders'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,11 +33,30 @@ const OrderList = () => {
   const [products] = useState(mockData);
   const history = useHistory()
 
+  const [nextFunction, setNextFunction] = useState()
+  const [ordersList, setOrdersList] = useState([])
+
+
 
   const handleAddOrder = ()=>{
     history.push({pathname: '/pedido/nuevo'})
   }
 
+  useEffect(()=>{
+    const fecthData = async ()=>{
+      const [firstData, next] = await orders.gelAll()
+      setOrdersList(firstData)
+      setNextFunction(next)
+      console.log(firstData)
+    }
+    fecthData()
+  },[])
+
+
+  const handleNextPage = async ()=>{
+      const data = await nextFunction
+      console.log(data)
+  }
 
   return (
     <div className={classes.root}>
@@ -44,15 +66,15 @@ const OrderList = () => {
           container
           spacing={3}
         >
-          {products.map(product => (
+          {ordersList.map(order => (
             <Grid
               item
-              key={product.id}
+              key={order.id}
               lg={4}
               md={6}
               xs={12}
             >
-              <OrderCard product={product} />
+              <OrderCard order={order} />
             </Grid>
           ))}
         </Grid>
@@ -62,7 +84,7 @@ const OrderList = () => {
         <IconButton>
           <ChevronLeftIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleNextPage}>
           <ChevronRightIcon />
         </IconButton>
       </div>
