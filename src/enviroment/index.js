@@ -86,38 +86,45 @@ export const ORDER_STATES ={
     pending:{
         name: "Pendiente",
         icon: Timer,
-        color: blueGrey[100]
+        color: blueGrey[100],
+        defaultMessage: "El pedido fue a gregado pero las prendas no estan listas"
     },
     production:{
         name: "Prendas en producción",
         icon: HourglassEmpty,
-        color: purple[300]
+        color: purple[300],
+        defaultMessage: "Las prendas fuerón enviadas a producción"
     },
     productReady:{
         name: "Prendas listas",
         icon: HourglassFull,
-        color: lime[300]
+        color: lime[300],
+        defaultMessage: "Todas las prendas del pedido estan listas. A la espera de ser enviadas"
 
     },
     dispatched:{
         name: "Enviado",
         icon: FlightTakeoff,
-        color: cyan[700]
+        color: cyan[700],
+        defaultMessage: "El pedido fue despachado"
     },
     shippingProblems:{
         name: "Con novedades",
         icon: Warning,
-        color: amber[500]
+        color: amber[500],
+        defaultMessage: "Se presento una novedad en el envio, hay que revisar la guia"
     },
     delivered:{
         name: "Entregado",
         icon: Done,
-        color: green[800]
+        color: green[800],
+        defaultMessage: "El pedido fue entregado en el destino. Vamos que vamos!!!"
     },
     return:{
         name: "Devolución",
         icon: ErrorIcon,
-        color: red[800]
+        color: red[800],
+        defaultMessage: "El pedido no pudo ser entregado y lo devolvieron :("
     }
 
 }

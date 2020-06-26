@@ -11,11 +11,14 @@ const useStyle = makeStyles(theme => ({
     root: {
         marginBottom: theme.spacing(2),
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        '&:last-child':{
+            marginBottom: 0
+        }
     },
     icon: props => ({
-        marginRight: theme.spacing(1),
-        background: ORDER_STATES['shippingProblems'].color,
+        marginRight: theme.spacing(2),
+        background: ORDER_STATES['delivered'].color,
         padding: theme.spacing(1),
         height: 40,
         width: 40,
@@ -24,7 +27,7 @@ const useStyle = makeStyles(theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         '& > *': {
-            color: theme.palette.getContrastText(ORDER_STATES['shippingProblems'].color)
+            color: theme.palette.getContrastText(ORDER_STATES['delivered'].color)
         }
     }),
     description: {
@@ -42,7 +45,7 @@ const HistoryItem = props => {
 
     const classes = useStyle(props)
 
-    const StateIcon = ORDER_STATES['shippingProblems'].icon
+    const StateIcon = ORDER_STATES['delivered'].icon
 
     return (
         <div className={classes.root}>

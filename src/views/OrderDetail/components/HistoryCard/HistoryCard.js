@@ -8,17 +8,17 @@ import {
     CardHeader,
     CardActions,
     CardContent,
-    Avatar,
-    Typography,
     Divider,
     Button,
+    IconButton
 } from '@material-ui/core';
+import { MoreVert } from '@material-ui/icons'
 
 import HistoryItem from './HistoryItem'
 
 const useStyles = makeStyles(theme => ({
     root: {
-        marginTop: theme.spacing(2)
+        marginBottom: theme.spacing(2)
     },
     details: {
         display: 'flex'
@@ -64,8 +64,13 @@ const HistoryCard = props => {
             className={clsx(classes.root, className)}
         >
             <CardHeader
-                title="Historial"
+                title="Seguimiento"
                 subheader="Historial del pedido desde que se creo"
+                action={
+                    <IconButton>
+                        <MoreVert />
+                    </IconButton>
+                }
             />
             <Divider />
             <CardContent>
@@ -74,17 +79,6 @@ const HistoryCard = props => {
                 <HistoryItem />
                 <HistoryItem />
             </CardContent>
-            <Divider />
-            <CardActions>
-                <Button
-                    className={classes.uploadButton}
-                    color="primary"
-                    variant="text"
-                >
-                    Eliminar
-        </Button>
-                <Button variant="text">Editar</Button>
-            </CardActions>
         </Card>
     );
 };

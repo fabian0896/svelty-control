@@ -45,13 +45,7 @@ const ClientProfile = props => {
 
   const classes = useStyles();
 
-  const user = {
-    name: 'Fabian David Dueñas Garcia',
-    city: 'Los Angeles',
-    country: 'USA',
-    timezone: 'GTM-7',
-    avatar: '/images/avatars/avatar_11.png'
-  };
+
 
   return (
     <Card

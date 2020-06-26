@@ -2,7 +2,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
-import { ClientProfile, AccountDetails, HistoryCard } from './components';
+import { 
+  ClientProfile, 
+  AccountDetails, 
+  HistoryCard,
+  ProductList
+} from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,7 +32,7 @@ const OrderDetail = () => {
           xs={12}
         >
           <ClientProfile />
-          <HistoryCard />
+          
         </Grid>
         <Grid
           item
@@ -36,6 +41,8 @@ const OrderDetail = () => {
           xl={7}
           xs={12}
         >
+          <HistoryCard />
+          <ProductList />
           <AccountDetails />
         </Grid>
       </Grid>
