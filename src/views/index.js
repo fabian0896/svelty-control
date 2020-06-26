@@ -10,3 +10,4 @@ export { default as Typography } from './Typography';
 export { default as UserList } from './UserList';
 export { default as NewOrder } from './NewOrder'
 export { default as OrderList} from './OrderList'
+export { default as OrderDetail } from './OrderDetail'
