@@ -1,47 +1,55 @@
 import React from 'react'
 import PropsTypes from 'prop-types'
-import {makeStyles} from '@material-ui/styles'
+import { makeStyles } from '@material-ui/styles'
 import { Typography, IconButton } from '@material-ui/core'
-import { MoreVert } from '@material-ui/icons'
+import { MoreVert, Check } from '@material-ui/icons'
 
 
-const useStyle = makeStyles(theme=>({
-    root:{
+
+const useStyle = makeStyles(theme => ({
+    root: {
         display: 'flex',
         alignItems: 'center',
         marginBottom: theme.spacing(2),
-        '&:hover':{
+        '&:hover': {
             background: theme.palette.action.hover
         },
         padding: theme.spacing(1)
     },
-    icon:{
+    icon: {
         flex: 1
     },
-    name:{
+    iconState: {
+        flex: 1,
+        color: theme.palette.success.main
+    },
+    name: {
         flex: 5
     },
-    size:{
+    size: {
         flex: 2
     },
-    color:{
+    color: {
         flex: 2
     },
-    wholesalePice:{
+    wholesalePice: {
         flex: 2
     },
-    sellPrice:{
+    sellPrice: {
         flex: 2
     }
-}))  
+}))
 
 
-const Product = props=>{
+const Product = props => {
 
     const classes = useStyle(props)
-    return(
+    return (
         <div className={classes.root}>
-            
+            <div className={classes.iconState}>
+                <Check color="inherit" />
+            </div>
+
             <div className={classes.name}>
                 <Typography align="left" variant="h6">Cinturilla clásica 3h</Typography>
                 <Typography align="left" variant="subtitle2">Fajas Internacionales</Typography>
@@ -64,7 +72,7 @@ const Product = props=>{
             </div>
             <div className={classes.icon}>
                 <IconButton>
-                    <MoreVert/>
+                    <MoreVert />
                 </IconButton>
             </div>
         </div>
