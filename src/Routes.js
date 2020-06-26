@@ -19,7 +19,8 @@ import {
   SignIn as SignInView,
   NotFound as NotFoundView,
   NewOrder as NewOrderView,
-  OrderList as OrderListView
+  OrderList as OrderListView,
+  OrderDetail as OrderDetailView
 } from './views';
 
 const Routes = () => {
@@ -78,7 +79,7 @@ const Routes = () => {
         />
         <RouteWithLayoutPrivate
           user={user}
-          component={AccountView}
+          component={OrderDetailView}
           exact
           layout={MainLayout}
           path="/account"
