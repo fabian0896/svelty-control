@@ -2,8 +2,10 @@ import React from 'react'
 import PropsTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Typography, IconButton } from '@material-ui/core'
-import { MoreVert, Check } from '@material-ui/icons'
-
+import { MoreVert } from '@material-ui/icons'
+import { sizes, PRODUCT_STATES } from '../../../../enviroment'
+import numeral from 'numeral'
+import clsx from 'clsx'
 
 
 const useStyle = makeStyles(theme => ({
@@ -21,7 +23,6 @@ const useStyle = makeStyles(theme => ({
     },
     iconState: {
         flex: 1,
-        color: theme.palette.success.main
     },
     name: {
         flex: 5
@@ -37,37 +38,49 @@ const useStyle = makeStyles(theme => ({
     },
     sellPrice: {
         flex: 2
+    },
+    pending:{
+        color: theme.palette.info.main
+    },
+    production:{
+        color: theme.palette.warning.main
+    },
+    ready:{
+        color: theme.palette.success.main
     }
 }))
 
 
 const Product = props => {
-
+    const { product } = props
     const classes = useStyle(props)
+    const actualSize = sizes.find(value => value.number === parseInt(product.size))
+
+    const ActualIcon = PRODUCT_STATES[product.state].icon
     return (
         <div className={classes.root}>
-            <div className={classes.iconState}>
-                <Check color="inherit" />
+            <div className={clsx(classes[product.state], classes.iconState) }>
+                <ActualIcon color="inherit" />
             </div>
 
             <div className={classes.name}>
-                <Typography align="left" variant="h6">Cinturilla clásica 3h</Typography>
-                <Typography align="left" variant="subtitle2">Fajas Internacionales</Typography>
+                <Typography align="left" variant="h6">{product.name}</Typography>
+                <Typography align="left" variant="subtitle2">{product.provider ? product.provider : 'Sin proveedor'}</Typography>
             </div>
             <div className={classes.size}>
-                <Typography align="center" variant="h6">M(34)</Typography>
+                <Typography align="center" variant="h6">{`${actualSize.letter}(${actualSize.number})`}</Typography>
                 <Typography align="center" variant="subtitle2">Talla</Typography>
             </div>
             <div className={classes.color}>
-                <Typography align="center" variant="h6">Negro</Typography>
+                <Typography align="center" variant="h6">{product.color}</Typography>
                 <Typography align="center" variant="subtitle2">Color</Typography>
             </div>
             <div className={classes.wholesalePice}>
-                <Typography align="center" variant="h6">36.000</Typography>
+                <Typography align="center" variant="h6">{product.wholesalePrice ? numeral(product.wholesalePrice).format('$0,0') : '---'}</Typography>
                 <Typography align="center" variant="subtitle2">Por mayor</Typography>
             </div>
             <div className={classes.sellPrice}>
-                <Typography align="center" variant="h6">78.000</Typography>
+                <Typography align="center" variant="h6">{numeral(product.price).format('$0,0')}</Typography>
                 <Typography align="center" variant="subtitle2">Venta</Typography>
             </div>
             <div className={classes.icon}>
@@ -80,7 +93,8 @@ const Product = props => {
 }
 
 Product.prototype = {
-    className: PropsTypes.string
+    className: PropsTypes.string,
+    product: PropsTypes.object
 }
 
 

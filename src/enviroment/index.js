@@ -5,7 +5,8 @@ import {
     FlightTakeoff,
     HourglassEmpty, 
     HourglassFull,
-    Error as ErrorIcon
+    Error as ErrorIcon,
+    Check
 } from '@material-ui/icons'
 
 import {
@@ -127,4 +128,19 @@ export const ORDER_STATES ={
         defaultMessage: "El pedido no pudo ser entregado y lo devolvieron :("
     }
 
+}
+
+export const PRODUCT_STATES = {
+    pending:{
+        name: 'Pendiente',
+        icon: Timer
+    },
+    production:{
+        name: "Producción",
+        icon: HourglassEmpty
+    },
+    ready:{
+        name: "Lista",
+        icon: Check
+    }
 }

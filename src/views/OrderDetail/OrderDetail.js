@@ -1,25 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid } from '@material-ui/core';
+import { Grid, Backdrop, CircularProgress } from '@material-ui/core';
 
 import { 
   ClientProfile, 
-  AccountDetails, 
   HistoryCard,
-  ProductList
+  ProductList,
+  OrderState,
+  EarningsSummary
 } from './components';
+
+import { useParams } from 'react-router-dom'
+
+import * as orderService from '../../firebaseService/orders'
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
-  }
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
 }));
 
 const OrderDetail = () => {
   const classes = useStyles();
 
+  const {orderId} = useParams()
+
+  const [order, setOrder] = useState(null)
+
+
+  useEffect(()=>{
+    const unsubscribe = orderService.getById(orderId, (data)=>{
+      setOrder(data)
+    })
+    return () => {
+      unsubscribe()
+    }
+  },[])
+
   return (
     <div className={classes.root}>
+      {
+        !!order ?
+
       <Grid
         container
         spacing={4}
@@ -31,8 +57,8 @@ const OrderDetail = () => {
           xl={5}
           xs={12}
         >
-          <ClientProfile />
-          
+          <ClientProfile order={order} />
+          <EarningsSummary order={order}/>
         </Grid>
         <Grid
           item
@@ -41,11 +67,16 @@ const OrderDetail = () => {
           xl={7}
           xs={12}
         >
-          <HistoryCard />
-          <ProductList />
-          <AccountDetails />
+          <OrderState order={order}/>
+          <ProductList order={order}/>
+          <HistoryCard order={order}/>
         </Grid>
       </Grid>
+      :
+      <Backdrop className={classes.backdrop} open={true}>
+          <CircularProgress color="inherit"/>
+      </Backdrop>
+      }
     </div>
   );
 };

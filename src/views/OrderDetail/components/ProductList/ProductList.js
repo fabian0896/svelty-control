@@ -1,40 +1,57 @@
 import React from 'react'
 import PropsTypes from 'prop-types'
 import { makeStyles} from '@material-ui/styles'
+import clsx from 'clsx'
 
 import { 
     Card,
     CardHeader,
     CardContent,
     Divider,
+    Typography,
 } from '@material-ui/core'
 
 
 import Product from './Product'
 
 
+import numeral from 'numeral'
+
+
 
 const useStyle = makeStyles(theme => ({
     root:{
-        marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2)
     }
 }))
 
 const ProductList = props =>{
-
+    const {className, order}= props
     const classes = useStyle(props)
 
+
+    const {products} = order
+
+    const calculateTotal = (products) => products.reduce((prev, curr)=>prev + curr.price,0)
+
     return(
-        <Card className={classes.root}>
+        <Card className={clsx(classes.root, className) }>
             <CardHeader
                 title="Prendas"
                 subheader="Lista de prendas del pedido"
+                action={
+                    <Typography variant="h3">
+                        {numeral(calculateTotal(products)).format('$0,0')}
+                    </Typography>
+                }
             />
             <Divider/>
             <CardContent>
-                <Product/>
-                <Product/>
+                {
+                    products.map((product, index)=>{
+                        return <Product key={index} product={product}/>
+                    })
+                }
             </CardContent>
         </Card>
     )
@@ -42,7 +59,8 @@ const ProductList = props =>{
 
 
 ProductList.prototype = {
-    className: PropsTypes.string
+    className: PropsTypes.string,
+    order: PropsTypes.object.isRequired
 }
 
 

@@ -29,19 +29,19 @@ const useStyles = makeStyles(theme => ({
   uploadButton: {
     marginRight: theme.spacing(2)
   },
-  nameLetter:{
-    height: 80,
-    width: 80,
+  nameLetter: {
+    height: 70,
+    width: 70,
     marginLeft: 'auto'
   },
-  divider:{
+  divider: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2)
   }
 }));
 
 const ClientProfile = props => {
-  const { className, ...rest } = props;
+  const { className, order, ...rest } = props;
 
   const classes = useStyles();
 
@@ -59,37 +59,37 @@ const ClientProfile = props => {
               gutterBottom
               variant="h3"
             >
-              Fabian David Dueñas Garcia
+              {order.firstName} {order.lastName}
             </Typography>
             <Typography
               className={classes.locationText}
               color="textSecondary"
               variant="body1"
             >
-              CALI(VALLE DEL CAUCA)
+              {`${order.city.city}(${order.city.department})`}
             </Typography>
             <Typography
               className={classes.dateText}
               color="textSecondary"
               variant="body1"
             >
-              24 de Junio de 2020
+              {moment(order.createdAt.seconds * 1000).format('DD [de] MMMM [del] YYYY')}
             </Typography>
           </div>
           <Avatar className={classes.nameLetter}>
-              FD
+            {order.firstName.charAt(0)}{order.lastName.charAt(0)}
           </Avatar>
         </div>
-  
-        <Divider className={classes.divider}/>
+
+        <Divider className={classes.divider} />
         <div>
-          <Typography variant="h5">3217378301</Typography>
+          <Typography variant="h5">{order.phone}</Typography>
           <Typography gutterBottom variant="subtitle2">Telefono</Typography>
-          
-          <Typography variant="h5">Crr 23B # 4 - 09 Barrio Miraflores</Typography>
+
+          <Typography variant="h5">{order.address}</Typography>
           <Typography gutterBottom variant="subtitle2">Dirección</Typography>
 
-          <Typography variant="h5">Fabian0896@outlook.com</Typography>
+          <Typography variant="h5">{order.email ? order.email : '---'}</Typography>
           <Typography gutterBottom variant="subtitle2">Correo electronico</Typography>
         </div>
       </CardContent>
@@ -109,7 +109,8 @@ const ClientProfile = props => {
 };
 
 ClientProfile.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  order: PropTypes.object
 };
 
 export default ClientProfile;
