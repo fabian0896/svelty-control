@@ -2,9 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
-import {
-  ProductForm
-} from './components'
 
 
 const useStyles = makeStyles(theme => ({
@@ -13,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductList = () => {
+const Production = () => {
   const classes = useStyles();
 
   return (
@@ -29,7 +26,7 @@ const ProductList = () => {
           xl={4}
           xs={12}
         >
-          <ProductForm />
+          Aqui va otra cosa
         </Grid>
         <Grid
           item
@@ -45,4 +42,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default Production;

@@ -7,12 +7,14 @@ import {
   HistoryCard,
   ProductList,
   OrderState,
-  EarningsSummary
+  EarningsSummary,
+  ShippingDetail
 } from './components';
 
 import { useParams } from 'react-router-dom'
 
 import * as orderService from '../../firebaseService/orders'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,6 +71,7 @@ const OrderDetail = () => {
         >
           <OrderState order={order}/>
           <ProductList order={order}/>
+          <ShippingDetail/>
           <HistoryCard order={order}/>
         </Grid>
       </Grid>
