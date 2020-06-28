@@ -52,6 +52,11 @@ const OrderList = () => {
     fecthData()
   },[])
 
+  const handleClickOrder = (id)=>()=>{
+    history.push({
+      pathname: `/pedidos/${id}`
+    })
+  }
 
   const handleNextPage = async ()=>{
       const data = await nextFunction
@@ -74,7 +79,7 @@ const OrderList = () => {
               md={6}
               xs={12}
             >
-              <OrderCard order={order} />
+              <OrderCard onClick={handleClickOrder(order.id)} order={order} />
             </Grid>
           ))}
         </Grid>

@@ -86,6 +86,13 @@ const Routes = () => {
         />
         <RouteWithLayoutPrivate
           user={user}
+          component={OrderDetailView}
+          exact
+          layout={MainLayout}
+          path="/pedidos/:orderId"
+        />
+        <RouteWithLayoutPrivate
+          user={user}
           component={SettingsView}
           exact
           layout={MainLayout}

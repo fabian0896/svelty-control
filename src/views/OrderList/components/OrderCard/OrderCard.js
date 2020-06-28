@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const OrderCard = props => {
-  const { className, order, ...rest } = props;
+  const { className, order, onClick, ...rest } = props;
 
   const classes = useStyles(props);
 
@@ -104,7 +104,7 @@ const OrderCard = props => {
         subheader={`${order.city.city}(${order.city.department})`}
       />
       <Divider />
-      <CardActionArea>
+      <CardActionArea onClick={onClick}>
 
         <CardContent>
 
@@ -228,7 +228,8 @@ const OrderCard = props => {
 
 OrderCard.propTypes = {
   className: PropTypes.string,
-  order: PropTypes.object.isRequired
+  order: PropTypes.object.isRequired,
+  onClick: PropTypes.func
 };
 
 export default OrderCard;

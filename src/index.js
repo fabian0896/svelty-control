@@ -4,7 +4,15 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import * as firebase from 'firebase/app'
+import moment from 'moment'
 
+
+moment.updateLocale('es', {
+    months : [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
+        "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ]
+});
 
 
 
