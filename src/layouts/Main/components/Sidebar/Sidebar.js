@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import PeopleIcon from '@material-ui/icons/People';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 import ImageIcon from '@material-ui/icons/Image';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
@@ -13,6 +11,13 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 import { Profile, SidebarNav } from './components';
+
+import { 
+  ShoppingCart as ShoppingCartIcon,
+  HourglassEmpty as HourglassEmptyIcon,
+  AccessibilityNew as AccessibilityNewIcon
+} from '@material-ui/icons'
+
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -51,12 +56,17 @@ const Sidebar = props => {
     {
       title: 'Pedidos',
       href: '/pedidos',
-      icon: <PeopleIcon />
+      icon: <ShoppingCartIcon />
+    },
+    {
+      title: 'Producción',
+      href: '/produccion',
+      icon: <HourglassEmptyIcon />
     },
     {
       title: 'Prendas',
-      href: '/products',
-      icon: <ShoppingBasketIcon />
+      href: '/prendas',
+      icon: <AccessibilityNewIcon />
     },
     {
       title: 'Authentication',

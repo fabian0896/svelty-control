@@ -10,17 +10,16 @@ import { isAuth } from './services/authService'
 import {
   Dashboard as DashboardView,
   ProductList as ProductListView,
-  UserList as UserListView,
   Typography as TypographyView,
   Icons as IconsView,
-  Account as AccountView,
   Settings as SettingsView,
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
   NewOrder as NewOrderView,
   OrderList as OrderListView,
-  OrderDetail as OrderDetailView
+  OrderDetail as OrderDetailView,
+  Production as ProductionView
 } from './views';
 
 const Routes = () => {
@@ -51,10 +50,10 @@ const Routes = () => {
         />
         <RouteWithLayoutPrivate
           user={user}
-          component={UserListView}
+          component={ProductionView}
           exact
           layout={MainLayout}
-          path="/users"
+          path="/produccion"
         />
         <RouteWithLayoutPrivate
           user={user}
@@ -62,6 +61,13 @@ const Routes = () => {
           exact
           layout={MainLayout}
           path="/pedidos"
+        />
+        <RouteWithLayoutPrivate
+          user={user}
+          component={ProductListView}
+          exact
+          layout={MainLayout}
+          path="/prendas"
         />
         <RouteWithLayoutPrivate
           user={user}
