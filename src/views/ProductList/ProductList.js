@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
 import {
-  ProductForm
+  ProductForm,
+  Products
 } from './components'
+
+
+import { productService } from '../../firebaseService'
 
 
 const useStyles = makeStyles(theme => ({
@@ -13,8 +17,26 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
+
 const ProductList = () => {
   const classes = useStyles();
+
+  const [products, setProducts] =  useState([])
+
+  const handleAddProduct = async (value) =>{
+    await productService.addProduct(value)
+  }
+
+  useEffect(()=>{
+    const unsuscribe = productService.getAllProducts((data)=>{
+      setProducts(data)
+      console.log(data)
+    })
+    return ()=>{
+      unsuscribe()
+    }
+  },[])
 
   return (
     <div className={classes.root}>
@@ -24,21 +46,21 @@ const ProductList = () => {
       >
         <Grid
           item
-          lg={4}
-          md={6}
-          xl={4}
+          lg={5}
+          md={5}
+          xl={5}
           xs={12}
         >
-          <ProductForm />
+          <ProductForm products={products} onAdd={handleAddProduct} />
         </Grid>
         <Grid
           item
-          lg={8}
-          md={6}
-          xl={8}
+          lg={7}
+          md={7}
+          xl={7}
           xs={12}
         >
-          Aqui va algo 
+          <Products products={products}/> 
         </Grid>
       </Grid>
     </div>
