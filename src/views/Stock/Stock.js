@@ -8,7 +8,7 @@ import {
 } from './components'
 
 
-import { productService } from '../../firebaseService'
+import { stockService, productService} from '../../firebaseService'
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,35 +23,15 @@ const Stock = () => {
   const classes = useStyles();
 
   const [products, setProducts] =  useState([])
-  const [editIndex, setEditIndex] = useState(-1)
+ 
 
   const handleAddProduct = async (value) =>{
-    if(editIndex >= 0){
-      // se va editar una prenda
-      const id = products[editIndex].id
-      await productService.editProduct({...value, id})
-    } else{
-      //es una prenda nueva
-      await productService.addProduct(value)
-    }
-    setEditIndex(-1)
+      console.log("Se agrego el pedido")
+      await stockService.addProduct(value)
   }
 
 
-  const handleDeleteProduct = async () =>{
-      await productService.deleteProduct(products[editIndex].id)
-      setEditIndex(-1)
-  }
-
-
-  const handleEditProduct = (index)=>()=>{
-      setEditIndex(index)
-  } 
-
-
-  const handleCancelEdit = () =>{
-    setEditIndex(-1)
-  }
+ 
 
 
   useEffect(()=>{
@@ -78,9 +58,6 @@ const Stock = () => {
           xs={12}
         >
           <ProductForm 
-            onDeleteProduct={handleDeleteProduct}
-            onCancelEdit={handleCancelEdit} 
-            editIndex={editIndex} 
             products={products} 
             onAdd={handleAddProduct} />
         </Grid>
@@ -91,7 +68,7 @@ const Stock = () => {
           xl={7}
           xs={12}
         >
-          <Products onEditProduct={handleEditProduct} products={products}/> 
+          <Products products={products}/> 
         </Grid>
       </Grid>
     </div>

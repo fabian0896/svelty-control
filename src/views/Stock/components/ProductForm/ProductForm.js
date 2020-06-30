@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Card, CardHeader, CardContent, Divider, TextField, Grid, Typography, IconButton, CardActions, Button } from '@material-ui/core'
@@ -15,8 +15,11 @@ import { sizes } from '../../../../enviroment'
 
 const productValidationSchema = Yup.object().shape({
     name: Yup.string().required("El nombre de la prenda es requerido"),
-    price: Yup.number().required("El valor de venta es requerido"),
-    providers: Yup.array().min(1, "Debe haber por lo menos 1 proveedor")
+    wholesalePrice: Yup.number().required("El valor de venta es requerido"),
+    provider: Yup.string().required("Es necesario saber el proveedor"),
+    color: Yup.string().required("El color es requerido"),
+    size: Yup.number().required("Se necesita la talla"),
+   
 })
 
 
@@ -36,39 +39,41 @@ const ProductForm = props => {
     const classes = useStyle(props)
 
 
-
-
-    const getProvidersNames = (listProducts) => {
-        return listProducts.reduce((prev, curr) => {
-            const currArray = curr.providers.reduce((customArray, currProvider) => {
-                if (!!prev.find(elem => elem === currProvider.name)) {
-                    return customArray
-                } else {
-                    return [...customArray, currProvider.name]
-                }
-            }, [])
-            return [...prev, ...currArray]
-        }, [])
-    }
+    const [providerOptions, setProviderOptions] = useState([])
 
 
     const formik = useFormik({
         initialValues: {
-            name: '',
-            price: '',
-            providers: []
+            product: '',
+            wholesalePrice: '',
+            provider: '',
+            color: '',
+            size: '',
+            stock: true,
+            state: 'ready'
         },
         validationSchema: productValidationSchema,
         onSubmit: async (value, actions) => {
-            await onAdd({ ...value, price: parseInt(value.price) })
+            await onAdd({ ...value})
             actions.resetForm()
         }
     })
 
 
-    const handleChangeAutocomplete = (event, value) => {
-       
+
+    const handleChangeProductName = (event, value) =>{
+        formik.setFieldValue('product', value)
+        formik.setFieldValue('name', value.name)
+        setProviderOptions(value.providers)
     }
+
+
+    const handleChangeAutocomplete = (event, value) => {
+        formik.setFieldValue('provider', value.name)
+        formik.setFieldValue('wholesalePrice', value.price)
+    }
+
+
 
     return (
         <Card className={clsx(className, classes.root)}>
@@ -89,15 +94,23 @@ const ProductForm = props => {
                     >
                         <Grid item xs={12}>
                             <Autocomplete
+                                autoSelect
+                                autoComplete
                                 fullWidth
+                                onChange={handleChangeProductName}
                                 options={products}
-                                getOptionLabel={(option) => option.name}
+                                getOptionSelected={(option, value) => option.id === value.id}
+                                getOptionLabel={(option) => (option.name) }
                                 renderInput={(params) => <TextField {...params} margin="dense" label="Prenda" variant="outlined" />}
                             />
                         </Grid>
 
                         <Grid item xs={12} md={6}>
                             <TextField
+                                value={formik.values.size}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                error={formik.errors.size && formik.touched.size}
                                 fullWidth
                                 label="Talla"
                                 margin="dense"
@@ -122,6 +135,10 @@ const ProductForm = props => {
 
                         <Grid item xs={12} md={6}>
                             <TextField
+                                value={formik.values.color}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                error={formik.errors.color && formik.touched.color}
                                 fullWidth
                                 label="Color"
                                 margin="dense"
@@ -134,21 +151,22 @@ const ProductForm = props => {
 
                         <Grid item xs={12} md={6}>
                             <Autocomplete
-                                onInputChange={handleChangeAutocomplete}
-                                
-                                name="name"
-                                freeSolo
+                                onChange={handleChangeAutocomplete}
+                                name="provider"
                                 fullWidth
-                                getOptionDisabled={(option) => !!formik.values.providers.find(elem => elem.name === option)}
-                                getOptionSelected={(option, value) => option === value}
-                                options={getProvidersNames(products)}
-                                getOptionLabel={(option) => option}
+                                getOptionSelected={(option, value) => option.name === value.name}
+                                options={providerOptions}
+                                getOptionLabel={(option) => option.name}
                                 renderInput={(params) => <TextField {...params} margin="dense" label="Proveedor" variant="outlined" />}
                             />
                         </Grid>
 
                         <Grid item xs={12} md={6}>
                             <TextField
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.wholesalePrice}
+                                error={formik.errors.wholesalePrice && formik.touched.wholesalePrice}
                                 fullWidth
                                 label="Precio de compra"
                                 margin="dense"
