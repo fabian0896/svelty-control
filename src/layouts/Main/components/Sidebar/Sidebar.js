@@ -15,7 +15,8 @@ import { Profile, SidebarNav } from './components';
 import { 
   ShoppingCart as ShoppingCartIcon,
   HourglassEmpty as HourglassEmptyIcon,
-  AccessibilityNew as AccessibilityNewIcon
+  AccessibilityNew as AccessibilityNewIcon,
+  Archive as ArchiveIcon
 } from '@material-ui/icons'
 
 
@@ -67,6 +68,11 @@ const Sidebar = props => {
       title: 'Prendas',
       href: '/prendas',
       icon: <AccessibilityNewIcon />
+    },
+    {
+      title: 'Stock',
+      href: '/stock',
+      icon: <ArchiveIcon />
     },
     {
       title: 'Authentication',
