@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import { useFormik } from 'formik'
 
 import NumberFormatCustom from '../../../../components/NumberFormatCustom'
-import { Add } from '@material-ui/icons'
+import { Add, Clear } from '@material-ui/icons'
 
 import ProviderList from './ProviderList'
 
@@ -26,12 +26,15 @@ const productValidationSchema = Yup.object().shape({
 const useStyle = makeStyles(theme => ({
     root: {
 
+    },
+    deleteButton:{
+        color: theme.palette.error.main
     }
 }))
 
 
 const ProductForm = props => {
-    const { className, onAdd, products} = props
+    const { className, onAdd, products, editIndex, onCancelEdit, onDeleteProduct} = props
     const classes = useStyle(props)
 
     const getProvidersNames = (listProducts) => {
@@ -94,6 +97,16 @@ const ProductForm = props => {
     })
 
 
+    useEffect(()=>{
+        if(editIndex >= 0){
+            formik.setValues(products[editIndex])
+        }else{
+            formik.resetForm()
+        }
+    },[editIndex])
+
+
+
     return (
         <Card className={clsx(className, classes.root)}>
             <form
@@ -101,8 +114,14 @@ const ProductForm = props => {
                 autoComplete="off"
                 noValidate>
                 <CardHeader
-                    title="Nueva Prenda"
-                    subheader="Ingresa los datos para agregar una prenda"
+                    title={`${editIndex >= 0? 'Editar': 'Nueva'} Prenda`}
+                    subheader={`Ingresa los datos para ${editIndex >= 0? 'editar': 'agregar'} una prenda`}
+                    action={
+                        (editIndex >= 0) &&
+                        <IconButton onClick={onCancelEdit}>
+                            <Clear />
+                        </IconButton>
+                    }
                 />
                 <Divider />
                 <CardContent>
@@ -199,7 +218,19 @@ const ProductForm = props => {
 
                 </CardContent>
                 <CardActions>
-                    <Button disabled={formik.isSubmitting} type="submit" color="primary">Guardar</Button>
+                    <Button disabled={formik.isSubmitting} type="submit" color="primary">
+                        {editIndex >= 0? 'Editar' : 'Guardar'}
+                    </Button>
+                    {
+                        (editIndex >= 0) &&
+                        <Button
+                            onClick={onDeleteProduct} 
+                            className={classes.deleteButton} 
+                            disabled={formik.isSubmitting} 
+                            color="inherit" >
+                           Eliminar
+                        </Button>
+                    }
                 </CardActions>
             </form>
         </Card>

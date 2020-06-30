@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
+import { value } from 'numeral'
 
 
 const PRODUCTS = 'products'
@@ -23,6 +24,25 @@ const addProduct =  async (value)=>{
 }
 
 
+const editProduct = async (value)=>{
+    const {id} = value
+    const db = firebase.firestore()
+
+    const collection = db.collection(PRODUCTS)
+
+    await collection.doc(id).update(value)
+    return id
+}   
+
+
+
+const deleteProduct = async (id) =>{
+    const db = firebase.firestore()
+    const collection = db.collection(PRODUCTS)
+    return await collection.doc(id).delete()
+}
+
+
 
 const getAllProducts = (cb)=>{
     const db = firebase.firestore()
@@ -41,5 +61,7 @@ const getAllProducts = (cb)=>{
 
 export default {
     addProduct,
-    getAllProducts
+    getAllProducts,
+    editProduct,
+    deleteProduct
 }
