@@ -40,14 +40,14 @@ const useStyle = makeStyles(theme => ({
 
 
 const Products = props => {
-    const { products, onEditProduct } = props
+    const { products } = props
     const classes = useStyle()
 
     return (
         <Fragment>
 
             {
-                products.map((product, index) => {
+                products.map((product) => {
                     return (
                         <Card key={product.id} className={classes.root}>
                             <div className={classes.content}>
@@ -57,7 +57,7 @@ const Products = props => {
                                     <Typography color="inherit" align="center" variant="subtitle2">Valor de venta</Typography>
                                 </div>
                                 <div className={classes.editButton}>
-                                    <IconButton onClick={onEditProduct(index)} color="inherit">
+                                    <IconButton  color="inherit">
                                         <Edit/>
                                     </IconButton>
                                 </div>
