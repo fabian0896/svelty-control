@@ -23,15 +23,41 @@ const ProductList = () => {
   const classes = useStyles();
 
   const [products, setProducts] =  useState([])
+  const [editIndex, setEditIndex] = useState(-1)
 
   const handleAddProduct = async (value) =>{
-    await productService.addProduct(value)
+    if(editIndex >= 0){
+      // se va editar una prenda
+      const id = products[editIndex].id
+      await productService.editProduct({...value, id})
+    } else{
+      //es una prenda nueva
+      await productService.addProduct(value)
+    }
+    setEditIndex(-1)
   }
+
+
+  const handleDeleteProduct = async () =>{
+      await productService.deleteProduct(products[editIndex].id)
+      setEditIndex(-1)
+  }
+
+
+  const handleEditProduct = (index)=>()=>{
+      setEditIndex(index)
+  } 
+
+
+  const handleCancelEdit = () =>{
+    setEditIndex(-1)
+  }
+
 
   useEffect(()=>{
     const unsuscribe = productService.getAllProducts((data)=>{
       setProducts(data)
-      console.log(data)
+
     })
     return ()=>{
       unsuscribe()
@@ -51,7 +77,12 @@ const ProductList = () => {
           xl={5}
           xs={12}
         >
-          <ProductForm products={products} onAdd={handleAddProduct} />
+          <ProductForm 
+            onDeleteProduct={handleDeleteProduct}
+            onCancelEdit={handleCancelEdit} 
+            editIndex={editIndex} 
+            products={products} 
+            onAdd={handleAddProduct} />
         </Grid>
         <Grid
           item
@@ -60,7 +91,7 @@ const ProductList = () => {
           xl={7}
           xs={12}
         >
-          <Products products={products}/> 
+          <Products onEditProduct={handleEditProduct} products={products}/> 
         </Grid>
       </Grid>
     </div>
