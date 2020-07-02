@@ -17,6 +17,12 @@ const add = async ({id, name, provider, size, color}) =>{
 }
 
 
+const deleteProduct = async (id) => {
+    const result = await index.deleteObject(id)
+    return result
+}
+
 export default {
-    add
+    add,
+    deleteProduct
 }
