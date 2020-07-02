@@ -23,7 +23,7 @@ const Stock = () => {
   const classes = useStyles();
 
   const [products, setProducts] =  useState([])
- 
+  const [stockProducts, setStockProducts] = useState([])
 
   const handleAddProduct = async (value) =>{
       console.log("Se agrego el pedido")
@@ -31,16 +31,22 @@ const Stock = () => {
   }
 
 
- 
+  const handleDeleteStock = async (id)=>{
+    await stockService.deleteProduct(id)
+}
 
 
   useEffect(()=>{
-    const unsuscribe = productService.getAllProducts((data)=>{
+    const unsuscribeGetProducts = productService.getAllProducts((data)=>{
       setProducts(data)
 
     })
+    const unsuscribeGetStockProducts  = stockService.getAllProducts((data)=>{
+      setStockProducts(data)
+    })
     return ()=>{
-      unsuscribe()
+      unsuscribeGetProducts()
+      unsuscribeGetStockProducts()
     }
   },[])
 
@@ -68,7 +74,7 @@ const Stock = () => {
           xl={7}
           xs={12}
         >
-          <Products products={products}/> 
+          <Products onDelete={handleDeleteStock} products={stockProducts}/> 
         </Grid>
       </Grid>
     </div>
