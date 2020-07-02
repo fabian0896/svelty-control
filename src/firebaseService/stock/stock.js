@@ -2,6 +2,7 @@ import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import { stock as stockAgolia} from 'algoliaService'
 
+
 const STOCK = "stock"
 
 
@@ -28,7 +29,7 @@ const addProduct =  async (value) =>{
 const deleteProduct = async (id)=>{
     const db = firebase.firestore()
     const collection = db.collection(STOCK)
-
+    await stockAgolia.deleteProduct(id)
     return await collection.doc(id).delete()
 }
 
