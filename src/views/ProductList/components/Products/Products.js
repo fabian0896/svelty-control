@@ -11,18 +11,16 @@ const useStyle = makeStyles(theme => ({
         marginBottom: theme.spacing(2)
     },
     content: {
-        padding: theme.spacing(1),
+        padding: theme.spacing(2),
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        color: theme.palette.primary.contrastText,
-        background: theme.palette.primary.dark,
         '& :first-child': {
             flex: 1
         }
     },
     providers: {
-        padding: theme.spacing(1),
+        padding: theme.spacing(2),
     },
     provider: {
         display: 'flex',
@@ -34,6 +32,10 @@ const useStyle = makeStyles(theme => ({
     editButton:{
         marginLeft: theme.spacing(2),
         color: theme.palette.primary.contrastText
+    },
+    divider:{
+        marginRight: theme.spacing(2),
+        marginLeft: theme.spacing(2)
     }
 }))
 
@@ -51,18 +53,21 @@ const Products = props => {
                     return (
                         <Card key={product.id} className={classes.root}>
                             <div className={classes.content}>
-                                <Typography color="inherit" variant="h3">{product.name}</Typography>
                                 <div>
-                                    <Typography color="inherit" align="center" variant="h4">{numeral(product.price).format('$0,0')}</Typography>
-                                    <Typography color="inherit" align="center" variant="subtitle2">Valor de venta</Typography>
+                                    <Typography variant="h3">{product.name}</Typography>
+                                    <Typography variant="subtitle2">Nombre de la prenda</Typography>
+                                </div>
+                                <div>
+                                    <Typography align="center" variant="h4">{numeral(product.price).format('$0,0')}</Typography>
+                                    <Typography align="center" variant="subtitle2">Valor de venta</Typography>
                                 </div>
                                 <div className={classes.editButton}>
-                                    <IconButton onClick={onEditProduct(index)} color="inherit">
+                                    <IconButton onClick={onEditProduct(index)}>
                                         <Edit/>
                                     </IconButton>
                                 </div>
                             </div>
-                            <Divider />
+                            <Divider className={classes.divider} />  
                             <div className={classes.providers}>
                                 {
                                     product.providers.map((provider, index) => {
@@ -73,8 +78,8 @@ const Products = props => {
                                                     <Typography variant="body2" >Proveedor {index + 1}</Typography>
                                                 </div>
                                                 <div>
-                                                    <Typography align="center" variant="h5">{numeral(provider.price).format('$0,0')}</Typography>
-                                                    <Typography align="center" variant="body2">valor por mayor</Typography>
+                                                    <Typography align="right" variant="h5">{numeral(provider.price).format('$0,0')}</Typography>
+                                                    <Typography align="right" variant="body2">valor por mayor</Typography>
                                                 </div>
                                             </div>
                                         )
