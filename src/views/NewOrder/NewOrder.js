@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Backdrop, CircularProgress } from '@material-ui/core';
 
@@ -10,6 +10,8 @@ import * as Yup from 'yup'
 import * as orders from '../../firebaseService/orders'
 
 import { useHistory } from 'react-router-dom'
+import { productService } from 'firebaseService'
+
 
 
 const validationSchema = Yup.object().shape({
@@ -44,6 +46,7 @@ const NewOrder = () => {
   
   const [editingProduct, setEditingProduct] = useState(()=> -1)
   const [loading, setLoading] = useState(false)
+  const [products, setProducts] = useState([])
   const history = useHistory()
 
   const handleSaveOrder = async (values, actions)=>{
@@ -110,6 +113,19 @@ const NewOrder = () => {
   const handleEdit = (index)=>()=>{
     setEditingProduct(index)
   }
+
+
+
+  useEffect(()=>{
+      const productsUnsuscribe = productService.getAllProducts((data)=>{
+        setProducts(data)
+      }) 
+
+
+      return ()=>{
+        productsUnsuscribe()
+      }
+  },[])
 
 
   return (
