@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
-
+import {ProductList, ProviderCardList} from './components'
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,21 +21,21 @@ const Production = () => {
       >
         <Grid
           item
-          lg={4}
+          lg={6}
           md={6}
-          xl={4}
+          xl={6}
           xs={12}
         >
-          Aqui va otra cosa
+          <ProductList/>
         </Grid>
         <Grid
           item
-          lg={8}
+          lg={6}
           md={6}
-          xl={8}
+          xl={6}
           xs={12}
         >
-          Aqui va algo 
+          <ProviderCardList/>
         </Grid>
       </Grid>
     </div>

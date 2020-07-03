@@ -18,8 +18,6 @@ export async function signInFacebook(){
 }
 
 
-
-
 export  function isAuth(cb){
     firebase.auth().onAuthStateChanged(user => {
       if(user){
