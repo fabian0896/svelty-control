@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import { Delete, Edit } from '@material-ui/icons'
 import numeral from 'numeral'
+import {sizes} from 'enviroment'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -112,9 +113,12 @@ const Product = props => {
     price,
     size,
     provider,
-    color
+    color,
+    stock
   } = value
 
+
+  const actualSize = sizes.find(value => value.number === parseInt(size))
 
 
   return (
@@ -141,7 +145,7 @@ const Product = props => {
             </Typography>
           </div>
           <div className={classes.size}>
-            <Typography className={classes.title} color="inherit" align="center" variant="h6" >{size}</Typography>
+            <Typography className={classes.title} color="inherit" align="center" variant="h6" >{`${actualSize.letter}(${actualSize.number})`}</Typography>
             <Typography className={classes.subtitles} align="center" color="inherit" variant="subtitle2">Talla</Typography>
           </div>
           <div className={classes.color}>
@@ -155,15 +159,15 @@ const Product = props => {
             <IconButton onClick={onDelete} size="medium" color="inherit">
               <Delete/>
             </IconButton>
-            <Typography color="inherit" variant="subtitle2">Borrar</Typography>
           </div>
-          <div className={classes.edit}>
-              <IconButton onClick={onEdit} size="medium" color="inherit">
-                <Edit/>
-              </IconButton>
-              <Typography color="inherit" variant="subtitle2">Editar</Typography>
-          </div>
-
+          {
+            !stock &&
+            <div className={classes.edit}>
+                <IconButton onClick={onEdit} size="medium" color="inherit">
+                  <Edit/>
+                </IconButton>
+            </div>
+          }
         </div>
       </CardContent>
     </Card>

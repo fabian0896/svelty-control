@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Backdrop, CircularProgress } from '@material-ui/core';
 
-import { ClientInfo , ProducstInfo, ProductList } from './components';
+import { ClientInfo, ProducstInfo, ProductList, StockList } from './components';
 
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -10,7 +10,8 @@ import * as Yup from 'yup'
 import * as orders from '../../firebaseService/orders'
 
 import { useHistory } from 'react-router-dom'
-import { productService } from 'firebaseService'
+import { productService, stockService, orderService } from 'firebaseService'
+
 
 
 
@@ -43,19 +44,22 @@ const useStyles = makeStyles(theme => ({
 const NewOrder = () => {
   const classes = useStyles();
 
-  
-  const [editingProduct, setEditingProduct] = useState(()=> -1)
+
+  const [editingProduct, setEditingProduct] = useState(() => -1)
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
+  const [stock, setStock] = useState([])
+  const [stockData, setStockData] = useState([])
   const history = useHistory()
 
-  const handleSaveOrder = async (values, actions)=>{
+
+  const handleSaveOrder = async (values, actions) => {
     console.log("se va a gregar")
     setLoading(true)
-    await orders.add(values)
+    await orderService.addOrder(values)
     setLoading(false)
     console.log("se agrego")
-    history.push({pathname: '/users'})
+    history.push({ pathname: '/pedidos' })
     return
   }
 
@@ -79,11 +83,11 @@ const NewOrder = () => {
 
 
 
-  const handleAddProduct = (values, actions) =>{
-    
+  const handleAddProduct = (withStock) => (values, actions) => {
+
     let newArray = [...formik.values.products]
-    
-    const newProduct = {
+
+    let newProduct = {
       ...values,
       price: parseInt(values.price),
       provider: null,
@@ -92,46 +96,86 @@ const NewOrder = () => {
       stock: false
     }
 
-    if(editingProduct >= 0){ //se esta editando una prenda
-        newArray[editingProduct] = newProduct
-    }else{
+    if (withStock) {
+      newProduct = {
+        ...values,
+        price: parseInt(values.price),
+      }
+      const index = stock.findIndex(stockProduct => stockProduct.id === newProduct.id)
+      const newStockArray = [...stock]
+      newStockArray.splice(index, 1)
+      setStock(newStockArray)
+    }
+
+    if (editingProduct >= 0) { //se esta editando una prenda
+      newArray[editingProduct] = newProduct
+    } else {
       newArray = [...newArray, newProduct]
     }
 
     formik.setFieldValue("products", newArray)
     setEditingProduct(-1)
     actions.resetForm()
-  } 
-
-
-  const handleDeleteProduct = (index) => () =>{
-      const newArray = [...formik.values.products]
-      newArray.splice(index,1)
-      formik.setFieldValue("products", [...newArray])
   }
 
-  const handleEdit = (index)=>()=>{
+
+  const handleDeleteProduct = (index) => () => {
+    const actualProduct = formik.values.products[index]
+    if (actualProduct.stock) {
+      delete actualProduct.price
+      setStock(value => [...value, actualProduct])
+    }
+    const newArray = [...formik.values.products]
+    newArray.splice(index, 1)
+    formik.setFieldValue("products", [...newArray])
+  }
+
+  const handleEdit = (index) => () => {
     setEditingProduct(index)
   }
 
 
 
-  useEffect(()=>{
-      const productsUnsuscribe = productService.getAllProducts((data)=>{
-        setProducts(data)
-      }) 
+  useEffect(() => {
+    const productsUnsuscribe = productService.getAllProducts((data) => {
+      setProducts(data)
+    })
+
+    const stockUnsuscribe = stockService.getAllProducts((data) => {
+
+      setStockData(data)
+    })
+
+    return () => {
+      stockUnsuscribe()
+      productsUnsuscribe()
+    }
+  }, [])
 
 
-      return ()=>{
-        productsUnsuscribe()
+  useEffect(() => {
+    let temArray = [...stockData]
+
+    formik.values.products.filter(product => product.stock).forEach((myProduct) => {
+      const index = temArray.findIndex(value => value.id === myProduct.id)
+      if (index >= 0) {
+        temArray.splice(index, 1)
+      } else {
+        //significa que se borro la prendade stock y toca quitarla de los products actuales
+        const newArray = [...formik.values.products]
+        const deleteIndex = newArray.findIndex(value => value.id === myProduct.id)
+        newArray.splice(deleteIndex, 1)
+        formik.setFieldValue('products', newArray)
       }
-  },[])
+    })
+    setStock(temArray)
+  }, [stockData])
 
 
   return (
     <div className={classes.root}>
       <Backdrop className={classes.backdrop} open={loading}>
-          <CircularProgress color="inherit"/>
+        <CircularProgress color="inherit" />
       </Backdrop>
       <Grid
         container
@@ -144,14 +188,16 @@ const NewOrder = () => {
           xl={6}
           xs={12}
         >
+
           <ProducstInfo
+            stock={stock}
             products={formik.values.products}
             isEditing={editingProduct}
             onAddProduct={handleAddProduct} />
           <ProductList
             isEditing={editingProduct}
             onEdit={handleEdit}
-            onDelete={handleDeleteProduct} 
+            onDelete={handleDeleteProduct}
             products={formik.values.products} />
         </Grid>
         <Grid
@@ -162,10 +208,11 @@ const NewOrder = () => {
           xs={12}
         >
           <ClientInfo
+
             formik={formik}
           />
         </Grid>
-  
+
       </Grid>
     </div>
   );

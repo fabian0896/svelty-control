@@ -54,7 +54,7 @@ const ProductForm = props => {
         },
         validationSchema: productValidationSchema,
         onSubmit: async (value, actions) => {
-            await onAdd({ ...value})
+            await onAdd({ ...value, wholesalePrice: parseInt(value.wholesalePrice)})
             actions.resetForm()
         }
     })
@@ -170,7 +170,7 @@ const ProductForm = props => {
                                 fullWidth
                                 label="Precio de compra"
                                 margin="dense"
-                                name="price"
+                                name="wholesalePrice"
                                 required
                                 variant="outlined"
                                 InputProps={{
