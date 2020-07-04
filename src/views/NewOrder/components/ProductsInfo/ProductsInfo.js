@@ -1,4 +1,4 @@
-import React, {useEffect}  from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -19,8 +19,10 @@ import NumberFormatCustom from '../../../../components/NumberFormatCustom'
 
 import { sizes } from '../../../../enviroment'
 
-import {useFormik} from 'formik'
+import { useFormik } from 'formik'
 import * as Yup from 'yup'
+
+import { StockList } from '../'
 
 
 
@@ -37,31 +39,36 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ProductsInfo = props => {
-  const { className, onAddProduct, isEditing, products, ...rest } = props;
+  const { className, onAddProduct, isEditing, products, stock, ...rest } = props;
 
   const classes = useStyles();
 
-  useEffect(()=>{
-    if(isEditing >= 0){
+  const [withStock, setWithStock] = useState(false)
+
+
+  useEffect(() => {
+    if (isEditing >= 0) {
       //poner los valores de la edicion em el formulario
       setValues(products[isEditing])
     }
-  },[isEditing])
+  }, [isEditing])
 
 
-  const {handleChange, handleBlur, values, errors, touched, handleSubmit, setValues} = useFormik({
-    initialValues:{
+  const { handleChange, handleBlur, values, errors, touched, handleSubmit, setValues } = useFormik({
+    initialValues: {
       name: '',
       size: '',
       color: '',
       price: ''
     },
     validationSchema: validationSchema,
-    onSubmit: onAddProduct
+    onSubmit: onAddProduct(withStock)
   })
- 
 
-  
+
+  const handleChangeWithStock = (event) => {
+    setWithStock(event.target.checked)
+  }
 
 
   return (
@@ -79,7 +86,7 @@ const ProductsInfo = props => {
           title="Prendas"
           action={
             <FormControlLabel
-              control={<Switch color="primary"/>}
+              control={<Switch onChange={handleChangeWithStock} color="primary" />}
               label="En stock"
               labelPlacement="bottom"
             />
@@ -91,75 +98,85 @@ const ProductsInfo = props => {
             container
             spacing={3}
           >
-            <Grid
-              item
-              md={12}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Prenda"
-                margin="dense"
-                name="name"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                required
-                value={values.name}
-                error={errors.name && touched.name}
-                helperText={errors.name}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Talla"
-                margin="dense"
-                name="size"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                required
-                select
-                // eslint-disable-next-line react/jsx-sort-props
-                SelectProps={{ native: true }}
-                value={values.size}
-                error={errors.size && touched.size}
-                helperText={errors.size}
-                variant="outlined"
-              >
-                {sizes.map(option => (
-                  <option
-                    key={option.number}
-                    value={option.number}
+            {
+              withStock ?
+                <Grid item xs={12}>
+                  <StockList setValues={setValues} stock={stock} />
+                </Grid>
+                :
+                <Fragment>
+
+                  <Grid
+                    item
+                    md={12}
+                    xs={12}
                   >
-                    {`${option.letter} (${option.number})`}
-                  </option>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Color"
-                margin="dense"
-                name="color"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                required
-                value={values.color}
-                error={errors.color && touched.color}
-                helperText={errors.color}
-                variant="outlined"
-              />
-            </Grid>
+                    <TextField
+                      fullWidth
+                      label="Prenda"
+                      margin="dense"
+                      name="name"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      required
+                      value={values.name}
+                      error={errors.name && touched.name}
+                      helperText={errors.name}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    md={6}
+                    xs={12}
+                  >
+                    <TextField
+                      fullWidth
+                      label="Talla"
+                      margin="dense"
+                      name="size"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      required
+                      select
+                      // eslint-disable-next-line react/jsx-sort-props
+                      SelectProps={{ native: true }}
+                      value={values.size}
+                      error={errors.size && touched.size}
+                      helperText={errors.size}
+                      variant="outlined"
+                    >
+                      {sizes.map(option => (
+                        <option
+                          key={option.number}
+                          value={option.number}
+                        >
+                          {`${option.letter} (${option.number})`}
+                        </option>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid
+                    item
+                    md={6}
+                    xs={12}
+                  >
+                    <TextField
+                      fullWidth
+                      label="Color"
+                      margin="dense"
+                      name="color"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      required
+                      value={values.color}
+                      error={errors.color && touched.color}
+                      helperText={errors.color}
+                      variant="outlined"
+                    />
+                  </Grid>
+                </Fragment>
+            }
             <Grid
               item
               md={12}
@@ -191,7 +208,7 @@ const ProductsInfo = props => {
             color="primary"
             variant="contained"
           >
-            {isEditing >= 0? "Editar" : "Agregar Prenda"}
+            {isEditing >= 0 ? "Editar" : "Agregar Prenda"}
           </Button>
         </CardActions>
       </form>
