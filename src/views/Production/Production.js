@@ -34,7 +34,6 @@ const Production = () => {
 
   useEffect(()=>{
     const unsuscribeOrders = orderService.getProductionOrders((data)=>{
-      console.log(data)
       setOrders(data)
     })
 
@@ -89,8 +88,16 @@ const Production = () => {
   }
 
 
-  const filterPendingProducts = (products=[]) => {
-    return products.filter(product=>product.state === 'pending')
+  const handleProductReady = async (orderId, index)=>{
+      await orderService.setProductState(orderId, index, 'ready')
+  }
+
+  const handleProductPending = async (orderId, index) => {
+    const provider = {
+      name: null,
+      price: null
+    }
+    await orderService.setProductState(orderId, index, 'pending', provider)
   }
 
   return (
@@ -120,6 +127,8 @@ const Production = () => {
           xs={12}
         >
           <ProviderCardList
+            onProductReady={handleProductReady}
+            onProductPending={handleProductPending}
             productList={productList}
             isSelecting={isSelecting}
             onSetProduction={handleSetProduccion}

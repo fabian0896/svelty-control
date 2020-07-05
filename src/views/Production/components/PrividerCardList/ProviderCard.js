@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProviderCard = props => {
-    const {provider, selectedProduct, onSetProduction, isSelecting, productList} = props
+    const {provider, selectedProduct, onSetProduction, isSelecting, productList, onClickMenu} = props
     const classes = useStyles(props)
 
 
@@ -62,7 +62,7 @@ const ProviderCard = props => {
                         isSelecting?
                         <NoProduct/>
                         :
-                        <ProductionProductList provider={provider} productList={productList}/>
+                        <ProductionProductList onClickMenu={onClickMenu} provider={provider} productList={productList}/>
                     }
                 </Fragment>
                     

@@ -100,7 +100,7 @@ const getProductionOrders = (cb)=>{
 }
 
 
-const setProductState = async (orderId, productIndex, state, provider) => {
+const setProductState = async (orderId, productIndex, state, provider={}) => {
     const {price, name} = provider
     const db = firebase.firestore()
     const orderRef = db.collection(ORDERS).doc(orderId)
@@ -113,8 +113,8 @@ const setProductState = async (orderId, productIndex, state, provider) => {
 
         products[productIndex] = {
             ...products[productIndex],
-            wholesalePrice: price,
-            provider: name,
+            wholesalePrice: price || products[productIndex].price,
+            provider: name || products[productIndex].provider,
             state
         }
 
