@@ -32,10 +32,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  avatar: {
+  avatar: props => ({
     height: 45,
-    width: 45
-  },
+    width: 45,
+    background: props.order.color,
+    color: theme.palette.getContrastText(props.order.color)
+  }),
   image: {
     width: '100%'
   },
