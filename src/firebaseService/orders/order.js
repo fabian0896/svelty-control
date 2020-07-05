@@ -3,6 +3,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import { orders as algoliaOrders } from '../../algoliaService'
 import {getRandomColor} from '../../helpers'
+import {stockService, orderService} from 'firebaseService'
 
 const ORDERS = 'orders'
 
@@ -15,10 +16,16 @@ const addOrder = async (value)=>{
 
     const color = getRandomColor()
 
+    const stockProductsPRomises = value.products.filter(product=>product.stock).map(product=>stockService.deleteProduct(product.id))
+
+    await Promise.all(stockProductsPRomises)
+
+    const state = getOrderStateByProducts(value.products)
+
     const order = {
         id: orderId,
         ...value,
-        state: "pending",
+        state,
         createdAt: new Date(),
         creatorId: user.uid,
         creatorName: user.displayName,
@@ -47,23 +54,100 @@ const getOrderById = (id, cb)=>{
 
 const getAllOrders = async ()=>{
     const db = firebase.firestore()
-    const first = db.collection(ORDERS).orderBy('createdAt').limit(2)
+    const query = db.collection(ORDERS).orderBy('createdAt').limit(30)
 
-    const documentSnap = await first.get()
+    const snap =  await query.get()
 
-    const dataResult = documentSnap.docs.map(value=>{
-        return value.data()
-    })
+    return snap.docs.map(doc => doc.data())
+}
 
-    let lastVisible = documentSnap.docs[documentSnap.docs.length - 1]
 
-    async function nextFunction(){
-        const nextSnap = await db.collection(ORDERS).orderBy('createdAt').startAfter(lastVisible).limit(2).get()
-        lastVisible = nextSnap.docs[nextSnap.docs.length - 1]
-        return nextSnap.docs.map(doc=>doc.data())
+const getProductionOrders = (cb)=>{
+
+    let dataPending = []
+    let dataProduction = []
+    
+    const callBackPending = (data)=>{
+        dataPending = data
+        cb([...dataPending, ...dataProduction])
     }
 
-    return [dataResult, nextFunction]
+    const callBackProduction = (data)=>{
+        dataProduction = data
+        cb([...dataPending, ...dataProduction])
+    }
+
+    const db = firebase.firestore()
+    const collection = db.collection(ORDERS)
+    const queryPending = collection.where('state','==', 'pending')
+    const queryProduction = collection.where('state','==', 'production')
+
+    const unsuscribePending = queryPending.onSnapshot((snap)=>{
+        const data = snap.docs.map(doc=>doc.data()) 
+        callBackPending(data)
+    })
+    const unsuscribeProduction = queryProduction.onSnapshot((snap)=>{
+        const data = snap.docs.map(doc=>doc.data())
+        callBackProduction(data) 
+    })
+    
+
+
+    return ()=>{
+        unsuscribePending()
+        unsuscribeProduction()
+    }
+}
+
+
+const setProductState = async (orderId, productIndex, state, provider) => {
+    const {price, name} = provider
+    const db = firebase.firestore()
+    const orderRef = db.collection(ORDERS).doc(orderId)
+
+    await db.runTransaction(async transaction =>{
+        const orderSnap = await transaction.get(orderRef)
+        const order = orderSnap.data()
+
+        const products = [...order.products]
+
+        products[productIndex] = {
+            ...products[productIndex],
+            wholesalePrice: price,
+            provider: name,
+            state
+        }
+
+
+        const newState = getOrderStateByProducts(products)
+
+        await transaction.update(orderRef,{
+            products,
+            state: newState 
+        })
+    })
+
+    return
+}
+
+
+//-----------------------------------------------------------------------------
+
+
+const isEvryProductInAState = (products=[], state) =>{
+    return products.reduce((prev, curr)=>{
+        return prev && (curr.state === state)
+    }, true)
+}
+
+const getOrderStateByProducts = (products=[])=>{
+    if(isEvryProductInAState(products, 'ready')){
+        return 'productReady'
+    }else if(isEvryProductInAState(products, 'production')){
+        return 'production'
+    }else{
+        return 'pending'
+    }
 }
 
 
@@ -72,5 +156,7 @@ const getAllOrders = async ()=>{
 export default {
     addOrder,
     getOrderById,
-    getAllOrders
+    getAllOrders,
+    getProductionOrders,
+    setProductState
 }

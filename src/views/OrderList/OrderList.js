@@ -12,6 +12,8 @@ import { useHistory } from 'react-router-dom'
 
 import * as orders from '../../firebaseService/orders'
 
+import {orderService} from 'firebaseService'
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3)
@@ -30,7 +32,6 @@ const useStyles = makeStyles(theme => ({
 const OrderList = () => {
   const classes = useStyles();
 
-  const [products] = useState(mockData);
   const history = useHistory()
 
   const [nextFunction, setNextFunction] = useState()
@@ -44,10 +45,8 @@ const OrderList = () => {
 
   useEffect(()=>{
     const fecthData = async ()=>{
-      const [firstData, next] = await orders.gelAll()
-      setOrdersList(firstData)
-      setNextFunction(next)
-      console.log(firstData)
+      const data = await orderService.getAllOrders()
+      setOrdersList(data)
     }
     fecthData()
   },[])

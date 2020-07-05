@@ -1,8 +1,8 @@
 import React from 'react'
 import PropsTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
-import { Typography, IconButton, Card } from '@material-ui/core'
-import { MoreVert, Check } from '@material-ui/icons'
+import { Typography, IconButton } from '@material-ui/core'
+import { MoreVert } from '@material-ui/icons'
 import { sizes, PRODUCT_STATES } from '../../../../enviroment'
 import numeral from 'numeral'
 import clsx from 'clsx'
@@ -10,18 +10,13 @@ import clsx from 'clsx'
 
 const useStyle = makeStyles(theme => ({
     root: {
-        cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
-        marginBottom: theme.spacing(1.5),
+        marginBottom: theme.spacing(2),
         '&:hover': {
             background: theme.palette.action.hover
         },
-        padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px`
-    },
-    selected: {
-        border: `2px solid ${theme.palette.primary.main}`,
-        background: theme.palette.primary.light
+        padding: theme.spacing(1)
     },
     icon: {
         flex: 1
@@ -38,36 +33,33 @@ const useStyle = makeStyles(theme => ({
     color: {
         flex: 2
     },
-    price: {
+    wholesalePice: {
         flex: 2
     },
     sellPrice: {
         flex: 2
     },
-    pending: {
+    pending:{
         color: theme.palette.info.main
     },
-    production: {
+    production:{
         color: theme.palette.warning.main
     },
-    ready: {
+    ready:{
         color: theme.palette.success.main
     }
 }))
 
 
 const Product = props => {
-    const { product, onSelect, selected } = props
-    
+    const { product } = props
     const classes = useStyle(props)
     const actualSize = sizes.find(value => value.number === parseInt(product.size))
 
-
     const ActualIcon = PRODUCT_STATES[product.state].icon
-
     return (
-        <Card onClick={onSelect} className={clsx(classes.root, {[classes.selected]: selected})}>
-            <div className={clsx(classes.iconState, classes[product.state])}>
+        <div className={classes.root}>
+            <div className={clsx(classes[product.state], classes.iconState) }>
                 <ActualIcon color="inherit" />
             </div>
 
@@ -83,12 +75,20 @@ const Product = props => {
                 <Typography align="center" variant="h6">{product.color}</Typography>
                 <Typography align="center" variant="subtitle2">Color</Typography>
             </div>
-            <div className={classes.price}>
-                <Typography align="center" variant="h6">{numeral(product.price).format('$0,0')}</Typography>
-                <Typography align="center" variant="subtitle2">venta</Typography>
+            <div className={classes.wholesalePice}>
+                <Typography align="center" variant="h6">{product.wholesalePrice ? numeral(product.wholesalePrice).format('$0,0') : '---'}</Typography>
+                <Typography align="center" variant="subtitle2">Por mayor</Typography>
             </div>
-
-        </Card>
+            <div className={classes.sellPrice}>
+                <Typography align="center" variant="h6">{numeral(product.price).format('$0,0')}</Typography>
+                <Typography align="center" variant="subtitle2">Venta</Typography>
+            </div>
+            <div className={classes.icon}>
+                <IconButton>
+                    <MoreVert />
+                </IconButton>
+            </div>
+        </div>
     )
 }
 
@@ -100,3 +100,4 @@ Product.prototype = {
 
 
 export default Product
+
