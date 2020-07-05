@@ -1,8 +1,7 @@
 import React from 'react'
 import PropsTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
-import { Typography, IconButton, Card } from '@material-ui/core'
-import { MoreVert, Check } from '@material-ui/icons'
+import { Typography, Card } from '@material-ui/core'
 import { sizes, PRODUCT_STATES } from '../../../../enviroment'
 import numeral from 'numeral'
 import clsx from 'clsx'
@@ -57,7 +56,7 @@ const useStyle = makeStyles(theme => ({
 
 
 const Product = props => {
-    const { product, onSelect, selected } = props
+    const { product, onSelect, selected, onCancelSelect } = props
     
     const classes = useStyle(props)
     const actualSize = sizes.find(value => value.number === parseInt(product.size))

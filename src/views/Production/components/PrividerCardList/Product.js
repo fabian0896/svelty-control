@@ -58,37 +58,37 @@ const Product = props => {
 
     const ActualIcon = PRODUCT_STATES[product.state].icon
     return (
-        <div className={classes.root}>
-            <div className={clsx(classes[product.state], classes.iconState) }>
-                <ActualIcon color="inherit" />
-            </div>
+            <div className={classes.root}>
+                <div className={clsx(classes[product.state], classes.iconState) }>
+                    <ActualIcon color="inherit" />
+                </div>
 
-            <div className={classes.name}>
-                <Typography align="left" variant="h6">{product.name}</Typography>
-                <Typography align="left" variant="subtitle2">Prenda</Typography>
+                <div className={classes.name}>
+                    <Typography align="left" variant="h6">{product.name}</Typography>
+                    <Typography align="left" variant="subtitle2">Prenda</Typography>
+                </div>
+                <div className={classes.size}>
+                    <Typography align="center" variant="h6">{`${actualSize.letter}(${actualSize.number})`}</Typography>
+                    <Typography align="center" variant="subtitle2">Talla</Typography>
+                </div>
+                <div className={classes.color}>
+                    <Typography align="center" variant="h6">{product.color}</Typography>
+                    <Typography align="center" variant="subtitle2">Color</Typography>
+                </div>
+                <div className={classes.wholesalePice}>
+                    <Typography align="center" variant="h6">{product.wholesalePrice ? numeral(product.wholesalePrice).format('$0,0') : '---'}</Typography>
+                    <Typography align="center" variant="subtitle2">Por mayor</Typography>
+                </div>
+                <div className={classes.sellPrice}>
+                    <Typography align="center" variant="h6">{numeral(product.price).format('$0,0')}</Typography>
+                    <Typography align="center" variant="subtitle2">Venta</Typography>
+                </div>
+                <div className={classes.icon}>
+                    <IconButton onClick={onClickMenu(product)}>
+                        <MoreVert />
+                    </IconButton>
+                </div>
             </div>
-            <div className={classes.size}>
-                <Typography align="center" variant="h6">{`${actualSize.letter}(${actualSize.number})`}</Typography>
-                <Typography align="center" variant="subtitle2">Talla</Typography>
-            </div>
-            <div className={classes.color}>
-                <Typography align="center" variant="h6">{product.color}</Typography>
-                <Typography align="center" variant="subtitle2">Color</Typography>
-            </div>
-            <div className={classes.wholesalePice}>
-                <Typography align="center" variant="h6">{product.wholesalePrice ? numeral(product.wholesalePrice).format('$0,0') : '---'}</Typography>
-                <Typography align="center" variant="subtitle2">Por mayor</Typography>
-            </div>
-            <div className={classes.sellPrice}>
-                <Typography align="center" variant="h6">{numeral(product.price).format('$0,0')}</Typography>
-                <Typography align="center" variant="subtitle2">Venta</Typography>
-            </div>
-            <div className={classes.icon}>
-                <IconButton onClick={onClickMenu(product)}>
-                    <MoreVert />
-                </IconButton>
-            </div>
-        </div>
     )
 }
 

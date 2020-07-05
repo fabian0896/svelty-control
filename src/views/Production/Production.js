@@ -74,6 +74,10 @@ const Production = () => {
 
 
   const handleSelectProduct = (value)=>{
+    if(selectedProduct === value){
+      handleCancelSelect()
+      return
+    }
     setSelectedProduct(value)
     setIsSelecting(true)
   }
@@ -100,6 +104,11 @@ const Production = () => {
     await orderService.setProductState(orderId, index, 'pending', provider)
   }
 
+  const handleCancelSelect = ()=>{
+    setIsSelecting(false)
+    setSelectedProduct(-1)
+  }
+
   return (
     <div className={classes.root}>
       <Grid
@@ -114,6 +123,7 @@ const Production = () => {
           xs={12}
         >
           <ProductList
+            onCancelSelect={handleCancelSelect}
             selected={selectedProduct}
             onSelect={handleSelectProduct} 
             productList={productList}
