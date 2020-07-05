@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {makeStyles} from '@material-ui/styles'
 import Product from './Product'
 
@@ -11,17 +11,24 @@ const useStyles = makeStyles(theme => ({
 
 
 const StockList = props => {
-    const {stock, setValues} = props
+    const {stock, setValues, onSelected} = props
     const classes = useStyles(props)
     
     const [selectedStock, setSelectedStock] = useState({})
 
 
     const handleSelectedSetock = (value)=>()=>{
-        console.log(value)
         setSelectedStock(value)
         setValues(value)
+        onSelected(value)
     }
+
+    useEffect(()=>{
+        const product = stock.find(value => value.id === selectedStock.id)
+        if(!product){
+            setSelectedStock({})
+        }
+    }, [stock])
 
     return(
         <div className={classes.root}>

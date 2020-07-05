@@ -14,7 +14,7 @@ import {
   FormControlLabel,
   Switch
 } from '@material-ui/core';
-
+import { Autocomplete } from '@material-ui/lab'
 import NumberFormatCustom from '../../../../components/NumberFormatCustom'
 
 import { sizes } from '../../../../enviroment'
@@ -30,7 +30,8 @@ const validationSchema = Yup.object().shape({
   name: Yup.string().required("El nombre es necesario"),
   size: Yup.string().required("Selecciona una talla"),
   color: Yup.string().required("El color es necesario"),
-  price: Yup.string().required("El valor de venta es necesario")
+  price: Yup.string().required("El valor de venta es necesario"),
+  product: Yup.object().required()
 })
 
 
@@ -39,7 +40,14 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ProductsInfo = props => {
-  const { className, onAddProduct, isEditing, products, stock, ...rest } = props;
+  const { 
+    className, 
+    onAddProduct, 
+    isEditing, 
+    products, 
+    stock,
+    productList, 
+    ...rest } = props;
 
   const classes = useStyles();
 
@@ -54,12 +62,13 @@ const ProductsInfo = props => {
   }, [isEditing])
 
 
-  const { handleChange, handleBlur, values, errors, touched, handleSubmit, setValues } = useFormik({
+  const { handleChange, handleBlur, values, errors, touched, handleSubmit, setValues, setFieldValue } = useFormik({
     initialValues: {
       name: '',
       size: '',
       color: '',
-      price: ''
+      price: '',
+      product: null
     },
     validationSchema: validationSchema,
     onSubmit: onAddProduct(withStock)
@@ -70,6 +79,22 @@ const ProductsInfo = props => {
     setWithStock(event.target.checked)
   }
 
+
+  const handleChangeProduct = (event, value)=>{
+    if(value){
+      setFieldValue('name', value.name)
+      setFieldValue('price', value.price)
+      setFieldValue('product', value)
+    }else{
+      setFieldValue('name', '')
+      setFieldValue('price', '')
+      setFieldValue('product', null)
+    }
+  }
+
+  const handleStockSelect = (stockProduct)=>{
+    setFieldValue('price', stockProduct.product.price)
+  }
 
   return (
     <Card
@@ -101,7 +126,10 @@ const ProductsInfo = props => {
             {
               withStock ?
                 <Grid item xs={12}>
-                  <StockList setValues={setValues} stock={stock} />
+                  <StockList
+                    onSelected={handleStockSelect} 
+                    setValues={setValues} 
+                    stock={stock} />
                 </Grid>
                 :
                 <Fragment>
@@ -111,18 +139,25 @@ const ProductsInfo = props => {
                     md={12}
                     xs={12}
                   >
-                    <TextField
+                    <Autocomplete
                       fullWidth
-                      label="Prenda"
-                      margin="dense"
-                      name="name"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      required
-                      value={values.name}
-                      error={errors.name && touched.name}
-                      helperText={errors.name}
-                      variant="outlined"
+                      autoSelect
+                      getOptionSelected={(option, value) => {
+                        return (option.id === value.id)
+                      }}
+                      onChange={handleChangeProduct}
+                      options={productList}
+                      getOptionLabel={(option) => option.name}
+                      renderInput={(params) =>( 
+                        <TextField 
+                          {...params} 
+                          autoComplete="off" 
+                          label="Prenda" 
+                          margin="dense" 
+                          variant="outlined"
+                          error={errors.name && touched.name}
+                          helperText={touched.name && errors.name} />
+                      )}
                     />
                   </Grid>
                   <Grid

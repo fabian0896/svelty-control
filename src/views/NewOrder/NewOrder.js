@@ -190,6 +190,7 @@ const NewOrder = () => {
         >
 
           <ProducstInfo
+            productList={products}
             stock={stock}
             products={formik.values.products}
             isEditing={editingProduct}
