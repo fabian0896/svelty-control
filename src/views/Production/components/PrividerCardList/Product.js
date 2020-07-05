@@ -52,7 +52,7 @@ const useStyle = makeStyles(theme => ({
 
 
 const Product = props => {
-    const { product } = props
+    const { product, onClickMenu } = props
     const classes = useStyle(props)
     const actualSize = sizes.find(value => value.number === parseInt(product.size))
 
@@ -84,7 +84,7 @@ const Product = props => {
                 <Typography align="center" variant="subtitle2">Venta</Typography>
             </div>
             <div className={classes.icon}>
-                <IconButton>
+                <IconButton onClick={onClickMenu(product)}>
                     <MoreVert />
                 </IconButton>
             </div>
