@@ -126,7 +126,6 @@ const setProductState = async (orderId, productIndex, state, provider={}) => {
             state: newState 
         })
     })
-
     return
 }
 

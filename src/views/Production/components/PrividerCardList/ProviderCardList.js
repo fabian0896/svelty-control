@@ -1,7 +1,6 @@
 import React, {useState}from 'react'
 import ProviderCard from './ProviderCard'
 import { Menu, MenuItem } from '@material-ui/core'
-import { order } from 'firebaseService/orders'
 
 
 const ProviderCardList = props => {

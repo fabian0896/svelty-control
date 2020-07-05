@@ -1,10 +1,11 @@
 import React, { useState, useEffect, Fragment } from 'react'
 
 import { makeStyles } from '@material-ui/styles'
-import { Card, CardHeader, Avatar, Divider, CardContent } from '@material-ui/core'
+import { Card, CardHeader, Avatar, Divider, CardContent, Typography } from '@material-ui/core'
 import NoProduct from './NoProduct'
 import ProductSelect from './ProductSelect'
 import ProductionProductList from './ProdiccionProductList'
+import numeral from 'numeral'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -30,6 +31,11 @@ const ProviderCard = props => {
         }
     },[selectedProduct])
 
+    const calculateTotal = ()=>{
+        return productList.filter(product => ((product.state === 'production') && (product.provider === provider.name)))
+            .reduce((prev, curr)=> prev + parseInt(curr.wholesalePrice), 0)
+    }
+
     return (
         <Card className={classes.root}>
             <CardHeader
@@ -46,6 +52,9 @@ const ProviderCard = props => {
                     <Avatar>
                         {provider.name.charAt(0).toUpperCase()}
                     </Avatar>
+                }
+                action={
+                <Typography variant="h3">{numeral(calculateTotal(productList)).format('$0,0')}</Typography>
                 }
             />
             <Divider />
