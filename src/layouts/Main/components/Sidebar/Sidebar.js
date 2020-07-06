@@ -16,7 +16,8 @@ import {
   ShoppingCart as ShoppingCartIcon,
   HourglassEmpty as HourglassEmptyIcon,
   AccessibilityNew as AccessibilityNewIcon,
-  Archive as ArchiveIcon
+  Archive as ArchiveIcon,
+  AllInbox as AllInboxIcon
 } from '@material-ui/icons'
 
 
@@ -73,6 +74,11 @@ const Sidebar = props => {
       title: 'Stock',
       href: '/stock',
       icon: <ArchiveIcon />
+    },
+    {
+      title: 'Empaquetado',
+      href: '/empaquetado',
+      icon: <AllInboxIcon />
     },
     {
       title: 'Authentication',
