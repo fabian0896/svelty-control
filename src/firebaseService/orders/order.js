@@ -130,6 +130,41 @@ const setProductState = async (orderId, productIndex, state, provider={}) => {
 }
 
 
+
+const getOrdersForPackaging =  (cb)=>{
+    const db = firebase.firestore()
+    const query = db.collection(ORDERS).where('state', '==', 'productReady')
+
+    const unsuscribe = query.onSnapshot((snap)=>{
+        const data = snap.docs.map(doc=>doc.data())
+        cb(data)
+    })
+
+    return unsuscribe
+
+}
+
+const getOrderdispatched = (cb)=>{
+    const db = firebase.firestore()
+    const query = db.collection(ORDERS).where('state', '==', 'dispatched')
+    const unsuscribe = query.onSnapshot(snap=>{
+        const data = snap.docs.map(doc=>doc.data())
+        cb(data)
+    })
+    return unsuscribe
+}
+
+
+const setOrderState = async (orderId, state)=>{
+    const db = firebase.firestore()
+    const document = db.collection(ORDERS).doc(orderId)
+    await document.update({
+        state
+    })
+    return
+}
+
+
 //-----------------------------------------------------------------------------
 
 
@@ -157,5 +192,8 @@ export default {
     getOrderById,
     getAllOrders,
     getProductionOrders,
-    setProductState
+    setProductState,
+    getOrdersForPackaging,
+    setOrderState,
+    getOrderdispatched
 }
