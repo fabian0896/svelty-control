@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid,  } from '@material-ui/core';
 
+import {OrderResumeCard} from './components'
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
@@ -33,7 +35,9 @@ const Shippings = () => {
           xl={6}
           xs={12}
         >
-          aqui va la lista de pedidos que les falta envio
+          <OrderResumeCard/>
+          <OrderResumeCard/>
+          <OrderResumeCard/>
         </Grid>
       </Grid>
     </div>

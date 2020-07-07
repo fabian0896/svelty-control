@@ -1,0 +1,1 @@
+export {default as OrderResumeCard} from './OrderResumeCard'
