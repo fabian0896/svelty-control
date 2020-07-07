@@ -103,7 +103,7 @@ const OrderCard = props => {
           variant: 'h5',
         }}
         title={`${order.firstName} ${order.lastName}`}
-        subheader={`${order.city.city}(${order.city.department})`}
+        subheader={`${order.city.name}(${order.city.department_name})`}
       />
       <Divider />
       <CardActionArea onClick={onClick}>

@@ -1,6 +1,5 @@
 import React from 'react'
-import {makeStyles, Card, CardHeader, Divider, CardContent, IconButton, Avatar, CircularProgress} from '@material-ui/core'
-import {ThumbUpOutlined} from '@material-ui/icons'
+import {makeStyles, Card, CardHeader, Divider, CardContent, IconButton, Avatar, CircularProgress, CardActionArea, Typography} from '@material-ui/core'
 import Product from './Product'
 import clsx from 'clsx'
 
@@ -19,6 +18,18 @@ const useStyles = makeStyles(theme=>({
     select:{
         border: `3px solid ${theme.palette.primary.main}`,
     },
+    footer:{
+        padding: theme.spacing(1),
+        
+    },
+    packed:{
+        background: theme.palette.success.main,
+        color: theme.palette.success.contrastText
+    },
+    productReady:{
+        background: theme.palette.warning.main,
+        color: theme.palette.warning.contrastText
+    }
 }))
 
 const PackagingCard = props=>{
@@ -42,7 +53,7 @@ const PackagingCard = props=>{
                     </Avatar>
                 }
                 title={`${order.firstName} ${order.lastName}`}
-                subheader={`${order.city.city}(${order.city.department})`}
+                subheader={`${order.city.name}(${order.city.department_name})`}
                 action={
                     loading === order.id?
                     <CircularProgress/>
@@ -60,6 +71,9 @@ const PackagingCard = props=>{
                     ))
                 }
             </CardContent>
+            <CardActionArea className={clsx(classes.footer, classes[order.state])}>
+            <Typography color="inherit" align="center" variant="h6">{order.state === 'productReady'? 'Pendiente por empacar':'Empacado y listo para enviar!'}</Typography>
+            </CardActionArea>
         </Card>
     )
 }

@@ -154,6 +154,16 @@ const getOrderdispatched = (cb)=>{
     return unsuscribe
 }
 
+const getOrderpacked = (cb)=>{
+    const db = firebase.firestore()
+    const query = db.collection(ORDERS).where('state', '==', 'packed')
+    const unsuscribe = query.onSnapshot(snap=>{
+        const data = snap.docs.map(doc=>doc.data())
+        cb(data)
+    })
+    return unsuscribe
+}
+
 
 const setOrderState = async (orderId, state)=>{
     const db = firebase.firestore()
@@ -195,5 +205,6 @@ export default {
     setProductState,
     getOrdersForPackaging,
     setOrderState,
-    getOrderdispatched
+    getOrderdispatched,
+    getOrderpacked
 }

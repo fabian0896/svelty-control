@@ -66,7 +66,7 @@ const ClientProfile = props => {
               color="textSecondary"
               variant="body1"
             >
-              {`${order.city.city}(${order.city.department})`}
+              {`${order.city.name}(${order.city.department_name})`}
             </Typography>
             <Typography
               className={classes.dateText}

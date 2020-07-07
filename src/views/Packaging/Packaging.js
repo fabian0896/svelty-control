@@ -25,12 +25,12 @@ const Packaging = () => {
       setPakagingList(data)
     })
 
-    const unsuscribedDispatched = orderService.getOrderdispatched((data)=>{
+    const unsuscribedPacked = orderService.getOrderpacked((data)=>{
       setOrderDispatched(data)
     })
 
     return ()=>{
-      unsuscribedDispatched()
+      unsuscribedPacked()
       unsuscribePackagin()
     }
   }, [])
@@ -38,7 +38,7 @@ const Packaging = () => {
 
   const handlePackage = (id) => async ()=>{
       setLoading(id)
-      await orderService.setOrderState(id, 'dispatched')
+      await orderService.setOrderState(id, 'packed')
       setLoading(null)
   }
 
