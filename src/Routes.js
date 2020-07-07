@@ -21,7 +21,8 @@ import {
   OrderDetail as OrderDetailView,
   Production as ProductionView,
   Stock as StockView,
-  Pakaging as PakagingViwe
+  Pakaging as PakagingViwe,
+  Shippings as ShippingsView
 } from './views';
 
 const Routes = () => {
@@ -84,6 +85,13 @@ const Routes = () => {
           exact
           layout={MainLayout}
           path="/empaquetado"
+        />
+        <RouteWithLayoutPrivate
+          user={user}
+          component={ShippingsView}
+          exact
+          layout={MainLayout}
+          path="/envios"
         />
         <RouteWithLayoutPrivate
           user={user}
