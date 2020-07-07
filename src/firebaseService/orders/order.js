@@ -4,6 +4,7 @@ import 'firebase/auth'
 import { orders as algoliaOrders } from '../../algoliaService'
 import {getRandomColor} from '../../helpers'
 import {stockService, orderService} from 'firebaseService'
+import { all } from 'underscore'
 
 const ORDERS = 'orders'
 
@@ -175,6 +176,40 @@ const setOrderState = async (orderId, state)=>{
 }
 
 
+
+
+const getOrderByStates = (cb, states=[]) => {
+
+    const allData = {}
+
+
+    const callback = (index) => (data)=>{    
+        const newData = data.docs.map(doc=>doc.data())
+        allData[states[index]] = newData
+        const result = Object.keys(allData).reduce((prev, state)=>{
+            return [...prev, ...allData[state]]
+        }, [])
+        cb(result)
+    }
+
+
+    const db = firebase.firestore()
+    const collection = db.collection(ORDERS)
+
+    const queries = states.map(state => collection.where('state','==', state))
+
+    const unsubscribes = queries.map((query, index) => {
+        return query.onSnapshot(callback(index))
+    })
+
+    return ()=>{
+        unsubscribes.forEach(unsubscribe=>{
+            unsubscribe()
+        })
+    }
+}
+
+
 //-----------------------------------------------------------------------------
 
 
@@ -206,5 +241,6 @@ export default {
     getOrdersForPackaging,
     setOrderState,
     getOrderdispatched,
-    getOrderpacked
+    getOrderpacked,
+    getOrderByStates
 }
