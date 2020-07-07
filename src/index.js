@@ -11,7 +11,25 @@ moment.updateLocale('es', {
     months : [
         "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
         "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-    ]
+    ],
+    relativeTime : {
+        future: "en %s",
+        past:   "hace %s",
+        s  : 'unos pocos segundos',
+        ss : '%d segundos',
+        m:  "un minuto",
+        mm: "%d minutos",
+        h:  "una hora",
+        hh: "%d horas",
+        d:  "un dia",
+        dd: "%d dias",
+        w:  "una semana",
+        ww: "%d semanas",
+        M:  "un mes",
+        MM: "%d meses",
+        y:  "un año",
+        yy: "%d años"
+    }
 });
 
 

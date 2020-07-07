@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid,  } from '@material-ui/core';
 
-import {OrderResumeCard} from './components'
+import {OrderResumeCard, ShippingInfo} from './components'
+import {orderService} from 'firebaseService'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,6 +13,19 @@ const useStyles = makeStyles(theme => ({
 
 const Shippings = () => {
   const classes = useStyles();
+  const [orders, setOrders] = useState([])
+
+  useEffect(()=>{
+    const unsubscribe = orderService.getOrderByStates((data)=>{
+      console.log(data)
+      setOrders(data)
+    },['packed', 'productReady', 'production'])
+
+    return ()=>{
+      unsubscribe()
+    }
+
+  },[])
 
   return (
     <div className={classes.root}>
@@ -26,7 +40,7 @@ const Shippings = () => {
           xl={6}
           xs={12}
         >
-          aqui va el formulario para agregar el envio
+          <ShippingInfo/>
         </Grid>
         <Grid
           item
@@ -35,9 +49,13 @@ const Shippings = () => {
           xl={6}
           xs={12}
         >
-          <OrderResumeCard/>
-          <OrderResumeCard/>
-          <OrderResumeCard/>
+          {
+            orders.map(order=>(
+              <OrderResumeCard 
+                order={order} 
+                key={order.id}/>
+            ))
+          }
         </Grid>
       </Grid>
     </div>

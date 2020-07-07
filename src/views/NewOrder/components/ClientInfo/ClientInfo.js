@@ -22,6 +22,8 @@ import mipaquete_towns from '../../../../enviroment/mipaquete_towns.json'
 import contraentrega_mipaquete from '../../../../enviroment/contraentrega_mipaquete.json'
 
 import { calculateShippingDays } from '../../../../helpers'
+import {PAYMENT_METHOD} from 'enviroment'
+
 
 
 
@@ -180,9 +182,11 @@ const ClientInfo = props => {
                 select
                 SelectProps={{ native: true }}
               >
-                <option value="mipaquete">Pago contra entrega</option>
-                <option value="consignment">Consignación</option>
-                <option value="cash">Efectivo</option>
+                {
+                  Object.keys(PAYMENT_METHOD).map(paymentMethod=>(
+                    <option key={paymentMethod} value={paymentMethod}>{PAYMENT_METHOD[paymentMethod].name}</option>
+                  ))
+                }
               </TextField>
             </Grid>
 
