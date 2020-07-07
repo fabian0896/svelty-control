@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
 const Shippings = () => {
   const classes = useStyles();
   const [orders, setOrders] = useState([])
+  const [selectOrder, setSelectOrder] = useState({})
 
   useEffect(()=>{
     const unsubscribe = orderService.getOrderByStates((data)=>{
@@ -26,6 +27,12 @@ const Shippings = () => {
     }
 
   },[])
+
+
+  const handleSelect = (order)=>()=>{
+      setSelectOrder(order)
+  }
+
 
   return (
     <div className={classes.root}>
@@ -51,7 +58,9 @@ const Shippings = () => {
         >
           {
             orders.map(order=>(
-              <OrderResumeCard 
+              <OrderResumeCard
+                selected={order.id === selectOrder.id}
+                onSelect={handleSelect(order)} 
                 order={order} 
                 key={order.id}/>
             ))

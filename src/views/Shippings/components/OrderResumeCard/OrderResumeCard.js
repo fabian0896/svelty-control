@@ -5,12 +5,14 @@ import { Card, CardHeader, Divider, CardContent, Typography, Avatar, CardActionA
 import { PAYMENT_METHOD, ORDER_STATES } from 'enviroment'
 import numeral from 'numeral'
 import moment from 'moment'
+import clsx from 'clsx'
 
 
 
 const useStyles = makeStyles(theme => ({
     root: {
-        marginBottom: theme.spacing(2)
+        marginBottom: theme.spacing(2),
+        cursor: 'pointer'
     },
     content: {
         display: 'flex',
@@ -28,13 +30,30 @@ const useStyles = makeStyles(theme => ({
     avatar: props => ({
         background: props.order.color,
         color: theme.palette.getContrastText(props.order.color)
-    })
+    }),
+    divider:{
+
+    },
+    selected:{
+        border: `3px solid ${theme.palette.primary.main}`,
+        background: theme.palette.primary.light,
+        '&  $footer':{
+            background: theme.palette.primary.main
+        },
+        '& $divider':{
+            border: `1px solid ${theme.palette.primary.light}`
+        },
+        '& $avatar':{
+            background: theme.palette.primary.main,
+            color: theme.palette.primary.contrastText
+        }
+    }
 }))
 
 
 
 const OrderResumeCard = props => {
-    const { order } = props
+    const { order, selected, onSelect  } = props
     const classes = useStyles(props)
 
     const getTotal = (productList) => {
@@ -42,7 +61,7 @@ const OrderResumeCard = props => {
     }
 
     return (
-        <Card className={classes.root}>
+        <Card onClick={onSelect} className={clsx(classes.root, {[classes.selected]: selected})}>
             <CardHeader
                 avatar={
                     <Avatar className={classes.avatar}>
@@ -60,7 +79,7 @@ const OrderResumeCard = props => {
                 title={`${order.firstName} ${order.lastName}`}
                 subheader={`${order.city.name} ${order.city.department_name}`}
             />
-            <Divider />
+            <Divider className={classes.divider} />
             <CardContent>
                 <div className={classes.content}>
                     <div>
