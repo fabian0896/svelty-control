@@ -6,7 +6,8 @@ import {
     HourglassEmpty, 
     HourglassFull,
     Error as ErrorIcon,
-    Check
+    Check,
+    AllInbox
 } from '@material-ui/icons'
 
 import {
@@ -16,7 +17,8 @@ import {
     blueGrey,
     cyan,
     lime,
-    purple
+    purple,
+    teal
 } from '@material-ui/core/colors'
 
 export const sizes = [
@@ -100,8 +102,14 @@ export const ORDER_STATES ={
         name: "Prendas listas",
         icon: HourglassFull,
         color: lime[300],
-        defaultMessage: "Todas las prendas del pedido estan listas. A la espera de ser enviadas"
+        defaultMessage: "Todas las prendas del pedido estan listas y listas para ser empacadas"
 
+    },
+    packed:{
+        name: "Empacado",
+        icon: AllInbox,
+        color: teal[800],
+        defaultMessage: "Todas las prendas del pedido estan empacadas y listas para eviarse!"
     },
     dispatched:{
         name: "Enviado",

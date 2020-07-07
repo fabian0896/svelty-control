@@ -17,9 +17,11 @@ import {
 import { Autocomplete } from '@material-ui/lab'
 
 import numeral from 'numeral'
-import shippingRates from '../../../../enviroment/shippingRates.json'
-import colombiaCities from '../../../../enviroment/colombiaCities.json'
-import { getCityList, calculateShippingDays } from '../../../../helpers'
+
+import mipaquete_towns from '../../../../enviroment/mipaquete_towns.json'
+import contraentrega_mipaquete from '../../../../enviroment/contraentrega_mipaquete.json'
+
+import { calculateShippingDays } from '../../../../helpers'
 
 
 
@@ -40,8 +42,6 @@ const ClientInfo = props => {
     ...rest
   } = props;
 
-
-  const [cityOptions, setCityOptions] = useState(() => [])
   const [deliveryDays, setDeliveryDays] = useState(() => "---")
 
   const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid, setFieldValue, isSubmitting } = formik
@@ -56,15 +56,11 @@ const ClientInfo = props => {
   }
 
 
-  useEffect(() => {
-    const data = getCityList(shippingRates)
-    setCityOptions(data)
-  }, [])
-
 
   const handleAutocompleteChange = (e, value) => {
     setFieldValue("city", value)
     const days = calculateShippingDays(value)
+    console.log(days, value)
     setDeliveryDays(days)
   }
 
@@ -198,12 +194,11 @@ const ClientInfo = props => {
               <Autocomplete
                 fullWidth
                 getOptionSelected={(option, value) => {
-                  return (option.city === value.city) && (option.department === value.department)
+                  return option._id === value._id
                 }}
-                value={values.city}
                 onChange={handleAutocompleteChange}
-                options={values.paymentMethod === "mipaquete" ? cityOptions : colombiaCities}
-                getOptionLabel={(option) => `${option.city}(${option.department})`}
+                options={values.paymentMethod === "mipaquete" ? contraentrega_mipaquete : mipaquete_towns}
+                getOptionLabel={(option) => `${option.name}(${option.department_name})`}
                 renderInput={(params) => <TextField {...params} autoComplete="off" label="Destino" margin="dense" variant="outlined" />}
               />
             </Grid>
@@ -255,7 +250,7 @@ const ClientInfo = props => {
                   <Typography align="center" variant="subtitle1" color="textSecondary">{values.products.length > 1 ? "Prendas" : "Prenda"}</Typography>
                 </div>
                 <div>
-                  <Typography align="center" variant="h1">{values.paymentMethod === 'mipaquete' ? deliveryDays : '---'}</Typography>
+                  <Typography align="center" variant="h1">{deliveryDays}</Typography>
                   <Typography align="center" variant="subtitle1" color="textSecondary">Dias de envio</Typography>
                 </div>
               </div>

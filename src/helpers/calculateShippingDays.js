@@ -36,6 +36,6 @@ const findLoaction = (location, rates) =>{
         return null
     }
     return rates.find(elem => {
-        return (elem.city === location.city) && (elem.Department === location.department)
+        return (elem.city === location.name) && (elem.Department === location.department_name)
     })
 }
