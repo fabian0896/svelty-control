@@ -17,7 +17,8 @@ import {
   HourglassEmpty as HourglassEmptyIcon,
   AccessibilityNew as AccessibilityNewIcon,
   Archive as ArchiveIcon,
-  AllInbox as AllInboxIcon
+  AllInbox as AllInboxIcon,
+  FlightTakeoff as FlightTakeoffIcon
 } from '@material-ui/icons'
 
 
@@ -79,6 +80,11 @@ const Sidebar = props => {
       title: 'Empaquetado',
       href: '/empaquetado',
       icon: <AllInboxIcon />
+    },
+    {
+      title: 'Envios',
+      href: '/envios',
+      icon: <FlightTakeoffIcon />
     },
     {
       title: 'Authentication',
