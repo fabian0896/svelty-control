@@ -1,24 +1,23 @@
-import React from 'react'
-import {makeStyles} from '@material-ui/styles'
-import { Card } from '@material-ui/core'
+import React, { Fragment } from 'react'
 
 
+import NoShipping from './NoShipping'
+import ShippingForm from './ShippingForm'
 
-
-const useStyles = makeStyles(theme => ({
-    root:{
-
-    }
-}))
 
 
 const ShippingInfo = props =>{
-    const classes = useStyles(props)
-
+    const {order} = props
+  
     return(
-        <Card>
-            formulario de envio
-        </Card>
+        <Fragment>
+            {
+                order?
+                <ShippingForm  order={order}/>
+                :
+                <NoShipping/>
+            }      
+        </Fragment>
     )
 }
 
