@@ -114,7 +114,7 @@ const setProductState = async (orderId, productIndex, state, provider={}) => {
 
         products[productIndex] = {
             ...products[productIndex],
-            wholesalePrice: price || products[productIndex].price,
+            wholesalePrice: price || products[productIndex].wholesalePrice,
             provider: name || products[productIndex].provider,
             state
         }
