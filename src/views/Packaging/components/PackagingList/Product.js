@@ -36,13 +36,13 @@ const useStyle = makeStyles(theme => ({
     sellPrice: {
         flex: 2
     },
-    pending:{
+    pending: {
         color: theme.palette.info.main
     },
-    production:{
+    production: {
         color: theme.palette.warning.main
     },
-    ready:{
+    ready: {
         color: theme.palette.success.main
     }
 }))
@@ -56,9 +56,9 @@ const Product = props => {
     const ActualIcon = PRODUCT_STATES[product.state].icon
     return (
         <div className={classes.root}>
-            
+
             <div className={classes.name}>
-                <Typography align="left" variant="h6">{product.name}</Typography>
+                <Typography align="left" variant="h6">{product.name}{product.stock ? '(STOCK)' : ''}</Typography>
                 <Typography align="left" variant="subtitle2">{product.provider ? product.provider : 'Sin proveedor'}</Typography>
             </div>
             <div className={classes.size}>

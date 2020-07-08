@@ -74,13 +74,16 @@ export const sizes = [
 
 export const PAYMENT_METHOD = {
     mipaquete:{
-        name: "Contra entrega"
+        name: "Contra entrega",
+        mipaquete: true
     },
     consignment:{
-        name: "Consignación"
+        name: "Consignación",
+        mipaquete: true
     },
     cash:{
-        name: "Efectivo"
+        name: "Efectivo",
+        mipaquete: false
     }
 }
 
