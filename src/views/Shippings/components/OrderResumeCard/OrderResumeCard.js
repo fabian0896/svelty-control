@@ -44,8 +44,8 @@ const useStyles = makeStyles(theme => ({
             border: `1px solid ${theme.palette.primary.light}`
         },
         '& $avatar':{
-            background: theme.palette.primary.main,
-            color: theme.palette.primary.contrastText
+            color: theme.palette.primary.main,
+            background: theme.palette.primary.contrastText
         }
     }
 }))
