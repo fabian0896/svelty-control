@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const ShippingForm = props => {
-    const { order } = props
+    const { order, onAddShipping } = props
     const classes = useStyles(props)
 
     const getTotal = (array = [], key) => {
@@ -190,6 +190,7 @@ const ShippingForm = props => {
                 {
                     PAYMENT_METHOD[order.paymentMethod].mipaquete?
                     <Button
+                        onClick={onAddShipping}
                         variant="contained"
                         className={classes.mipaquete}
                         color="inherit"

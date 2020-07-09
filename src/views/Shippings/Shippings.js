@@ -4,6 +4,7 @@ import { Grid,  } from '@material-ui/core';
 
 import {OrderResumeCard, ShippingInfo} from './components'
 import {orderService} from 'firebaseService'
+import {mipaqueteService} from 'mipaqueteService'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,6 +43,15 @@ const Shippings = () => {
   }
 
 
+  const handleAddShipping = async ()=>{
+    if(!selectOrder){
+      return
+    }
+    const data = await mipaqueteService.createShipping(selectOrder)
+    console.log(data)
+  }
+
+
   return (
     <div className={classes.root}>
       <Grid
@@ -55,7 +65,7 @@ const Shippings = () => {
           xl={6}
           xs={12}
         >
-          <ShippingInfo order={selectOrder}/>
+          <ShippingInfo onAddShipping={handleAddShipping} order={selectOrder}/>
         </Grid>
         <Grid
           item

@@ -12,7 +12,7 @@ import {
   LatestProducts,
   LatestOrders
 } from './components';
-
+import {mipaqueteService} from 'mipaqueteService'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,10 +23,7 @@ const useStyles = makeStyles(theme => ({
 const Dashboard = () => {
   const classes = useStyles();
 
-  useEffect(()=>{
-
-  },[])
-
+  
   return (
     <div className={classes.root}>
       <Grid

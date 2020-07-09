@@ -7,13 +7,13 @@ import ShippingForm from './ShippingForm'
 
 
 const ShippingInfo = props =>{
-    const {order} = props
+    const {order, onAddShipping} = props
   
     return(
         <Fragment>
             {
                 order?
-                <ShippingForm  order={order}/>
+                <ShippingForm onAddShipping={onAddShipping}  order={order}/>
                 :
                 <NoShipping/>
             }      
