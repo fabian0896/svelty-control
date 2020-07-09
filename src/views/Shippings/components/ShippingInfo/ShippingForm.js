@@ -20,6 +20,7 @@ import numeral from 'numeral'
 import {NumberFormatCustom} from 'components'
 import {PAYMENT_METHOD} from 'enviroment'
 
+
 const useStyles = makeStyles(theme => ({
     root: {
 
@@ -54,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     },
     mipaquete:{
         backgroundColor: '#FFAF4B',
-        opacity: .8,
+        opacity: .9,
         '&:hover':{
             opacity: 1,
             backgroundColor: '#FFAF4B',
@@ -104,6 +105,15 @@ const ShippingForm = props => {
             <CardContent>
                 <div className={classes.infoItem}>
                     <div>
+                        <Typography variant="h6">{order.city.name}({order.city.department_name})</Typography>
+                        <Typography variant="body2">Ciudad</Typography>
+                    </div>
+                    <IconButton onClick={copyContent(order.city.name)} size="small" className={classes.copyIcon}>
+                        <FileCopy />
+                    </IconButton>
+                </div>
+                <div className={classes.infoItem}>
+                    <div>
                         <Typography variant="h6">{order.phone}</Typography>
                         <Typography variant="body2">Telefono</Typography>
                     </div>
@@ -149,62 +159,22 @@ const ShippingForm = props => {
                     <IconButton onClick={copyContent(getTotal(order.products, 'price'))} size="small" className={classes.copyIcon}>
                         <FileCopy />
                     </IconButton>
-                </div>
-                <Divider className={classes.divider} />
-                <form>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                fullWidth
-                                label="Empresa"
-                                margin="dense"
-                                name="company"
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                fullWidth
-                                label="Guia"
-                                margin="dense"
-                                name="company"
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Valor del envio"
-                                margin="dense"
-                                name="company"
-                                variant="outlined"
-                                InputProps={{
-                                    inputComponent: NumberFormatCustom,
-                                }}
-                            />
-                        </Grid>
-                    </Grid>
-                </form>
+                </div> 
             </CardContent>
             <CardActions>
-                {
-                    PAYMENT_METHOD[order.paymentMethod].mipaquete?
+            {
+                    PAYMENT_METHOD[order.paymentMethod].mipaquete &&
                     <Button
+                        fullWidth
                         onClick={onAddShipping}
                         variant="contained"
                         className={classes.mipaquete}
                         color="inherit"
+                        startIcon={<img height={35} alt="logo-mipaquete" src="/images/logo-mi-paquete-blanco-nuevo.png"/>}
                     >
-                        Mipaquete
                     </Button>
-                    :
-                    <Button>
-                        Perzonalizado
-                    </Button>
-
-                }
+                }     
             </CardActions>
-
         </Card>
     )
 }
