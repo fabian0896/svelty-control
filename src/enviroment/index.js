@@ -75,11 +75,15 @@ export const sizes = [
 export const PAYMENT_METHOD = {
     mipaquete:{
         name: "Contra entrega",
-        mipaquete: true
+        mipaquete: true,
+        special_service: 2, // pago contra entrega en mipaquete
+        payment_type: 5, //el pago se descuenta del valor recaudado
     },
-    consignment:{
-        name: "Consignación",
-        mipaquete: true
+    consignment:{ // falta ajustar los valores para los envios que ya van pagos(Faltan datos en la documentación)
+        name: "Consignación", 
+        mipaquete: true,
+        special_service: 2, // Fala
+        payment_type: 5, //el pago se descuenta del valor recaudado
     },
     cash:{
         name: "Efectivo",
