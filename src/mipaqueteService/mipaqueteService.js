@@ -12,6 +12,17 @@ const SENDINGS_TYPE = "sendings-type/"
 
 
 
+//ESTADOS DE ENVIO
+
+//COORDINADORA
+//ENTREGADA = el paquete ya se entrego en destino
+//EN REPARTO = el paquete esta en reparto
+//EN TERMINAL DESTINO = el paquete llego a la ciudad de destino
+//EN TERMINAL ORIGEN = el paquete ya lo tiene la transportadora
+
+//TCC
+//Envío entregado al destinatario = el envio ya fue entregado
+
 
 // datos para hacer el login en la api
 const USER = {
@@ -134,6 +145,7 @@ const createShipping = async (order) => {
     //code: El codigo mipaquete se usa para mas adelante saber que pedidos han pagado y cuales no
     //delivery_days: horas en que se entrega el paquete (aproximado)
     //price: el valor total del envio, se tiene que agregar al pedido
+
 }
 
 
@@ -156,6 +168,9 @@ const getShippingById = async (id) => {
     const data = await res.json()
 
     return data.result
+    //para saber si el pedido ya se depacho se puede verficar el campo pickup
+    //si tiene collection_date es que ya se despacho, el problema es que al parecer
+    //este valor se actualiza cada dia
 }
 
 //-------------------------------------------------------------------------------
