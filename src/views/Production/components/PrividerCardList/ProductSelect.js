@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import { Typography, IconButton, TextField } from '@material-ui/core'
 import { AddCircle } from '@material-ui/icons'
 import {NumberFormatCustom} from 'components'
-import Product from 'views/NewOrder/components/ProductList/Product'
+
 
 const useStyles = makeStyles(theme => ({
     root: {

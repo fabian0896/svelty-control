@@ -5,12 +5,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import { OrderToolbar, OrderCard } from './components';
-import mockData from './data';
 
 import { useHistory } from 'react-router-dom'
-
-
-import * as orders from '../../firebaseService/orders'
 
 import {orderService} from 'firebaseService'
 

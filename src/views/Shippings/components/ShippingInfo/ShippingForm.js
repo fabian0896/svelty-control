@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import {
     Card,
     CardHeader,
     Avatar,
-    Divider,
     Typography,
     CardContent,
     IconButton,
-    Grid,
-    TextField,
+    FormControlLabel,
+    Switch,
     Button,
     CardActions
 } from '@material-ui/core'
@@ -17,8 +16,9 @@ import { ORDER_STATES } from 'enviroment'
 import { FileCopy } from '@material-ui/icons'
 import numeral from 'numeral'
 
-import {NumberFormatCustom} from 'components'
-import {PAYMENT_METHOD} from 'enviroment'
+import { PAYMENT_METHOD } from 'enviroment'
+
+import CustomShipping from './CustomShipping'
 
 
 const useStyles = makeStyles(theme => ({
@@ -53,10 +53,10 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1)
     },
-    mipaquete:{
+    mipaquete: {
         backgroundColor: '#FFAF4B',
         opacity: .9,
-        '&:hover':{
+        '&:hover': {
             opacity: 1,
             backgroundColor: '#FFAF4B',
         }
@@ -69,6 +69,11 @@ const ShippingForm = props => {
     const { order, onAddShipping } = props
     const classes = useStyles(props)
 
+
+    const [mipaqueteSelect, setMipaqueteSelect] = useState(PAYMENT_METHOD[order.paymentMethod].mipaquete)
+
+
+
     const getTotal = (array = [], key) => {
         return array.reduce((prev, curr) => prev + parseInt(curr[key]), 0)
     }
@@ -76,16 +81,30 @@ const ShippingForm = props => {
 
     const copyContent = (value) => () => {
         const elem = document.createElement('input')
-        elem.setAttribute('value',value)
+        elem.setAttribute('value', value)
         document.body.appendChild(elem)
         elem.select()
         document.execCommand('copy')
         document.body.removeChild(elem)
     }
 
+
+    const handleChangeSwitch = (event) => {
+        setMipaqueteSelect(event.target.checked)
+    }
+
+
     return (
         <Card>
             <CardHeader
+                action={
+                    <FormControlLabel
+                        disabled={!PAYMENT_METHOD[order.paymentMethod].customShipping}
+                        control={<Switch onChange={handleChangeSwitch} checked={mipaqueteSelect} color="primary" />}
+                        label="Mipaquete"
+                        labelPlacement="bottom"
+                    />
+                }
                 avatar={
                     <Avatar className={classes.avatar}>
                         {order.firstName.charAt(0).toUpperCase()}
@@ -159,22 +178,25 @@ const ShippingForm = props => {
                     <IconButton onClick={copyContent(getTotal(order.products, 'price'))} size="small" className={classes.copyIcon}>
                         <FileCopy />
                     </IconButton>
-                </div> 
+                </div>
             </CardContent>
-            <CardActions>
             {
-                    PAYMENT_METHOD[order.paymentMethod].mipaquete &&
-                    <Button
-                        fullWidth
-                        onClick={onAddShipping}
-                        variant="contained"
-                        className={classes.mipaquete}
-                        color="inherit"
-                        startIcon={<img height={35} alt="logo-mipaquete" src="/images/logo-mi-paquete-blanco-nuevo.png"/>}
-                    >
-                    </Button>
-                }     
-            </CardActions>
+                mipaqueteSelect ?
+                    <CardActions>
+                        <Button
+                            fullWidth
+                            onClick={onAddShipping}
+                            variant="contained"
+                            className={classes.mipaquete}
+                            color="inherit"
+                            startIcon={<img height={35} alt="logo-mipaquete" src="/images/logo-mi-paquete-blanco-nuevo.png" />}
+                        >
+                        </Button>
+                    </CardActions>
+                    :
+                    <CustomShipping />
+            }
+
         </Card>
     )
 }

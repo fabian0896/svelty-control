@@ -43,7 +43,7 @@ const Products = props => {
 
     return (
         <Fragment>
-            <Card>
+            <Card className={classes.root}>
                 <CardHeader
                     title="Stock"
                     subheader="Lista de prendas en stock"

@@ -17,7 +17,6 @@ import {
 
 import { MoreVert } from '@material-ui/icons'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import GetAppIcon from '@material-ui/icons/GetApp';
 import numeral from 'numeral'
 import moment from 'moment'
 import { ORDER_STATES } from '../../../../enviroment'

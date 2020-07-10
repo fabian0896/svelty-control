@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme=>({
 }))
 
 const PackagingCard = props=>{
-    const {order, selected, onClick, onActionClick, loading, icon, iconColor} = props
+    const {order, selected, onClick, onActionClick, loading, icon} = props
     const classes = useStyles(props)
 
     return(
