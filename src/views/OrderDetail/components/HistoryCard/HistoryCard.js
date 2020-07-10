@@ -6,10 +6,8 @@ import { makeStyles } from '@material-ui/styles';
 import {
     Card,
     CardHeader,
-    CardActions,
     CardContent,
     Divider,
-    Button,
     IconButton
 } from '@material-ui/core';
 import { MoreVert } from '@material-ui/icons'
@@ -50,13 +48,6 @@ const HistoryCard = props => {
 
     const classes = useStyles();
 
-    const user = {
-        name: 'Fabian David Dueñas Garcia',
-        city: 'Los Angeles',
-        country: 'USA',
-        timezone: 'GTM-7',
-        avatar: '/images/avatars/avatar_11.png'
-    };
 
     return (
         <Card

@@ -1,13 +1,13 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import Product from './Product'
-import { ClickAwayListener } from '@material-ui/core'
+
 
 
 
 
 const ProductList = props => {
 
-    const { onSelect, productList, selected, onCancelSelect } = props
+    const { onSelect, productList, selected } = props
 
     const handleSelect = (index) => () => {
         onSelect(index)
@@ -20,6 +20,7 @@ const ProductList = props => {
                     if (product.state === "pending") {
                         return <Product selected={selected === index} onSelect={handleSelect(index)} product={product} key={index} />
                     }
+                    return <Fragment></Fragment>
                 })
             }
         </div>

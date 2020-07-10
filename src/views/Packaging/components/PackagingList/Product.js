@@ -1,11 +1,10 @@
 import React from 'react'
 import PropsTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
-import { Typography, IconButton } from '@material-ui/core'
-import { MoreVert } from '@material-ui/icons'
+import { Typography } from '@material-ui/core'
 import { sizes, PRODUCT_STATES } from '../../../../enviroment'
 import numeral from 'numeral'
-import clsx from 'clsx'
+
 
 
 const useStyle = makeStyles(theme => ({

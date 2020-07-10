@@ -103,7 +103,7 @@ const ProductForm = props => {
         }else{
             formik.resetForm()
         }
-    },[editIndex])
+    },[editIndex, formik, products])
 
 
 
@@ -155,7 +155,6 @@ const ProductForm = props => {
                                 fullWidth
                                 label="Precio de venta"
                                 margin="dense"
-                                name="price"
                                 required
                                 variant="outlined"
                                 InputProps={{

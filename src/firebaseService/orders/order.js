@@ -3,8 +3,8 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import { orders as algoliaOrders } from '../../algoliaService'
 import {getRandomColor} from '../../helpers'
-import {stockService, orderService} from 'firebaseService'
-import { all } from 'underscore'
+import {stockService} from 'firebaseService'
+
 
 const ORDERS = 'orders'
 

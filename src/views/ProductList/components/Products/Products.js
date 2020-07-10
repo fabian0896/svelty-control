@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Card, CardContent, Typography, Divider, IconButton } from '@material-ui/core'
+import { Card, Typography, Divider, IconButton } from '@material-ui/core'
 
 import { makeStyles } from '@material-ui/styles'
 

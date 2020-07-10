@@ -77,17 +77,20 @@ export const PAYMENT_METHOD = {
         name: "Contra entrega",
         mipaquete: true,
         special_service: 2, // pago contra entrega en mipaquete
-        payment_type: 5, //el pago se descuenta del valor recaudado
+        payment_type: 5, //el pago se descuenta del valor recaudado,
+        customShipping: false
     },
     consignment:{ // falta ajustar los valores para los envios que ya van pagos(Faltan datos en la documentación)
         name: "Consignación", 
         mipaquete: true,
         special_service: 2, // Fala
         payment_type: 5, //el pago se descuenta del valor recaudado
+        customShipping: true
     },
     cash:{
         name: "Efectivo",
-        mipaquete: false
+        mipaquete: false,
+        customShipping: true
     }
 }
 

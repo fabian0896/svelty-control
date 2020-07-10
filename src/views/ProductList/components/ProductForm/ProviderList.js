@@ -1,6 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import {makeStyles} from '@material-ui/styles'
 import {
     List, ListItemText, ListItem, ListItemSecondaryAction, IconButton
 } from '@material-ui/core'
@@ -13,12 +11,6 @@ import {
 import numeral from 'numeral'
 
 
-
-const useStyle = makeStyles(theme =>({
-    root:{
-
-    }
-}))
 
 
 const ProviderList = props=>{

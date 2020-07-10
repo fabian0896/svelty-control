@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Backdrop, CircularProgress } from '@material-ui/core';
 
-import { ClientInfo, ProducstInfo, ProductList, StockList } from './components';
+import { ClientInfo, ProducstInfo, ProductList } from './components';
 
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-
-import * as orders from '../../firebaseService/orders'
 
 import { useHistory } from 'react-router-dom'
 import { productService, stockService, orderService } from 'firebaseService'

@@ -181,5 +181,6 @@ const getTotalOfProduct = (productList = [], key) => {
 
 export default {
     getToken,
-    createShipping
+    createShipping,
+    getShippingById
 }
