@@ -10,8 +10,7 @@ import { useHistory } from 'react-router-dom'
 
 import {orderService} from 'firebaseService'
 
-import {Loader } from 'components'
-
+import {Loader} from 'components'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,17 +37,21 @@ const OrderList = () => {
   const [loading, setLoading] = useState(true)
 
 
+
   const handleAddOrder = ()=>{
     history.push({pathname: '/pedido/nuevo'})
   }
 
   useEffect(()=>{
-    const fecthData = async ()=>{
-      const data = await orderService.getAllOrders()
+    const unsubscribe = orderService.getOrderByStates((data)=>{
+      console.log(data)
       setOrdersList(data)
       setLoading(false)
+    },['packed', 'productReady', 'production'], ['withShipping','==', true])
+
+    return ()=>{
+      unsubscribe()
     }
-    fecthData()
   },[])
 
   const handleClickOrder = (id)=>()=>{

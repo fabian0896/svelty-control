@@ -30,7 +30,8 @@ const addOrder = async (value)=>{
         createdAt: new Date(),
         creatorId: user.uid,
         creatorName: user.displayName,
-        color
+        color,
+        withShipping: false
     }
 
     
@@ -178,7 +179,7 @@ const setOrderState = async (orderId, state)=>{
 
 
 
-const getOrderByStates = (cb, states=[]) => {
+const getOrderByStates = (cb, states=[], customQuery) => {
 
     const allData = {}
 
@@ -196,7 +197,11 @@ const getOrderByStates = (cb, states=[]) => {
     const db = firebase.firestore()
     const collection = db.collection(ORDERS)
 
-    const queries = states.map(state => collection.where('state','==', state))
+    let queries = states.map(state => collection.where('state','==', state))
+
+    if(customQuery){
+        queries = queries.map(query => query.where(customQuery[0],customQuery[1], customQuery[2]))
+    }
 
     const unsubscribes = queries.map((query, index) => {
         return query.onSnapshot(callback(index))
