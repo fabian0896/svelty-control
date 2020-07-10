@@ -14,7 +14,8 @@ import {
 } from '@material-ui/core';
 
 import { CloudDownload } from '@material-ui/icons'
-import { ORDER_STATES } from '../../../../enviroment'
+import { ORDER_STATES, PAYMENT_METHOD } from '../../../../enviroment'
+import moment from 'moment'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -58,11 +59,28 @@ const useStyles = makeStyles((theme) => ({
     background: ORDER_STATES[props.order.state].color,
     color: theme.palette.getContrastText(ORDER_STATES[props.order.state].color),
     padding: theme.spacing(1)
-  })
+  }),
+  positiveBottom:{
+    background: theme.palette.success.main,
+    color: theme.palette.success.contrastText,
+    padding: theme.spacing(1)
+  },
+  negativeBottom:{
+    background: theme.palette.error.main,
+    color: theme.palette.error.contrastText,
+    padding: theme.spacing(1)
+  },
+  actions:{
+    display: 'flex',
+    '& > *':{
+      flex: 1
+    }
+  }
 }));
 
+
 const OrderCard = props => {
-  const { className, order, onClick, ...rest } = props;
+  const { className, order, onClick,onDispatched, ...rest } = props;
 
   const classes = useStyles(props);
 
@@ -104,14 +122,17 @@ const OrderCard = props => {
       <CardActionArea onClick={onClick}>
 
         <CardContent>
+          
+          <Typography align="center" variant="h5">{ORDER_STATES[order.state].name}</Typography>
+          <Typography align="center" variant="subtitle2">Pedido confirmado por la transportadora</Typography>
 
           <div className={classes.resumeContainer}>
             <div>
               <Typography
                 align="left"
-                variant="h5"
+                variant="h6"
               >
-                Corrdinadora
+                {order.company_name? order.company_name : 'Sin asignar'}
           </Typography>
               <Typography
                 align="left"
@@ -123,9 +144,9 @@ const OrderCard = props => {
           </Typography>
               <Typography
                 align="left"
-                variant="h5"
+                variant="h6"
               >
-                900765463
+                {order.guide_number? order.guide_number: 'Sin asignar'}
           </Typography>
               <Typography
                 align="left"
@@ -139,9 +160,9 @@ const OrderCard = props => {
             <div>
               <Typography
                 align="right"
-                variant="h5"
+                variant="h6"
               >
-                4 de junio de 2020
+                {moment(order.collection_date).format('DD [de] MMMM [del] YYYY')}
           </Typography>
               <Typography
                 align="right"
@@ -153,9 +174,9 @@ const OrderCard = props => {
           </Typography>
               <Typography
                 align="right"
-                variant="h5"
+                variant="h6"
               >
-                Contra entrega
+                {PAYMENT_METHOD[order.paymentMethod].name}
           </Typography>
               <Typography
                 align="right"
@@ -170,9 +191,14 @@ const OrderCard = props => {
         </CardContent>
       </CardActionArea>
       <Divider />
-      <CardActionArea className={classes.footer}>
-          <Typography align="center" color="inherit" variant="h6">Estado del pedido</Typography>
-      </CardActionArea>
+      <div className={classes.actions}>
+        <CardActionArea onClick={onDispatched(order)} className={classes.positiveBottom}>
+          <Typography align="center" color="inherit" variant="h6">{order.state === 'dispatched'? 'Entregado':'Despachado'}</Typography>
+        </CardActionArea>
+        <CardActionArea className={classes.negativeBottom}>
+      <Typography align="center" color="inherit" variant="h6">{order.state === 'dispatched'? 'Devolucion':'Cancelar'}</Typography>
+        </CardActionArea>
+      </div>
     </Card>
   );
 };
