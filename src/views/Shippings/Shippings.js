@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid,  } from '@material-ui/core';
+import { Grid, Backdrop, CircularProgress  } from '@material-ui/core';
 
 import {OrderResumeCard, ShippingInfo} from './components'
-import {orderService} from 'firebaseService'
-import {mipaqueteService} from 'mipaqueteService'
+import {orderService, shippingService} from 'firebaseService'
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
-  }
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
 }));
 
 const Shippings = () => {
   const classes = useStyles();
   const [orders, setOrders] = useState([])
+  const [loading, setLoading] = useState(true)
   const [selectOrder, setSelectOrder] = useState(null)
 
   useEffect(()=>{
     const unsubscribe = orderService.getOrderByStates((data)=>{
       console.log(data)
       setOrders(data)
-    },['packed', 'productReady', 'production'])
+      setLoading(false)
+    },['packed', 'productReady', 'production'], ['withShipping','==', false])
 
     return ()=>{
       unsubscribe()
@@ -43,17 +50,21 @@ const Shippings = () => {
   }
 
 
-  const handleAddShipping = async ()=>{
+  const handleAddShipping = (mipaquete) => async (shipping) => {
     if(!selectOrder){
-      return
+      return 
     }
-    const data = await mipaqueteService.createShipping(selectOrder)
-    console.log(data)
+    setLoading(true)
+    await shippingService.newShippingToOrder(selectOrder,mipaquete, shipping)
+    setLoading(false)
   }
 
 
   return (
     <div className={classes.root}>
+       <Backdrop className={classes.backdrop} open={loading}>
+          <CircularProgress color="inherit"/>
+      </Backdrop>
       <Grid
         container
         spacing={4}

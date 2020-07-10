@@ -103,7 +103,7 @@ const ProductForm = props => {
         }else{
             formik.resetForm()
         }
-    },[editIndex, formik, products])
+    },[editIndex])
 
 
 

@@ -185,7 +185,7 @@ const ShippingForm = props => {
                     <CardActions>
                         <Button
                             fullWidth
-                            onClick={onAddShipping}
+                            onClick={onAddShipping(true)}
                             variant="contained"
                             className={classes.mipaquete}
                             color="inherit"
@@ -194,7 +194,7 @@ const ShippingForm = props => {
                         </Button>
                     </CardActions>
                     :
-                    <CustomShipping />
+                    <CustomShipping onAddShipping={onAddShipping} />
             }
 
         </Card>

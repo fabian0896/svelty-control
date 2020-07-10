@@ -11,14 +11,18 @@ const validationSchema = Yup.object().shape({
 })
 
 const CustomShipping = props => {
-
+    const {onAddShipping} = props
     const { values, handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
         initialValues: {
             company_name: '',
             guide_number: '',
-            price: 0
+            price: 0,
         },
-        validationSchema: validationSchema
+        validationSchema: validationSchema,
+        onSubmit: (values, actios)=>{
+            onAddShipping(false)(values)
+            actios.resetForm()
+        }
     })
 
     return (

@@ -87,6 +87,11 @@ const Sidebar = props => {
       icon: <FlightTakeoffIcon />
     },
     {
+      title: 'Traking',
+      href: '/traking',
+      icon: <FlightTakeoffIcon />
+    },
+    {
       title: 'Authentication',
       href: '/sign-in',
       icon: <LockOpenIcon />
