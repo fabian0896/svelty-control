@@ -8,7 +8,7 @@ import { OrderToolbar, OrderCard } from './components';
 
 import { useHistory } from 'react-router-dom'
 
-import {orderService} from 'firebaseService'
+import {orderService, shippingService} from 'firebaseService'
 
 import {Loader} from 'components'
 
@@ -32,7 +32,6 @@ const OrderList = () => {
 
   const history = useHistory()
 
-  const [nextFunction, setNextFunction] = useState()
   const [ordersList, setOrdersList] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -47,7 +46,7 @@ const OrderList = () => {
       console.log(data)
       setOrdersList(data)
       setLoading(false)
-    },['packed', 'productReady', 'production'], ['withShipping','==', true])
+    },['packed', 'productReady', 'production', 'dispatched'], ['withShipping','==', true])
 
     return ()=>{
       unsubscribe()
@@ -60,9 +59,10 @@ const OrderList = () => {
     })
   }
 
-  const handleNextPage = async ()=>{
-      const data = await nextFunction
-      console.log(data)
+ 
+
+  const handleDispatchedOrder = (order)=> async ()=>{
+    await shippingService.setOrderDispatched(order)
   }
 
   return (
@@ -82,7 +82,10 @@ const OrderList = () => {
               md={6}
               xs={12}
             >
-              <OrderCard onClick={handleClickOrder(order.id)} order={order} />
+              <OrderCard
+                onDispatched={handleDispatchedOrder} 
+                onClick={handleClickOrder(order.id)} 
+                order={order} />
             </Grid>
           ))}
         </Grid>
@@ -92,7 +95,7 @@ const OrderList = () => {
         <IconButton>
           <ChevronLeftIcon />
         </IconButton>
-        <IconButton onClick={handleNextPage}>
+        <IconButton >
           <ChevronRightIcon />
         </IconButton>
       </div>
