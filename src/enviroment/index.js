@@ -90,7 +90,7 @@ export const PAYMENT_METHOD = {
     cash:{
         name: "Efectivo",
         mipaquete: false,
-        customShipping: true
+        customShipping: false
     }
 }
 
