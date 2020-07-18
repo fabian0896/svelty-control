@@ -4,7 +4,7 @@ import 'firebase/auth'
 import { orders as algoliaOrders } from '../../algoliaService'
 import {getRandomColor} from '../../helpers'
 import {stockService} from 'firebaseService'
-
+import _ from 'lodash'
 
 const ORDERS = 'orders'
 
@@ -186,11 +186,16 @@ const getOrderByStates = (cb, states=[], customQuery) => {
 
     const callback = (index) => (data)=>{    
         const newData = data.docs.map(doc=>doc.data())
+        const oldData = {...allData}
         allData[states[index]] = newData
-        const result = Object.keys(allData).reduce((prev, state)=>{
-            return [...prev, ...allData[state]]
-        }, [])
-        cb(result)
+        if(!(_.isEqual(oldData, allData))){
+            const result = Object.keys(allData).reduce((prev, state)=>{
+                return [...prev, ...allData[state]]
+            }, [])
+            cb(result)
+        }else{
+            console.log("los datos son los mismos, no hay que llamar al callback")
+        }
     }
 
 
