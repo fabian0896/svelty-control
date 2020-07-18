@@ -123,7 +123,6 @@ const OrderCard = props => {
 
   const handleDispatchedShipping = ()=>{
     console.log("despachado")
-
   }
 
   const handleReturnShipping = ()=>{
