@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 
 import { CloudDownload } from '@material-ui/icons'
-import { ORDER_STATES, PAYMENT_METHOD } from '../../../../enviroment'
+import { ORDER_STATES, PAYMENT_METHOD, MIPAQUETE_STATES } from '../../../../enviroment'
 import moment from 'moment'
 
 const useStyles = makeStyles((theme) => ({
@@ -80,15 +80,81 @@ const useStyles = makeStyles((theme) => ({
 
 
 const OrderCard = props => {
-  const { className, order, onClick,onDispatched, ...rest } = props;
+  const { 
+    className, 
+    order, 
+    onClick,
+    onDispatched, 
+    ...rest 
+  } = props;
 
   const classes = useStyles(props);
 
-  const getTotalPrice = (products=[])=>{
-    return products.reduce((prev, curr)=> prev + curr.price,0)
-  }
   
-  const StateIcon = ORDER_STATES[order.state].icon
+  const handleDownloadGuide = ()=>{
+      if(order.company_name === "COORDINADORA"){
+        const link = document.createElement('a')
+        link.href = order.shipping.RelacionEnvioDwonloadPdf
+        link.target = "_blank"
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      }else if (order.company_name === "TCC"){
+        const link1 = document.createElement('a')
+        const link2 = document.createElement('a')
+        link1.href = order.shipping.RelacionEnvioDwonloadPdf
+        link2.href = order.shipping.RotulosDwonloadPdf
+        link1.target = "_blank"
+        link2.target = "_blank"
+        console.log(link1, link2)
+        document.body.appendChild(link1)
+        document.body.appendChild(link2)
+        link1.click()
+        link2.click()
+        document.body.removeChild(link1)
+        document.body.removeChild(link2)
+      }
+  }
+
+
+  const handleCancelShipping = ()=>{
+    console.log("Cancelado")
+  }
+
+  const handleDispatchedShipping = ()=>{
+    console.log("despachado")
+
+  }
+
+  const handleReturnShipping = ()=>{
+    console.log("Devolución")
+  }
+
+  const handleDeliveredShipping = ()=>{
+    console.log("Entregado")
+  }
+
+  const actions = {
+    dispatched:{
+      positiveMessage: "Entregado",
+      NegativeMessage: "Devolución",
+      positiveCb: handleDeliveredShipping,
+      negativeCb: handleReturnShipping
+    },
+    productReady:{
+      positiveMessage: "Enviado",
+      NegativeMessage: "Cancelado",
+      positiveCb: handleDispatchedShipping,
+      negativeCb: handleCancelShipping
+    },
+    packed:{
+      positiveMessage: "Enviado",
+      NegativeMessage: "Cancelado",
+      positiveCb: handleDispatchedShipping,
+      negativeCb: handleCancelShipping
+    }
+  }
+
 
   return (
     <Card
@@ -104,9 +170,14 @@ const OrderCard = props => {
           </Avatar>
         }
         action={
-          <IconButton>
-            <CloudDownload />
-          </IconButton>
+          <Fragment>
+            {
+              order.mipaquete &&
+              <IconButton onClick={handleDownloadGuide}>
+                <CloudDownload  />
+              </IconButton>
+            }
+          </Fragment>
         }
         subheaderTypographyProps={{
           variant: 'body2',
@@ -122,9 +193,8 @@ const OrderCard = props => {
       <CardActionArea onClick={onClick}>
 
         <CardContent>
-          
           <Typography align="center" variant="h5">{ORDER_STATES[order.state].name}</Typography>
-          <Typography align="center" variant="subtitle2">Pedido confirmado por la transportadora</Typography>
+      <Typography align="center" variant="subtitle2">{MIPAQUETE_STATES[order.shipping.state]?MIPAQUETE_STATES[order.shipping.state].name : '---'}</Typography>
 
           <div className={classes.resumeContainer}>
             <div>
@@ -192,11 +262,11 @@ const OrderCard = props => {
       </CardActionArea>
       <Divider />
       <div className={classes.actions}>
-        <CardActionArea onClick={onDispatched(order)} className={classes.positiveBottom}>
-          <Typography align="center" color="inherit" variant="h6">{order.state === 'dispatched'? 'Entregado':'Despachado'}</Typography>
+        <CardActionArea onClick={actions[order.state].positiveCb} className={classes.positiveBottom}>
+          <Typography align="center" color="inherit" variant="h6">{actions[order.state].positiveMessage}</Typography>
         </CardActionArea>
-        <CardActionArea className={classes.negativeBottom}>
-      <Typography align="center" color="inherit" variant="h6">{order.state === 'dispatched'? 'Devolucion':'Cancelar'}</Typography>
+        <CardActionArea onClick={actions[order.state].negativeCb} className={classes.negativeBottom}>
+      <Typography align="center" color="inherit" variant="h6">{actions[order.state].NegativeMessage}</Typography>
         </CardActionArea>
       </div>
     </Card>

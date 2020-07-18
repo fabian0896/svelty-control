@@ -1,6 +1,8 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import {mipaqueteService} from 'mipaqueteService'
+import {orderService} from 'firebaseService'
+import {MIPAQUETE_STATES} from 'enviroment'
 
 const ORDERS = 'orders'
 
@@ -64,7 +66,24 @@ const setOrderDispatched = async (order)=>{
 
 
 
+const updateMipaqueteOrders = async (orderList=[])=>{
+    const mipaqueteOrders =  orderList.filter(order=>order.mipaquete)
+    const promises = mipaqueteOrders.map(order=>mipaqueteService.getShippingById(order.shipping_id))
+    const shippingsData = await Promise.all(promises)
+    
+    const updateOrderPromises = mipaqueteOrders.map((order, index)=>{
+        const shippingState = shippingsData[index].state
+        const internalState = MIPAQUETE_STATES[shippingState]? MIPAQUETE_STATES[shippingState].internalState : null
+        return orderService.updateOrderState(order, internalState, shippingsData[index])
+    })
+    await Promise.all(updateOrderPromises)
+    return
+}
+
+
+
 export default {
     newShippingToOrder,
-    setOrderDispatched
+    setOrderDispatched,
+    updateMipaqueteOrders
 }

@@ -95,6 +95,44 @@ export const PAYMENT_METHOD = {
 }
 
 
+export const MIPAQUETE_STATES ={
+    pendiente_confirmar_por_transportadora:{
+        name: "Envio pendiente por confirmar",
+        internalState: null
+    },
+    confirmado_por_transportadora:{
+        name: "Confirmado por la transportadora",
+        internalState: null
+    },
+    vehiculo_asignado:{
+        name: "Vehiculo asignado",
+        internalState: null
+    },
+    recogido_por_transportadora:{
+        name: "Envio recogido por la transportadora",
+        internalState: "dispatched"
+    },
+    enviado_a_destino:{
+        name: "Envio en camino a destino",
+        internalState: "dispatched"
+    },
+    entregado_a_destino:{
+        name: "Entregado",
+        internalState: "delivered"
+    },
+    devuelto:{
+        name: "Devolucion al remitente",
+        internalState: "return"
+    },
+    cancelado_por_el_usuario:{
+        name: "Envio cancelado",
+        internalState: null
+    }
+
+}
+
+
+
 export const ORDER_STATES ={
     pending:{
         name: "Pendiente",

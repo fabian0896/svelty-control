@@ -42,11 +42,12 @@ const OrderList = () => {
   }
 
   useEffect(()=>{
+    
     const unsubscribe = orderService.getOrderByStates((data)=>{
-      console.log(data)
       setOrdersList(data)
+      shippingService.updateMipaqueteOrders(data)
       setLoading(false)
-    },['packed', 'productReady', 'production', 'dispatched'], ['withShipping','==', true])
+    },['packed', 'productReady', 'dispatched'], ['withShipping','==', true])
 
     return ()=>{
       unsubscribe()
