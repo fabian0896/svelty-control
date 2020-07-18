@@ -215,8 +215,32 @@ const getOrderByStates = (cb, states=[], customQuery) => {
 }
 
 
-//-----------------------------------------------------------------------------
 
+const updateOrderState = async (order, state, shipping)=>{
+ 
+    const db = firebase.firestore()
+    const doc = db.collection(ORDERS).doc(order.id)
+    const updateObject = {}
+
+    if(!!state){
+        //la orden no puede ser actualizada por que no hay un estado
+        updateObject.state = state
+    }
+
+    if(shipping){
+        updateObject.shipping = shipping
+        updateObject.guide_number =  shipping.guide_number
+        updateObject.company_name = shipping.delivery_company.company_name
+    }
+
+   
+    console.log("se actualizo")
+    await doc.update(updateObject)
+
+    return
+}
+
+//-----------------------------------------------------------------------------
 
 const isEvryProductInAState = (products=[], state) =>{
     return products.reduce((prev, curr)=>{
@@ -247,5 +271,6 @@ export default {
     setOrderState,
     getOrderdispatched,
     getOrderpacked,
-    getOrderByStates
+    getOrderByStates,
+    updateOrderState
 }

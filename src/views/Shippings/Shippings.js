@@ -28,7 +28,7 @@ const Shippings = () => {
       console.log(data)
       setOrders(data)
       setLoading(false)
-    },['packed', 'productReady', 'production'], ['withShipping','==', false])
+    },['packed', 'productReady'], ['withShipping','==', false])
 
     return ()=>{
       unsubscribe()
