@@ -44,15 +44,19 @@ const newShippingToOrder = async (order, mipaquete=true, shippingData)=>{
 }
 
 
-const setOrderDispatched = async (order)=>{
+const setOrderDispatched = async (order, shipping)=>{
     const db = firebase.firestore()
     const doc = db.collection(ORDERS).doc(order.id)
 
     let updateObject = {
         state: 'dispatched',
     }
-    if(order.mipaquete){
-
+    if(order.mipaquete && shipping){
+        updateObject ={
+            state: 'dispatched',
+            shippingMessage: "Pedido despachado",
+            collection_date: shipping.pickup.collection_date,
+        }
     }else{
         updateObject ={
             state: 'dispatched',
@@ -63,6 +67,25 @@ const setOrderDispatched = async (order)=>{
 
     doc.update(updateObject)
 }
+
+
+const updateStateOrderByShipping = async (order, state, shipping)=>{
+    const db =  firebase.firestore()
+    const doc =  db.collection(ORDERS).doc(order.id)
+
+    if(state === 'dispatched'){
+        setDispatched()
+    }else if(state === 'delivered'){
+        setDelivered()
+    }else if(state === 'return'){
+        setReturn()
+    }else{
+        //el resto de estados no cambia nada mas que el etado ç
+        //por lo que no se hace mucho aqui
+    }
+
+}
+
 
 
 
@@ -79,6 +102,62 @@ const updateMipaqueteOrders = async (orderList=[])=>{
     await Promise.all(updateOrderPromises)
     return
 }
+
+
+
+//------------------------------------------------------------------------------------
+
+
+const setDispatched = (order, shipping)=>{
+    //si el envio es de mipaquete se busca la fecha que ellos nos dan de recogida
+    //sino entonces se pone la fecha en la que se marco como despachado
+    //este estado no cambia las estadisticas ya que toca esperar a ver si llega o hay devolución
+    if(order.mipaquete && !!shipping){
+        return {
+            state: 'dispatched',
+            collection_date: shipping.pickup.collection_date,
+            shippingMessage: "Pedido despachado",
+        }
+    }else{
+        return {
+            state: 'dispatched',
+            collection_date: (new Date()).getTime(),
+            shippingMessage: "Pedido despachado",
+        }
+    }
+}
+
+
+const setDelivered = ()=>{
+    //aqui hay que ver si el pedido es de mi paque o no
+    //si el pedido es de mi paquete no se deben tocar las estaditicas de ganacia
+    //ya que esas se actualizan cuando llegue el reporte de pagos y devoluciones de mipaquete
+    //si el envio es personalizado entonces simplemente se suma la ganancia a las estadisticas
+
+    //si el envio es por mipaquete o por cualquier medio pero es con consiganación o otro medio diferente a contra entrega 
+    //el valor de la ganancia se suma directamente 
+
+
+    //hay que sumar a las ganancias pendientes por combrar en caso de que no se combre instantanemente(mipaquete)
+    
+
+    //actualizar el numero de estadisticas, sumarle a entregado
+
+}
+
+
+const setReturn = ()=>{
+    //si el pedido es de mi paquete, no se tocan las estadisticas 
+    //ya que estas se actualizan cuando el llegue el reporte de devoluciones de mipaquete
+    //si el envio es perzonalizado se resta el valor de la prenda y el valor del envio a la ganancia 
+
+    //si el pedido es por mipaquete pero es con consignacion, el valor se suma directamente a la ganancia
+
+
+
+}
+
+
 
 
 
