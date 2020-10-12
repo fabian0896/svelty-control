@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 
 import numeral from 'numeral'
 import { Edit } from '@material-ui/icons'
+import clsx from 'clsx'
 
 const useStyle = makeStyles(theme => ({
     root: {
@@ -36,13 +37,17 @@ const useStyle = makeStyles(theme => ({
     divider:{
         marginRight: theme.spacing(2),
         marginLeft: theme.spacing(2)
+    },
+    selected:{
+        border: `3px solid ${theme.palette.primary.main}`,
+        background: theme.palette.primary.light,
     }
 }))
 
 
 
 const Products = props => {
-    const { products, onEditProduct } = props
+    const { products, onEditProduct, editIndex } = props
     const classes = useStyle()
 
     return (
@@ -51,7 +56,7 @@ const Products = props => {
             {
                 products.map((product, index) => {
                     return (
-                        <Card key={product.id} className={classes.root}>
+                        <Card key={product.id} className={clsx(classes.root, {[classes.selected]: editIndex === index})} >
                             <div className={classes.content}>
                                 <div>
                                     <Typography variant="h3">{product.name}</Typography>

@@ -91,7 +91,7 @@ const ProductList = () => {
           xl={7}
           xs={12}
         >
-          <Products onEditProduct={handleEditProduct} products={products}/> 
+          <Products editIndex={editIndex} onEditProduct={handleEditProduct} products={products}/> 
         </Grid>
       </Grid>
     </div>

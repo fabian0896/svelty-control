@@ -192,7 +192,7 @@ const OrderCard = props => {
       <CardActionArea onClick={onClick}>
 
         <CardContent>
-          <Typography align="center" variant="h5">{ORDER_STATES[order.state].name}</Typography>
+          <Typography align="center" variant="h5">MP{order.mipaquete_code}</Typography>
       <Typography align="center" variant="subtitle2">{MIPAQUETE_STATES[order.shipping.state]?MIPAQUETE_STATES[order.shipping.state].name : '---'}</Typography>
 
           <div className={classes.resumeContainer}>
