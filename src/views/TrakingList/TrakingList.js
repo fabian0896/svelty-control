@@ -66,6 +66,10 @@ const OrderList = () => {
     await shippingService.setOrderDispatched(order)
   }
 
+  const handleDeliveredOrder = (order)=> async ()=>{
+    await shippingService.setDeliveredOrder(order)
+  }
+
   return (
     <div className={classes.root}>
       <Loader loading={loading}/>
@@ -84,7 +88,8 @@ const OrderList = () => {
               xs={12}
             >
               <OrderCard
-                onDispatched={handleDispatchedOrder} 
+                onDispatched={handleDispatchedOrder(order)}
+                onDelivered={handleDeliveredOrder(order)} 
                 onClick={handleClickOrder(order.id)} 
                 order={order} />
             </Grid>
