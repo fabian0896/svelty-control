@@ -84,7 +84,8 @@ const OrderCard = props => {
     className, 
     order, 
     onClick,
-    onDispatched, 
+    onDispatched,
+    onDelivered, 
     ...rest 
   } = props;
 
@@ -121,7 +122,8 @@ const OrderCard = props => {
     console.log("Cancelado")
   }
 
-  const handleDispatchedShipping = ()=>{
+  const handleDispatchedShipping = async ()=>{
+    await onDispatched()
     console.log("despachado")
   }
 
@@ -129,7 +131,8 @@ const OrderCard = props => {
     console.log("Devolución")
   }
 
-  const handleDeliveredShipping = ()=>{
+  const handleDeliveredShipping = async ()=>{
+    await onDelivered()
     console.log("Entregado")
   }
 

@@ -52,7 +52,7 @@ const setOrderDispatched = async (order, shipping)=>{
     let updateObject = {
         state: 'dispatched',
     }
-    if(order.mipaquete && shipping){
+    if(false/*order.mipaquete && shipping*/){
         updateObject ={
             state: 'dispatched',
             shippingMessage: "Pedido despachado",
@@ -69,6 +69,15 @@ const setOrderDispatched = async (order, shipping)=>{
     doc.update(updateObject)
 }
 
+const setDeliveredOrder = async (order) =>{
+    const db = firebase.firestore()
+    const doc = db.collection(ORDERS).doc(order.id)
+    let updateObject = {
+        state: 'delivered',
+        deliveredDate: new Date()
+    }
+    await doc.update(updateObject)
+}
 
 const updateStateOrderByShipping = async (order, state, shipping)=>{
     const db =  firebase.firestore()
@@ -96,8 +105,8 @@ const updateMipaqueteOrders = async (orderList=[])=>{
     const shippingsData = await Promise.all(promises)
     
     const updateOrderPromises = mipaqueteOrders.map((order, index)=>{
-        const shippingState = shippingsData[index].state
-        const internalState = MIPAQUETE_STATES[shippingState]? MIPAQUETE_STATES[shippingState].internalState : null
+        //const shippingState = shippingsData[index].state
+        const internalState = null //MIPAQUETE_STATES[shippingState]? MIPAQUETE_STATES[shippingState].internalState : null
         return orderService.updateOrderState(order, internalState, shippingsData[index])
     })
     await Promise.all(updateOrderPromises)
@@ -165,5 +174,6 @@ const setReturn = ()=>{
 export default {
     newShippingToOrder,
     setOrderDispatched,
-    updateMipaqueteOrders
+    updateMipaqueteOrders,
+    setDeliveredOrder
 }
