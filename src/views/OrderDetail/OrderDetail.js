@@ -37,6 +37,7 @@ const OrderDetail = () => {
   useEffect(()=>{
     const unsubscribe = orderService.getById(orderId, (data)=>{
       setOrder(data)
+      console.log(data)
     })
     return () => {
       unsubscribe()
@@ -71,8 +72,8 @@ const OrderDetail = () => {
         >
           <OrderState order={order}/>
           <ProductList order={order}/>
-          <ShippingDetail/>
-          <HistoryCard order={order}/>
+          <ShippingDetail order={order}/>
+         {/* <HistoryCard order={order}/>*/}
         </Grid>
       </Grid>
       :
