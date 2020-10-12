@@ -15,12 +15,13 @@ const newShippingToOrder = async (order, mipaquete=true, shippingData)=>{
 
     if(mipaquete){
         const actualShipping = await mipaqueteService.createShipping(order)
+        console.log(actualShipping)
         updatObject = {
             withShipping: true,
             mipaquete: true,
             collection_date: 0,
-            guide_number: actualShipping.guide_number,
-            company_name: actualShipping.delivery_company.company_name,
+            guide_number: actualShipping.guide_number || "",
+            company_name: actualShipping.delivery_company.company_name || "",
             shipping_id: actualShipping._id,
             shipping_price: actualShipping.price,
             mipaquete_code: actualShipping.code,
