@@ -79,6 +79,16 @@ const setDeliveredOrder = async (order) =>{
     await doc.update(updateObject)
 }
 
+const setReturnOrder = async (order, price) =>{
+    const db = firebase.firestore()
+    const doc = db.collection(ORDERS).doc(order.id)
+    let updateObject = {
+        state: 'return',
+        returnValue: parseInt(price)
+    }
+    await doc.update(updateObject)
+}
+
 const updateStateOrderByShipping = async (order, state, shipping)=>{
     const db =  firebase.firestore()
     const doc =  db.collection(ORDERS).doc(order.id)
@@ -175,5 +185,6 @@ export default {
     newShippingToOrder,
     setOrderDispatched,
     updateMipaqueteOrders,
-    setDeliveredOrder
+    setDeliveredOrder,
+    setReturnOrder
 }
