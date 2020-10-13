@@ -54,13 +54,34 @@ const getOrderById = (id, cb)=>{
 
 
 
-const getAllOrders = async ()=>{
+const getAllOrders = async (nextQuery)=>{
+    const limit = 2
+    let query = null
     const db = firebase.firestore()
-    const query = db.collection(ORDERS).orderBy('createdAt').limit(30)
+
+    if(nextQuery){
+        query = nextQuery
+    }else{     
+        query = db.collection(ORDERS).orderBy('createdAt','desc').limit(limit)
+    }
 
     const snap =  await query.get()
+    const lastVisible = snap.docs[snap.docs.length - 1]
 
-    return snap.docs.map(doc => doc.data())
+    let next = null
+    if(lastVisible){
+        next = db.collection(ORDERS).orderBy('createdAt', 'desc').startAfter(lastVisible).limit(limit)
+    }
+
+
+    const back = db.collection(ORDERS).orderBy('createdAt', 'desc').startAt(snap.docs[0]).limit(limit)
+
+    const data = snap.docs.map(doc => doc.data())
+    return {
+        data,
+        next,
+        back 
+    }
 }
 
 

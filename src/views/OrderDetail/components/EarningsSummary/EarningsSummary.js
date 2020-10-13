@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
@@ -49,34 +49,57 @@ const EarningsSummary = props => {
             />
             <Divider />
             <CardContent>
-                <div className={classes.item}>
-                    <Typography className={classes.title} variant="h5">
-                        Valor de venta
-                    </Typography>
-                    <Typography className={classes.add} color="inherit" variant="h5">
-                        +{numeral(getProductsPrice(order.products)).format("$0,0")}
-                    </Typography>
-                </div>
-                <div className={classes.item}>
-                    <Typography className={classes.title} variant="h5">
-                        Valor de las prendas
-                    </Typography>
-                    <Typography className={classes.subtract} color="inherit" variant="h5">
-                        -{numeral(getwholesalePrice(order.products)).format("$0,0")}
-                    </Typography>
-                </div>
-                <div className={classes.item}>
-                    <Typography className={classes.title} variant="h5">
-                        Envio
-                    </Typography>
-                    <Typography className={classes.subtract} color="inherit" variant="h5">
-                        -{numeral(order.shipping_price || 0).format("$0,0")}
-                    </Typography>
-                </div>
-                <div className={classes.resume}>
-                    <Typography className={classes.add} color="inherit" align="center" variant="h3">{numeral(getTotal(order)).format("$0,0")}</Typography>
-                    <Typography align="center" variant="subtitle2">Ganancia total</Typography>
-                </div>
+                {
+                    order.state === 'return' ?
+                        <Fragment>
+
+                            <div className={classes.item}>
+                                <Typography className={classes.title} variant="h5">
+                                    Valor de la devolucion
+                        </Typography>
+                                <Typography className={classes.subtract} color="inherit" variant="h5">
+                                    -{numeral(order.returnValue).format("$0,0")}
+                                </Typography>
+                            </div>
+
+                            <div className={classes.resume}>
+                                <Typography className={classes.subtract} color="inherit" align="center" variant="h3">{numeral(order.returnValue * -1).format("$0,0")}</Typography>
+                                <Typography align="center" variant="subtitle2">Ganancia total</Typography>
+                            </div>
+                        </Fragment>
+                        :
+                        <Fragment>
+                            <div className={classes.item}>
+                                <Typography className={classes.title} variant="h5">
+                                    Valor de venta
+                        </Typography>
+                                <Typography className={classes.add} color="inherit" variant="h5">
+                                    +{numeral(getProductsPrice(order.products)).format("$0,0")}
+                                </Typography>
+                            </div>
+                            <div className={classes.item}>
+                                <Typography className={classes.title} variant="h5">
+                                    Valor de las prendas
+                        </Typography>
+                                <Typography className={classes.subtract} color="inherit" variant="h5">
+                                    -{numeral(getwholesalePrice(order.products)).format("$0,0")}
+                                </Typography>
+                            </div>
+                            <div className={classes.item}>
+                                <Typography className={classes.title} variant="h5">
+                                    Envio
+                        </Typography>
+                                <Typography className={classes.subtract} color="inherit" variant="h5">
+                                    -{numeral(order.shipping_price || 0).format("$0,0")}
+                                </Typography>
+                            </div>
+                            <div className={classes.resume}>
+                                <Typography className={classes.add} color="inherit" align="center" variant="h3">{numeral(getTotal(order)).format("$0,0")}</Typography>
+                                <Typography align="center" variant="subtitle2">Ganancia total</Typography>
+                            </div>
+                        </Fragment>
+
+                }
             </CardContent>
         </Card>
     )

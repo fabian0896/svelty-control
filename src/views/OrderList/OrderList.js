@@ -33,7 +33,8 @@ const OrderList = () => {
 
   const history = useHistory()
 
-  const [nextFunction, setNextFunction] = useState()
+  const [nextFunction, setNextFunction] = useState(null)
+  const [backFunction, setBackFunction] = useState(null)
   const [ordersList, setOrdersList] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -44,8 +45,10 @@ const OrderList = () => {
 
   useEffect(()=>{
     const fecthData = async ()=>{
-      const data = await orderService.getAllOrders()
+      const {data, next, back} = await orderService.getAllOrders()
       setOrdersList(data)
+      setNextFunction(next)
+      setBackFunction(back)
       setLoading(false)
     }
     fecthData()
@@ -58,8 +61,21 @@ const OrderList = () => {
   }
 
   const handleNextPage = async ()=>{
-      const data = await nextFunction
-      console.log(data)
+    setLoading(true)
+    const {data, next, back} = await orderService.getAllOrders(nextFunction)
+    setOrdersList(data)
+    setNextFunction(next)
+    setBackFunction(back)
+    setLoading(false)
+  }
+
+  const handleBackPage = async ()=>{
+    setLoading(true)
+    const {data, next, back} = await orderService.getAllOrders(backFunction)
+    setOrdersList(data)
+    setNextFunction(next)
+    setBackFunction(back)
+    setLoading(false)
   }
 
   return (
@@ -86,10 +102,10 @@ const OrderList = () => {
       </div>
       <div className={classes.pagination}>
         <Typography variant="caption">1-30 of 300</Typography>
-        <IconButton>
+        <IconButton onClick={handleBackPage}>
           <ChevronLeftIcon />
         </IconButton>
-        <IconButton onClick={handleNextPage}>
+        <IconButton disabled={!nextFunction} onClick={handleNextPage}>
           <ChevronRightIcon />
         </IconButton>
       </div>
