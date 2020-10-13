@@ -75,8 +75,8 @@ const getAllOrders = async (nextQuery)=>{
     }
 
     let back = null
-    if(lastVisible){
-        back = db.collection(ORDERS).orderBy('createdAt', 'desc').endBefore(lastVisible).limit(limit)
+    if(firstVisible){
+        back = db.collection(ORDERS).orderBy('createdAt', 'desc').endBefore(firstVisible).limitToLast(limit)
     }
 
     const data = snap.docs.map(doc => doc.data())
