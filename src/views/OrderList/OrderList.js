@@ -39,6 +39,7 @@ const OrderList = () => {
   const [disBack, setDisBack] = useState(false)
   const [ordersList, setOrdersList] = useState([])
   const [loading, setLoading] = useState(true)
+  const [page, setPage] = useState(1)
 
 
   const handleAddOrder = () => {
@@ -72,6 +73,7 @@ const OrderList = () => {
     setBackFunction(back)
     setDisBack(disableBack)
     setDisNex(disableNext)
+    setPage(v => v + 1)
     setLoading(false)
   }
 
@@ -83,6 +85,7 @@ const OrderList = () => {
     setBackFunction(back)
     setDisBack(disableBack)
     setDisNex(disableNext)
+    setPage(v => v - 1)
     setLoading(false)
   }
 
@@ -109,7 +112,7 @@ const OrderList = () => {
         </Grid>
       </div>
       <div className={classes.pagination}>
-        
+          <Typography variant="caption">Página {page}</Typography>
         <IconButton disabled={disBack} onClick={handleBackPage}>
           <ChevronLeftIcon />
         </IconButton>
