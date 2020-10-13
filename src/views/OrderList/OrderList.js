@@ -8,9 +8,9 @@ import { OrderToolbar, OrderCard } from './components';
 
 import { useHistory } from 'react-router-dom'
 
-import {orderService} from 'firebaseService'
+import { orderService } from 'firebaseService'
 
-import {Loader } from 'components'
+import { Loader } from 'components'
 
 
 const useStyles = makeStyles(theme => ({
@@ -35,52 +35,60 @@ const OrderList = () => {
 
   const [nextFunction, setNextFunction] = useState(null)
   const [backFunction, setBackFunction] = useState(null)
+  const [disNext, setDisNex] = useState(false)
+  const [disBack, setDisBack] = useState(false)
   const [ordersList, setOrdersList] = useState([])
   const [loading, setLoading] = useState(true)
 
 
-  const handleAddOrder = ()=>{
-    history.push({pathname: '/pedido/nuevo'})
+  const handleAddOrder = () => {
+    history.push({ pathname: '/pedido/nuevo' })
   }
 
-  useEffect(()=>{
-    const fecthData = async ()=>{
-      const {data, next, back} = await orderService.getAllOrders()
+  useEffect(() => {
+    const fecthData = async () => {
+      const { data, next, back, disableBack, disableNext } = await orderService.getAllOrders()
       setOrdersList(data)
       setNextFunction(next)
       setBackFunction(back)
+      setDisBack(disableBack)
+      setDisNex(disableNext)
       setLoading(false)
     }
     fecthData()
-  },[])
+  }, [])
 
-  const handleClickOrder = (id)=>()=>{
+  const handleClickOrder = (id) => () => {
     history.push({
       pathname: `/pedidos/${id}`
     })
   }
 
-  const handleNextPage = async ()=>{
+  const handleNextPage = async () => {
     setLoading(true)
-    const {data, next, back} = await orderService.getAllOrders(nextFunction)
+    const { data, next, back, disableBack, disableNext } = await orderService.getAllOrders(nextFunction)
     setOrdersList(data)
     setNextFunction(next)
     setBackFunction(back)
+    setDisBack(disableBack)
+    setDisNex(disableNext)
     setLoading(false)
   }
 
-  const handleBackPage = async ()=>{
+  const handleBackPage = async () => {
     setLoading(true)
-    const {data, next, back} = await orderService.getAllOrders(backFunction)
+    const { data, next, back, disableBack, disableNext } = await orderService.getAllOrders(backFunction)
     setOrdersList(data)
     setNextFunction(next)
     setBackFunction(back)
+    setDisBack(disableBack)
+    setDisNex(disableNext)
     setLoading(false)
   }
 
   return (
     <div className={classes.root}>
-      <Loader loading={loading}/>
+      <Loader loading={loading} />
       <OrderToolbar onAddOrder={handleAddOrder} />
       <div className={classes.content}>
         <Grid
@@ -102,10 +110,10 @@ const OrderList = () => {
       </div>
       <div className={classes.pagination}>
         <Typography variant="caption">1-30 of 300</Typography>
-        <IconButton onClick={handleBackPage}>
+        <IconButton disabled={disBack} onClick={handleBackPage}>
           <ChevronLeftIcon />
         </IconButton>
-        <IconButton disabled={!nextFunction} onClick={handleNextPage}>
+        <IconButton disabled={disNext} onClick={handleNextPage}>
           <ChevronRightIcon />
         </IconButton>
       </div>
