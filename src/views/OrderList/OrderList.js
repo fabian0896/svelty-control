@@ -109,7 +109,7 @@ const OrderList = () => {
         </Grid>
       </div>
       <div className={classes.pagination}>
-        <Typography variant="caption">1-30 of 300</Typography>
+        
         <IconButton disabled={disBack} onClick={handleBackPage}>
           <ChevronLeftIcon />
         </IconButton>
