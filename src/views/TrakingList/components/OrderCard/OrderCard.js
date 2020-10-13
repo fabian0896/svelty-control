@@ -86,6 +86,7 @@ const OrderCard = props => {
     onClick,
     onDispatched,
     onDelivered, 
+    onReturn,
     ...rest 
   } = props;
 
@@ -129,6 +130,7 @@ const OrderCard = props => {
 
   const handleReturnShipping = ()=>{
     console.log("Devolución")
+    onReturn()
   }
 
   const handleDeliveredShipping = async ()=>{

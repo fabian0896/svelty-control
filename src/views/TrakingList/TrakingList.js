@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { IconButton, Grid, Typography } from '@material-ui/core';
+import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
-import { OrderToolbar, OrderCard } from './components';
+import { OrderToolbar, OrderCard, ConfirmModal } from './components';
 
 import { useHistory } from 'react-router-dom'
 
@@ -34,8 +34,8 @@ const OrderList = () => {
 
   const [ordersList, setOrdersList] = useState([])
   const [loading, setLoading] = useState(true)
-
-
+  const [openModal, setOpenModal] = useState(false)
+  const [returnData, setReturnData] = useState(null)
 
   const handleAddOrder = ()=>{
     history.push({pathname: '/pedido/nuevo'})
@@ -70,9 +70,25 @@ const OrderList = () => {
     await shippingService.setDeliveredOrder(order)
   }
 
+
+  const handleOpenRetrnModal = (order) => ()=>{
+    setOpenModal(true)
+    setReturnData(order)
+  } 
+
+  const handleSaveReturnOrder = async ({price})=>{
+      await shippingService.setReturnOrder(returnData, price)
+      console.log("Se marco como devolucion con un valor de " +  price)
+  }
+
+  const handleCloseModal = ()=>{
+    setOpenModal(false)
+  }
+
   return (
     <div className={classes.root}>
       <Loader loading={loading}/>
+      <ConfirmModal onSave={handleSaveReturnOrder} order={returnData} open={openModal}  onClose={handleCloseModal}/>
       <OrderToolbar onAddOrder={handleAddOrder} />
       <div className={classes.content}>
         <Grid
@@ -88,6 +104,7 @@ const OrderList = () => {
               xs={12}
             >
               <OrderCard
+                onReturn={handleOpenRetrnModal(order)}
                 onDispatched={handleDispatchedOrder(order)}
                 onDelivered={handleDeliveredOrder(order)} 
                 onClick={handleClickOrder(order.id)} 
