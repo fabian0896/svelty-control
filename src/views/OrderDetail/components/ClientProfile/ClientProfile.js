@@ -29,11 +29,13 @@ const useStyles = makeStyles(theme => ({
   uploadButton: {
     marginRight: theme.spacing(2)
   },
-  nameLetter: {
+  nameLetter: props => ({
     height: 70,
     width: 70,
-    marginLeft: 'auto'
-  },
+    marginLeft: 'auto',
+    background: props.order.color,
+    color: theme.palette.getContrastText(props.order.color)
+  }),
   divider: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2)
@@ -43,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 const ClientProfile = props => {
   const { className, order, ...rest } = props;
 
-  const classes = useStyles();
+  const classes = useStyles(props);
 
 
 
