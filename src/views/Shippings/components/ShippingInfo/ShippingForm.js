@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import {
     Card,
@@ -93,6 +93,12 @@ const ShippingForm = props => {
         setMipaqueteSelect(event.target.checked)
     }
 
+    useEffect(()=>{
+        if(!PAYMENT_METHOD[order.paymentMethod].customShipping){
+            setMipaqueteSelect(true)
+        }
+
+    },[order])
 
     return (
         <Card>

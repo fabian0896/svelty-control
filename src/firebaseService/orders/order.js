@@ -55,7 +55,7 @@ const getOrderById = (id, cb)=>{
 
 
 const getAllOrders = async (nextQuery)=>{
-    const limit = 2
+    const limit = 12
     let query = null
     const db = firebase.firestore()
 
