@@ -69,21 +69,33 @@ const getAllOrders = async (nextQuery)=>{
     const lastVisible = snap.docs[snap.docs.length - 1]
     const firstVisible = snap.docs[0]
 
+    const firstElementSnap = await db.collection(ORDERS).orderBy('createdAt', 'desc').limit(1).get()
+    const lastElementSnap = await  db.collection(ORDERS).orderBy('createdAt', 'desc').limitToLast(1).get()
+
+    const lastElement = lastElementSnap.docs[0]
+    const firsElement = firstElementSnap.docs[0]
+
+    const disableNext = lastElement.data().id === lastVisible.data().id
+    const disableBack = firsElement.data().id === firstVisible.data().id
+
+
     let next = null
     if(lastVisible){
         next = db.collection(ORDERS).orderBy('createdAt', 'desc').startAfter(lastVisible).limit(limit)
     }
 
     let back = null
-    if(lastVisible){
-        back = db.collection(ORDERS).orderBy('createdAt', 'desc').endBefore(lastVisible).limit(limit)
+    if(firstVisible){
+        back = db.collection(ORDERS).orderBy('createdAt', 'desc').endBefore(firstVisible).limitToLast(limit)
     }
 
     const data = snap.docs.map(doc => doc.data())
     return {
         data,
         next,
-        back 
+        back,
+        disableBack,
+        disableNext 
     }
 }
 
