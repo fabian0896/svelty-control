@@ -63,8 +63,8 @@ const ShippingDetail = props => {
             <Divider />
             <CardContent>
                 <div className={classes.currierResume}>
-                    <Typography align="center" variant="h3">{order.company_name || "No asignado"}</Typography>
-                    <Typography align="center" variant="subtitle2">{shipping.guide_number || "---"}</Typography>
+                    <Typography align="center" variant="h3">{shipping.guide_number || "---"}</Typography>
+                    <Typography align="center" variant="subtitle2">{order.company_name || "No asignado"}</Typography>
                 </div>
                 <div className={classes.resume}>
                     <div>

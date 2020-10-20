@@ -91,6 +91,51 @@ const Sidebar = props => {
       href: '/traking',
       icon: <FlightTakeoffIcon />
     },
+  ];
+
+
+  /*
+    const pages = [
+    {
+      title: 'Inicio',
+      href: '/dashboard',
+      icon: <DashboardIcon />
+    },
+    {
+      title: 'Pedidos',
+      href: '/pedidos',
+      icon: <ShoppingCartIcon />
+    },
+    {
+      title: 'Producción',
+      href: '/produccion',
+      icon: <HourglassEmptyIcon />
+    },
+    {
+      title: 'Prendas',
+      href: '/prendas',
+      icon: <AccessibilityNewIcon />
+    },
+    {
+      title: 'Stock',
+      href: '/stock',
+      icon: <ArchiveIcon />
+    },
+    {
+      title: 'Empaquetado',
+      href: '/empaquetado',
+      icon: <AllInboxIcon />
+    },
+    {
+      title: 'Envios',
+      href: '/envios',
+      icon: <FlightTakeoffIcon />
+    },
+    {
+      title: 'Traking',
+      href: '/traking',
+      icon: <FlightTakeoffIcon />
+    },
     {
       title: 'Authentication',
       href: '/sign-in',
@@ -117,6 +162,9 @@ const Sidebar = props => {
       icon: <SettingsIcon />
     }
   ];
+  
+  */ 
+
 
   return (
     <Drawer
