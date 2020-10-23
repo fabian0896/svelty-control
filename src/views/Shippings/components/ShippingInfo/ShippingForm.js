@@ -95,7 +95,7 @@ const ShippingForm = props => {
 
     useEffect(()=>{
         if(!PAYMENT_METHOD[order.paymentMethod].customShipping){
-            setMipaqueteSelect(true)
+            setMipaqueteSelect(PAYMENT_METHOD[order.paymentMethod].mipaquete)
         }
 
     },[order])

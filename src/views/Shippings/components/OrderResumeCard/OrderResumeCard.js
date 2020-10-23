@@ -77,7 +77,7 @@ const OrderResumeCard = props => {
                     variant: 'h5',
                 }}
                 title={`${order.firstName} ${order.lastName}`}
-                subheader={`${order.city.name} ${order.city.department_name}`}
+                subheader={`${order.city.name} (${order.city.department_name})`}
             />
             <Divider className={classes.divider} />
             <CardContent>

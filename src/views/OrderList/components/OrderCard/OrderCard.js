@@ -19,7 +19,7 @@ import { MoreVert } from '@material-ui/icons'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import numeral from 'numeral'
 import moment from 'moment'
-import { ORDER_STATES } from '../../../../enviroment'
+import { ORDER_STATES, PAYMENT_METHOD } from '../../../../enviroment'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -115,7 +115,7 @@ const OrderCard = props => {
                 align="left"
                 variant="body1"
               >
-                3217378301
+                {order.phone}
           </Typography>
               <Typography
                 align="left"
@@ -129,7 +129,7 @@ const OrderCard = props => {
                 align="left"
                 variant="body1"
               >
-                Contra entrega
+                {PAYMENT_METHOD[order.paymentMethod].name}
           </Typography>
               <Typography
                 align="left"

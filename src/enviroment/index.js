@@ -83,8 +83,8 @@ export const PAYMENT_METHOD = {
     consignment:{ // falta ajustar los valores para los envios que ya van pagos(Faltan datos en la documentación)
         name: "Consignación", 
         mipaquete: true,
-        special_service: 2, // Fala
-        payment_type: 5, //el pago se descuenta del valor recaudado
+        special_service: 0, // Fala
+        payment_type: 1, //el pago se descuenta del valor recaudado
         customShipping: true
     },
     cash:{
