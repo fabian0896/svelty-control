@@ -56,6 +56,7 @@ const Shippings = () => {
     }
     setLoading(true)
     await shippingService.newShippingToOrder(selectOrder,mipaquete, shipping)
+    setSelectOrder(null)
     setLoading(false)
   }
 

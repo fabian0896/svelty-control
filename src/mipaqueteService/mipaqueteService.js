@@ -54,9 +54,9 @@ const ORIGIN = "5aa1bc55b63d79e54e7da72e"
 const COLLECTION_INFORMATION = {
     bank: "Bancolombia",
     type_account: "A",
-    number_account: "74587621537",
-    name_beneficiary: "Fabian David Dueñas Garcia",
-    number_beneficiary: 1144089680
+    number_account: "83658086131",
+    name_beneficiary: "JAIME ANDRES RIASCOS RIASCOS",
+    number_beneficiary: 1143862639
 }
 
 
@@ -108,22 +108,44 @@ const createShipping = async (order) => {
         "destination_address": order.address
     }
 
-    const shippingData = {
-        "type": 2,
-        "weight": 1,
-        "declared_value": totalWholesalePrice,
-        "sender": SENDER,
-        "receiver": receiver,
-        "origin": ORIGIN,
-        "destiny": destiny,
-        "quantity": 1,
-        "comments": comments,
-        "special_service": PAYMENT_METHOD[order.paymentMethod].special_service,
-        "payment_type": PAYMENT_METHOD[order.paymentMethod].payment_type,
-        "collection_information": COLLECTION_INFORMATION,
-        "value_collection": totalPrice,
-        "alternative": 3
+
+    let shippingData = {}
+
+    if(order.paymentMethod === 'mipaquete'){
+        shippingData = {
+            "type": 2,
+            "weight": 1,
+            "declared_value": totalWholesalePrice,
+            "sender": SENDER,
+            "receiver": receiver,
+            "origin": ORIGIN,
+            "destiny": destiny,
+            "quantity": 1,
+            "comments": comments,
+            "special_service": PAYMENT_METHOD[order.paymentMethod].special_service,
+            "payment_type": PAYMENT_METHOD[order.paymentMethod].payment_type,
+            "collection_information": COLLECTION_INFORMATION,
+            "value_collection": totalPrice,
+            "alternative": 3
+        }
+    }else{
+        shippingData = {
+            "type": 2,
+            "weight": 1,
+            "declared_value": totalWholesalePrice,
+            "sender": SENDER,
+            "receiver": receiver,
+            "origin": ORIGIN,
+            "destiny": destiny,
+            "quantity": 1,
+            "comments": comments,
+            "special_service": PAYMENT_METHOD[order.paymentMethod].special_service,
+            "payment_type": PAYMENT_METHOD[order.paymentMethod].payment_type,
+            "collection_information": COLLECTION_INFORMATION,     
+            "alternative": 3
+        }
     }
+
 
     const raw = JSON.stringify(shippingData)
 
@@ -138,6 +160,7 @@ const createShipping = async (order) => {
     const res = await fetch(`${URL}${SENDINGS_TYPE}`, requestOptions)
     const data = await res.json()
 
+    console.log(data)
 
     return data.result.sending
     //Datos importantes
