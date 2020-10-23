@@ -75,8 +75,8 @@ const getAllOrders = async (nextQuery)=>{
     const lastElement = lastElementSnap.docs[0]
     const firsElement = firstElementSnap.docs[0]
 
-    const disableNext = lastElement.data().id === lastVisible.data().id
-    const disableBack = firsElement.data().id === firstVisible.data().id
+    const disableNext = lastElement?.data().id === lastVisible?.data().id
+    const disableBack = firsElement?.data().id === firstVisible?.data().id
 
 
     let next = null
