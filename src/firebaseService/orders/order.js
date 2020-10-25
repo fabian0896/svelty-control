@@ -43,6 +43,14 @@ const addOrder = async (value)=>{
 }
 
 
+const deleteOrder = async (order) => {
+    const id = order.id
+    const db = firebase.firestore()
+
+    await db.collection(ORDERS).doc(id).delete()
+    return
+}
+
 
 
 const getOrderById = (id, cb)=>{
@@ -313,5 +321,6 @@ export default {
     getOrderdispatched,
     getOrderpacked,
     getOrderByStates,
-    updateOrderState
+    updateOrderState,
+    deleteOrder
 }

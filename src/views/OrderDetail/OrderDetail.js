@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Backdrop, CircularProgress } from '@material-ui/core';
 
-import { 
-  ClientProfile, 
+import {
+  ClientProfile,
   HistoryCard,
   ProductList,
   OrderState,
@@ -11,10 +11,10 @@ import {
   ShippingDetail
 } from './components';
 
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 
 import * as orderService from '../../firebaseService/orders'
-
+import { orderService as orderFirebase } from 'firebaseService'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,57 +29,68 @@ const useStyles = makeStyles(theme => ({
 const OrderDetail = () => {
   const classes = useStyles();
 
-  const {orderId} = useParams()
+  const { orderId } = useParams()
+
+  const history = useHistory()
 
   const [order, setOrder] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-
-  useEffect(()=>{
-    const unsubscribe = orderService.getById(orderId, (data)=>{
+  useEffect(() => {
+    const unsubscribe = orderService.getById(orderId, (data) => {
       setOrder(data)
+      setLoading(false)
       console.log(data)
     })
     return () => {
       unsubscribe()
     }
-  },[])
+  }, [])
+
+
+  const handleDeleteOrder = async () => {
+    setLoading(true)
+    console.log("se va a elminar el pedido")
+    await orderFirebase.deleteOrder(order)
+    console.log("Se elmino el pedido")
+    history.push({ pathname: '/pedidos' })
+  }
 
   return (
     <div className={classes.root}>
       {
-        !!order ?
-
-      <Grid
-        container
-        spacing={4}
-      >
-        <Grid
-          item
-          lg={5}
-          md={6}
-          xl={5}
-          xs={12}
-        >
-          <ClientProfile order={order} />
-          <EarningsSummary order={order}/>
-        </Grid>
-        <Grid
-          item
-          lg={7}
-          md={6}
-          xl={7}
-          xs={12}
-        >
-          <OrderState order={order}/>
-          <ProductList order={order}/>
-          <ShippingDetail order={order}/>
-         {/* <HistoryCard order={order}/>*/}
-        </Grid>
-      </Grid>
-      :
-      <Backdrop className={classes.backdrop} open={true}>
-          <CircularProgress color="inherit"/>
-      </Backdrop>
+        loading || !order ?
+          <Backdrop className={classes.backdrop} open={true}>
+            <CircularProgress color="inherit" />
+          </Backdrop>
+          :
+          <Grid
+            container
+            spacing={4}
+          >
+            <Grid
+              item
+              lg={5}
+              md={6}
+              xl={5}
+              xs={12}
+            >
+              <ClientProfile onDeleteOrder={handleDeleteOrder} order={order} />
+              <EarningsSummary order={order} />
+            </Grid>
+            <Grid
+              item
+              lg={7}
+              md={6}
+              xl={7}
+              xs={12}
+            >
+              <OrderState order={order} />
+              <ProductList order={order} />
+              <ShippingDetail order={order} />
+              {/* <HistoryCard order={order}/>*/}
+            </Grid>
+          </Grid>
       }
     </div>
   );
