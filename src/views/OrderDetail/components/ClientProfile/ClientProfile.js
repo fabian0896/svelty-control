@@ -43,7 +43,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ClientProfile = props => {
+<<<<<<< HEAD
   const { className, order, onDeleteOrder, ...rest } = props;
+=======
+  const { className, order, ...rest } = props;
+>>>>>>> 1d592ce44ce8bca76e2ee9071534345c8792718e
 
   const classes = useStyles(props);
 
@@ -101,7 +105,10 @@ const ClientProfile = props => {
           className={classes.uploadButton}
           color="primary"
           variant="text"
+<<<<<<< HEAD
           onClick={onDeleteOrder}
+=======
+>>>>>>> 1d592ce44ce8bca76e2ee9071534345c8792718e
         >
           Eliminar
         </Button>

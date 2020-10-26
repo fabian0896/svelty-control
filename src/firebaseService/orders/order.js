@@ -43,6 +43,7 @@ const addOrder = async (value)=>{
 }
 
 
+<<<<<<< HEAD
 const deleteOrder = async (order) => {
     const id = order.id
     const db = firebase.firestore()
@@ -51,6 +52,8 @@ const deleteOrder = async (order) => {
     return
 }
 
+=======
+>>>>>>> 1d592ce44ce8bca76e2ee9071534345c8792718e
 
 
 const getOrderById = (id, cb)=>{
@@ -321,6 +324,10 @@ export default {
     getOrderdispatched,
     getOrderpacked,
     getOrderByStates,
+<<<<<<< HEAD
     updateOrderState,
     deleteOrder
+=======
+    updateOrderState
+>>>>>>> 1d592ce44ce8bca76e2ee9071534345c8792718e
 }
