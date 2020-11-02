@@ -84,6 +84,7 @@ const OrderListTable = props => {
                   <TableCell>Codigo Mipaquete</TableCell>
                   <TableCell>Cliente</TableCell>
                   <TableCell>Fecha</TableCell>
+                  <TableCell>Guia</TableCell>
                   <TableCell>Estado Mipaquete</TableCell>
                   <TableCell>Valor a pagar</TableCell>
                 </TableRow>
@@ -98,6 +99,9 @@ const OrderListTable = props => {
                     <TableCell>{order.customer.name}</TableCell>
                     <TableCell>
                       {moment(order.createdAt).format('DD/MM/YYYY')}
+                    </TableCell>
+                    <TableCell>
+                      900990517
                     </TableCell>
                     <TableCell>
                       Entregado
