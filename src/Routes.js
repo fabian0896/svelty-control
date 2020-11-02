@@ -24,7 +24,8 @@ import {
   Pakaging as PakagingViwe,
   Shippings as ShippingsView,
   TrakingList as TrakingListView,
-  TransitList as TransitListView
+  TransitList as TransitListView,
+  Finance as FinanceView,
 } from './views';
 
 const Routes = () => {
@@ -108,6 +109,13 @@ const Routes = () => {
           exact
           layout={MainLayout}
           path="/transito"
+        />
+        <RouteWithLayoutPrivate
+          user={user}
+          component={FinanceView}
+          exact
+          layout={MainLayout}
+          path="/finanzas"
         />
         <RouteWithLayoutPrivate
           user={user}

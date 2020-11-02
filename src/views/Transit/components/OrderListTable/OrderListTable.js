@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -16,13 +16,17 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  Checkbox,
   Tooltip,
   TableSortLabel
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { MIPAQUETE_STATES } from '../../../../enviroment'
+import numeral from 'numeral'
 
-import mockData from './data';
 import { StatusBullet } from 'components';
+import { select } from 'underscore';
+import { Fragment } from 'react';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -51,11 +55,51 @@ const statusColors = {
 };
 
 const OrderListTable = props => {
-  const { className, ...rest } = props;
+  const { className, orders, onSetDelivered,onSetReturn, ...rest } = props;
 
   const classes = useStyles();
+  const [selected, setSelected] = useState({})
+  const [selectedAll, setSelectedAll] = useState(false)
 
-  const [orders] = useState(mockData);
+
+  const calculateMipaqueteValue = (order) => {
+    const totalProducts = order.products.reduce((prev, curr) => prev + curr.price, 0)
+    return totalProducts - order.shipping_price
+  }
+
+  const handelCheck = (id) => () => {
+    setSelected(value => ({ ...value, [id]: !value[id] }))
+  }
+
+  const handleSelectedAll = () => {
+    setSelectedAll(value => !value)
+  }
+
+  useEffect(() => {
+    const data = {}
+    orders.forEach((order) => {
+      data[order.id] = selectedAll
+    })
+    setSelected(data)
+  }, [selectedAll])
+
+
+  const isOneSelected = ()=>{
+      return Object.keys(selected).map(v => selected[v]).reduce((prev, curr)=> prev || curr, false)
+  }
+
+
+  const handleSetDelivered = ()=>{
+    const data = Object.keys(selected).filter(v => selected[v])
+    onSetDelivered(data)
+    setSelected({})
+  }
+
+  const handleSetReturn = ()=>{
+    const data = Object.keys(selected).filter(v => selected[v])
+    onSetReturn(data)
+    setSelected({})
+  }
 
   return (
     <Card
@@ -64,15 +108,31 @@ const OrderListTable = props => {
     >
       <CardHeader
         action={
-          <Button
-            color="primary"
-            size="small"
-            variant="outlined"
-          >
-            New entry
-          </Button>
+          <div>
+            {
+              isOneSelected() &&
+              <Fragment>
+                <Button
+                  style={{ marginRight: 10 }}
+                  size="small"
+                  variant="outlined"
+                  onClick={handleSetReturn}
+                >
+                  Marcar devoluciones
+                </Button>
+                <Button
+                  color="primary"
+                  size="small"
+                  variant="outlined"
+                  onClick={handleSetDelivered}
+                >
+                  Marcar Entregas
+                </Button>
+              </Fragment> 
+            }
+          </div>
         }
-        title="Pedidos Mipaquete"
+        title={`Pedidos Mipaquete (${orders.length})`}
       />
       <Divider />
       <CardContent className={classes.content}>
@@ -81,6 +141,12 @@ const OrderListTable = props => {
             <Table>
               <TableHead>
                 <TableRow>
+                  <TableCell padding="checkbox">
+                    <Checkbox
+                      onChange={handleSelectedAll}
+                      checked={selectedAll}
+                    />
+                  </TableCell>
                   <TableCell>Codigo Mipaquete</TableCell>
                   <TableCell>Cliente</TableCell>
                   <TableCell>Fecha</TableCell>
@@ -95,26 +161,25 @@ const OrderListTable = props => {
                     hover
                     key={order.id}
                   >
-                    <TableCell>{order.ref}</TableCell>
-                    <TableCell>{order.customer.name}</TableCell>
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        checked={selected[order.id] || false}
+                        onChange={handelCheck(order.id)}
+                      />
+                    </TableCell>
+                    <TableCell>MP{order.mipaquete_code}</TableCell>
+                    <TableCell>{order.firstName} {order.lastName}</TableCell>
                     <TableCell>
-                      {moment(order.createdAt).format('DD/MM/YYYY')}
+                      {moment(order.createdAt.seconds * 1000).format('DD/MM/YYYY')}
                     </TableCell>
                     <TableCell>
-                      900990517
+                      {order.guide_number}
                     </TableCell>
                     <TableCell>
-                      Entregado
+                      {MIPAQUETE_STATES[order.shipping.state] ? MIPAQUETE_STATES[order.shipping.state].name : '---'}
                     </TableCell>
                     <TableCell>
-                      <div className={classes.statusContainer}>
-                        <StatusBullet
-                          className={classes.status}
-                          color={statusColors[order.status]}
-                          size="sm"
-                        />
-                        {order.status}
-                      </div>
+                      {numeral(calculateMipaqueteValue(order)).format("$0,0")}
                     </TableCell>
                   </TableRow>
                 ))}

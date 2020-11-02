@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { IconButton, Grid, Typography, Modal } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -24,6 +24,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end'
+  },
+  noOrderContainer:{
+    padding: theme.spacing(10)
   }
 }));
 
@@ -47,7 +50,7 @@ const OrderList = () => {
       setOrdersList(data)
       shippingService.updateMipaqueteOrders(data)
       setLoading(false)
-    },['packed', 'productReady', 'dispatched'], ['withShipping','==', true])
+    },['packed', 'productReady'], ['withShipping','==', true])
 
     return ()=>{
       unsubscribe()
@@ -90,38 +93,41 @@ const OrderList = () => {
       <Loader loading={loading}/>
       <ConfirmModal onSave={handleSaveReturnOrder} order={returnData} open={openModal}  onClose={handleCloseModal}/>
       <OrderToolbar onAddOrder={handleAddOrder} />
-      <div className={classes.content}>
-        <Grid
-          container
-          spacing={3}
-        >
-          {ordersList.map(order => (
+      {
+        !!ordersList.length?
+        <Fragment>
+
+          <div className={classes.content}>
             <Grid
-              item
-              key={order.id}
-              lg={4}
-              md={6}
-              xs={12}
+              container
+              spacing={3}
             >
-              <OrderCard
-                onReturn={handleOpenRetrnModal(order)}
-                onDispatched={handleDispatchedOrder(order)}
-                onDelivered={handleDeliveredOrder(order)} 
-                onClick={handleClickOrder(order.id)} 
-                order={order} />
+              {ordersList.map(order => (
+                <Grid
+                  item
+                  key={order.id}
+                  lg={4}
+                  md={6}
+                  xs={12}
+                >
+                  <OrderCard
+                    onReturn={handleOpenRetrnModal(order)}
+                    onDispatched={handleDispatchedOrder(order)}
+                    onDelivered={handleDeliveredOrder(order)} 
+                    onClick={handleClickOrder(order.id)} 
+                    order={order} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </div>
-      <div className={classes.pagination}>
-        <Typography variant="caption">1-30 of 300</Typography>
-        <IconButton>
-          <ChevronLeftIcon />
-        </IconButton>
-        <IconButton >
-          <ChevronRightIcon />
-        </IconButton>
-      </div>
+          </div>
+        </Fragment>
+        :
+        <Fragment>
+          <div className={classes.noOrderContainer}>
+            <Typography variant="h3" align="center">No hay pedidos pendientes para depsacho con guias.</Typography>
+          </div>
+        </Fragment>
+      }
     </div>
   );
 };

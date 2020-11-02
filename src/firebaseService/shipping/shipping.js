@@ -70,8 +70,10 @@ const setOrderDispatched = async (order, shipping)=>{
 }
 
 const setDeliveredOrder = async (order) =>{
+    const id = typeof order === 'string' ? order : order.id
+
     const db = firebase.firestore()
-    const doc = db.collection(ORDERS).doc(order.id)
+    const doc = db.collection(ORDERS).doc(id)
     let updateObject = {
         state: 'delivered',
         deliveredDate: new Date()
@@ -80,8 +82,10 @@ const setDeliveredOrder = async (order) =>{
 }
 
 const setReturnOrder = async (order, price) =>{
+    const id = typeof order === 'string' ? order : order.id
+
     const db = firebase.firestore()
-    const doc = db.collection(ORDERS).doc(order.id)
+    const doc = db.collection(ORDERS).doc(id)
     let updateObject = {
         state: 'return',
         returnValue: parseInt(price)
