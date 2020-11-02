@@ -23,7 +23,8 @@ import {
   Stock as StockView,
   Pakaging as PakagingViwe,
   Shippings as ShippingsView,
-  TrakingList as TrakingListView
+  TrakingList as TrakingListView,
+  TransitList as TransitListView
 } from './views';
 
 const Routes = () => {
@@ -100,6 +101,13 @@ const Routes = () => {
           exact
           layout={MainLayout}
           path="/traking"
+        />
+        <RouteWithLayoutPrivate
+          user={user}
+          component={TransitListView}
+          exact
+          layout={MainLayout}
+          path="/transito"
         />
         <RouteWithLayoutPrivate
           user={user}

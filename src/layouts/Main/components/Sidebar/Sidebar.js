@@ -18,7 +18,8 @@ import {
   AccessibilityNew as AccessibilityNewIcon,
   Archive as ArchiveIcon,
   AllInbox as AllInboxIcon,
-  FlightTakeoff as FlightTakeoffIcon
+  FlightTakeoff as FlightTakeoffIcon,
+  AttachMoneyRounded as AttachMoneyIcon
 } from '@material-ui/icons'
 
 
@@ -90,6 +91,16 @@ const Sidebar = props => {
       title: 'Traking',
       href: '/traking',
       icon: <FlightTakeoffIcon />
+    },
+    {
+      title: 'En Transito',
+      href: '/transito',
+      icon: <FlightTakeoffIcon />
+    },
+    {
+      title: 'Finanzas',
+      href: '/finanzas',
+      icon: <AttachMoneyIcon />
     },
   ];
 
