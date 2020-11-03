@@ -87,6 +87,7 @@ const setReturnOrder = async (order, price) =>{
     const db = firebase.firestore()
     const doc = db.collection(ORDERS).doc(id)
     let updateObject = {
+        deliveredDate: new Date(),
         state: 'return',
         returnValue: parseInt(price)
     }

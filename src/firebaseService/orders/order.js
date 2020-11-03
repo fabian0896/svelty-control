@@ -289,6 +289,23 @@ const updateOrderState = async (order, state, shipping)=>{
     return
 }
 
+
+const getCompleteOrdersByDate = async (startDate, endDate)=>{
+    const db = firebase.firestore().collection(ORDERS)
+    const queryDelivered = db.where("state","==","delivered")
+    const snapDelivered = await queryDelivered.get()
+    const deliveredData = snapDelivered.docs.map(v => v.data())
+
+    const queryReturn = db.where("state","==","return")
+    const snapReturn = await queryReturn.get()
+    const returnData = snapReturn.docs.map(v => v.data())
+
+    
+
+    return [...deliveredData, ...returnData]
+}
+
+
 //-----------------------------------------------------------------------------
 
 const isEvryProductInAState = (products=[], state) =>{
@@ -322,5 +339,6 @@ export default {
     getOrderpacked,
     getOrderByStates,
     updateOrderState,
-    deleteOrder
+    deleteOrder,
+    getCompleteOrdersByDate
 }

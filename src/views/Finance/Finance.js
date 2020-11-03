@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
 
@@ -11,7 +11,7 @@ import {
     DateSelector
   } from './components';
 
-
+import {orderService} from 'firebaseService'
 
 
 const useStyles = makeStyles(theme => ({
@@ -22,6 +22,14 @@ const useStyles = makeStyles(theme => ({
 
 const Finance = props => {
     const classes = useStyles()
+
+    useEffect(()=>{
+        const fetchFunction = async ()=>{
+            const data = await orderService.getCompleteOrdersByDate()
+            console.log(data)
+        }
+        fetchFunction()    
+    },[])
 
     return (
         <div className={classes.root}>

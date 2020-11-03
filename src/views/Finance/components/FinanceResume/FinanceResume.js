@@ -82,7 +82,7 @@ const LatestOrders = props => {
               <TableHead>
                 <TableRow>
                   <TableCell>Titulo</TableCell>
-                  <TableCell>descripción</TableCell>
+                  <TableCell>Descripción</TableCell>
                   <TableCell sortDirection="desc">
                     <Tooltip
                       enterDelay={300}
