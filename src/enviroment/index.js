@@ -127,6 +127,10 @@ export const MIPAQUETE_STATES ={
     cancelado_por_el_usuario:{
         name: "Envio cancelado",
         internalState: null
+    },
+    default:{
+        name: "---",
+        internalState: null
     }
 
 }
