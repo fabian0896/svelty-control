@@ -119,12 +119,43 @@ const updateMipaqueteOrders = async (orderList=[])=>{
     const promises = mipaqueteOrders.map(order=>mipaqueteService.getShippingById(order.shipping_id))
     const shippingsData = await Promise.all(promises)
     
+   
+   /*
     const updateOrderPromises = mipaqueteOrders.map((order, index)=>{
         //const shippingState = shippingsData[index].state
         const internalState = null //MIPAQUETE_STATES[shippingState]? MIPAQUETE_STATES[shippingState].internalState : null
         return orderService.updateOrderState(order, internalState, shippingsData[index])
     })
     await Promise.all(updateOrderPromises)
+    */
+
+
+
+    const db = firebase.firestore()
+    const batch = db.batch()
+
+    mipaqueteOrders.forEach((order, index)=>{
+
+         //const shippingState = shippingsData[index].state
+         const internalState = null //MIPAQUETE_STATES[shippingState]? MIPAQUETE_STATES[shippingState].internalState : null
+
+        const doc = db.collection(ORDERS).doc(order.id)
+        const updateObject = {}
+    
+        const shipping = shippingsData[index]
+        if(shipping){
+            updateObject.shipping = shipping
+            updateObject.guide_number =  shipping.guide_number
+            updateObject.company_name = shipping.delivery_company.company_name
+        }
+
+        batch.update(doc, updateObject)
+
+    })
+
+    await batch.commit()
+    console.log("se actualizo todo!")
+
     return
 }
 

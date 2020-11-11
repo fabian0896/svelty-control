@@ -30,6 +30,8 @@ const Transit = props => {
 
   const [loading, setLoading] = useState(true)
   const [orders, setOrders] = useState([])
+  const [otherOrders, setOtherOrders] = useState([])
+  const [mipaqueteOrders, setmipaqueteOrders] = useState([])
   const [openModal, setOpenModal] = useState(false)
   const [returnData, setReturnData] = useState(null)
   const [ordersIdsReturn, setOrdersIdsReturn] = useState([])
@@ -37,9 +39,18 @@ const Transit = props => {
   const classes = useStyles();
 
   useEffect(() => {
+    let firstTime = true
     orderService.getOrderByStates((data) => {
+      const mipaqueteOrdersData = data.filter(v => v.mipaquete)
+      const otherOrdersData = data.filter(v => !v.mipaquete)
+      setOtherOrders(otherOrdersData)
+      setmipaqueteOrders(mipaqueteOrdersData)
       setOrders(data)
-      setLoading(false)
+      
+      if(firstTime){
+        shippingService.updateMipaqueteOrders(data).then(()=> setLoading(false))
+        firstTime = false
+      }
     }, ['dispatched'])
   }, [])
 
@@ -90,10 +101,15 @@ const Transit = props => {
       <OrderToolbar />
       <div className={classes.content}>
         <OrderListTable
+          mipaquete
           onSetReturn={handleOpenRetrnModal}
           onSetDelivered={handelSetDelivered}
-          orders={orders} />
+          orders={mipaqueteOrders} />
         <Divider className={classes.divider} />
+        <OrderListTable
+          onSetReturn={handleOpenRetrnModal}
+          onSetDelivered={handelSetDelivered}
+          orders={otherOrders} />
 
       </div>
 

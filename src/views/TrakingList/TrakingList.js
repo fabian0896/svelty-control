@@ -45,7 +45,7 @@ const OrderList = () => {
   }
 
   useEffect(()=>{
-    
+    let firstTime = true
     const unsubscribe = orderService.getOrderByStates((data)=>{
       setOrdersList(data)
       shippingService.updateMipaqueteOrders(data)

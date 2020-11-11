@@ -54,8 +54,8 @@ const statusColors = {
   refunded: 'danger'
 };
 
-const OrderListTable = props => {
-  const { className, orders, onSetDelivered,onSetReturn, mipaquete, ...rest } = props;
+const OrderListTableOther = props => {
+  const { className, orders, onSetDelivered,onSetReturn, ...rest } = props;
 
   const classes = useStyles();
   const [selected, setSelected] = useState({})
@@ -132,7 +132,7 @@ const OrderListTable = props => {
             }
           </div>
         }
-        title={mipaquete? `Pedidos Mipaquete (${orders.length})` : "Otros envios"}
+        title={`Pedidos Mipaquete (${orders.length})`}
       />
       <Divider />
       <CardContent className={classes.content}>
@@ -147,13 +147,9 @@ const OrderListTable = props => {
                       checked={selectedAll}
                     />
                   </TableCell>
-                  {
-                    mipaquete &&
-                    <TableCell>Codigo Mipaquete</TableCell>
-                  }
+                  <TableCell>Codigo Mipaquete</TableCell>
                   <TableCell>Cliente</TableCell>
                   <TableCell>Fecha</TableCell>
-                  <TableCell>Compañia</TableCell>
                   <TableCell>Guia</TableCell>
                   <TableCell>Estado Mipaquete</TableCell>
                   <TableCell>Valor a pagar</TableCell>
@@ -171,40 +167,20 @@ const OrderListTable = props => {
                         onChange={handelCheck(order.id)}
                       />
                     </TableCell>
-                    {
-                      mipaquete &&
-                      <TableCell>MP{order.mipaquete_code}</TableCell>
-                    }
+                    <TableCell>MP{order.mipaquete_code}</TableCell>
                     <TableCell>{order.firstName} {order.lastName}</TableCell>
                     <TableCell>
                       {moment(order.createdAt.seconds * 1000).format('DD/MM/YYYY')}
                     </TableCell>
                     <TableCell>
-                      {order.company_name}
-                    </TableCell>
-                    <TableCell>
                       {order.guide_number}
                     </TableCell>
-                    {
-                      order.mipaquete?
-                      <TableCell>
-                        {MIPAQUETE_STATES[order.shipping.state] ? MIPAQUETE_STATES[order.shipping.state].name : '---'}
-                      </TableCell>
-                      :
-                      <TableCell>
-                        Enviado, sin rastreo
-                      </TableCell>
-                    }
-                    {
-                      order.mipaquete?
-                      <TableCell>
-                        {numeral(calculateMipaqueteValue(order)).format("$0,0")}
-                      </TableCell>
-                      :
-                      <TableCell>
-                        $0
-                      </TableCell>
-                    }
+                    <TableCell>
+                      {MIPAQUETE_STATES[order.shipping.state] ? MIPAQUETE_STATES[order.shipping.state].name : '---'}
+                    </TableCell>
+                    <TableCell>
+                      {numeral(calculateMipaqueteValue(order)).format("$0,0")}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -226,8 +202,8 @@ const OrderListTable = props => {
   );
 };
 
-OrderListTable.propTypes = {
+OrderListTableOther.propTypes = {
   className: PropTypes.string
 };
 
-export default OrderListTable;
+export default OrderListTableOther;

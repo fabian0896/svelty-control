@@ -12,7 +12,8 @@ const useStyles = makeStyles(theme => ({
         marginBottom: theme.spacing(2)
     },
     content:{
-        height: 250
+        height: 250,
+        overflow: 'auto'
     }
 }))
 
