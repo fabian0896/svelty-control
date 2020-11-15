@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import numeral from 'numeral'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,9 +32,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TotalProfit = props => {
-  const { className, ...rest } = props;
+  const { className, list, ...rest } = props;
 
   const classes = useStyles();
+
+  const calculateProfits = (profitsList) =>{
+    return profitsList.reduce((prev, curr)=>{
+      return prev + (curr.type === "income"? curr.value : curr.value * -1)
+    },0)
+  }
 
   return (
     <Card
@@ -58,7 +65,7 @@ const TotalProfit = props => {
               color="inherit"
               variant="h3"
             >
-              $23,200
+              {numeral(calculateProfits(list)).format("$0,0")}
             </Typography>
           </Grid>
           <Grid item>

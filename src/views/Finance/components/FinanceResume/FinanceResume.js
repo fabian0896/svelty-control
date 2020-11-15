@@ -21,8 +21,8 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import mockData from './data';
 import { StatusBullet } from 'components';
+import numeral from 'numeral'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -41,21 +41,27 @@ const useStyles = makeStyles(theme => ({
   },
   actions: {
     justifyContent: 'flex-end'
+  },
+  egreesButton: {
+    color: theme.palette.error.main,
+    marginLeft: theme.spacing(2)
   }
 }));
 
 const statusColors = {
   delivered: 'success',
   pending: 'info',
-  refunded: 'danger'
+  refunded: 'danger',
+  income: "success",
+  egrees: "danger",
 };
 
 const LatestOrders = props => {
-  const { className, ...rest } = props;
+  const { className, list, ...rest } = props;
 
   const classes = useStyles();
 
-  const [orders] = useState(mockData);
+  
 
   return (
     <Card
@@ -64,15 +70,25 @@ const LatestOrders = props => {
     >
       <CardHeader
         action={
-          <Button
-            color="primary"
-            size="small"
-            variant="outlined"
-          >
-            New entry
-          </Button>
+          <div>
+            <Button
+              color="primary"
+              size="small"
+              variant="outlined"
+            >
+              Nuevo Ingreso
+            </Button>
+            <Button
+              className={classes.egreesButton}
+              color="inherit"
+              size="small"
+              variant="outlined"
+            >
+              Nuevo Egreso
+            </Button>
+          </div>
         }
-        title="Latest Orders"
+        title="Ingresos y Egresos"
       />
       <Divider />
       <CardContent className={classes.content}>
@@ -100,24 +116,24 @@ const LatestOrders = props => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders.map(order => (
+                {list.map(order => (
                   <TableRow
                     hover
                     key={order.id}
                   >
-                    <TableCell>{order.ref}</TableCell>
-                    <TableCell>{order.customer.name}</TableCell>
+                    <TableCell>{order.title}</TableCell>
+                    <TableCell>{order.description}</TableCell>
                     <TableCell>
-                      {moment(order.createdAt).format('DD/MM/YYYY')}
+                      {moment(order.date.seconds * 1000).format('DD/MM/YYYY')}
                     </TableCell>
                     <TableCell>
                       <div className={classes.statusContainer}>
                         <StatusBullet
                           className={classes.status}
-                          color={statusColors[order.status]}
+                          color={statusColors[order.type]}
                           size="sm"
                         />
-                        {order.status}
+                        {numeral(order.value).format("$0,0")}
                       </div>
                     </TableCell>
                   </TableRow>

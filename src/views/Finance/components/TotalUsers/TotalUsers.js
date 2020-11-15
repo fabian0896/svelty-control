@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import PeopleIcon from '@material-ui/icons/PeopleOutlined';
+import {Money} from '@material-ui/icons';
+import numeral from 'numeral'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: theme.palette.success.main,
+    backgroundColor: theme.palette.error.main,
     height: 56,
     width: 56
   },
@@ -41,9 +42,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TotalUsers = props => {
-  const { className, ...rest } = props;
+  const { className, list, ...rest } = props;
 
   const classes = useStyles();
+
+  const calculateTotalEgress = (profitsList) => {
+    const incomeData = profitsList.filter(v => v.type === "egress")
+    return incomeData.reduce((prev, curr) => {
+      return prev + curr.value
+    }, 0)
+  }
 
   return (
     <Card
@@ -62,31 +70,16 @@ const TotalUsers = props => {
               gutterBottom
               variant="body2"
             >
-              SALDO PENDIENTE
+              EGRESOS TOTALES
             </Typography>
-            <Typography variant="h3">1,600</Typography>
+            <Typography variant="h3">{numeral(calculateTotalEgress(list)).format("$0,0")}</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <PeopleIcon className={classes.icon} />
+              <Money className={classes.icon} />
             </Avatar>
           </Grid>
         </Grid>
-        <div className={classes.difference}>
-          <ArrowUpwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            16%
-          </Typography>
-          <Typography
-            className={classes.caption}
-            variant="caption"
-          >
-            Since last month
-          </Typography>
-        </div>
       </CardContent>
     </Card>
   );

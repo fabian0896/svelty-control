@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import MoneyIcon from '@material-ui/icons/Money';
+import numeral from 'numeral'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: theme.palette.error.main,
+    backgroundColor: theme.palette.success.main,
     height: 56,
     width: 56
   },
@@ -41,9 +42,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Budget = props => {
-  const { className, ...rest } = props;
+  const { className, list, ...rest } = props;
+
 
   const classes = useStyles();
+
+
+  const calculateTotalIcome = (profitsList) => {
+    const incomeData = profitsList.filter(v => v.type === "income")
+    return incomeData.reduce((prev, curr) => {
+      return prev + curr.value
+    }, 0)
+  }
 
   return (
     <Card
@@ -62,9 +72,9 @@ const Budget = props => {
               gutterBottom
               variant="body2"
             >
-              PRESTAMOS
+              INGRESOS TOTALES
             </Typography>
-            <Typography variant="h3">$24,000</Typography>
+            <Typography variant="h3">{numeral(calculateTotalIcome(list)).format("$0,0")}</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -72,21 +82,6 @@ const Budget = props => {
             </Avatar>
           </Grid>
         </Grid>
-        <div className={classes.difference}>
-          <ArrowDownwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            12%
-          </Typography>
-          <Typography
-            className={classes.caption}
-            variant="caption"
-          >
-            Since last month
-          </Typography>
-        </div>
       </CardContent>
     </Card>
   );

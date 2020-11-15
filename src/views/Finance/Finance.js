@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react'
+import React, {useState} from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
-
+import {Loader} from 'components'
 import {
     Budget,
     TotalUsers,
@@ -22,21 +22,55 @@ const useStyles = makeStyles(theme => ({
 
 const Finance = props => {
     const classes = useStyles()
+    
+    const [loading, setLoading] = useState(false)
+    const [incomeEgressList, setIncomeEgressList] = useState([])
 
-    useEffect(()=>{
-        const fetchFunction = async ()=>{
-            const data = await orderService.getCompleteOrdersByDate()
-            console.log(data)
+    const orderToFinance = (order)=>{
+        if(order.state === 'delivered'){
+            const sellValue = order.products.reduce((prev,curr) => curr.price + prev, 0 )
+            const buyValue = order.products.reduce((prev,curr) => curr.wholesalePrice + prev, 0 )
+            const shippingPrice = order.shipping_price
+            const value = sellValue - buyValue - shippingPrice
+
+            return {
+                title: "Entrega Pedido",
+                description: "Ganancia por el pedido entregado de " + order.firstName,
+                type:"income",
+                date: order.deliveredDate,
+                value,
+                id: order.id
+            }
         }
-        fetchFunction()    
-    },[])
 
+        return {
+            title: "Devolución de Pedido",
+            description: "Descuento del envio, debido a que el pedido no fue recibido",
+            type: "egress",
+            date: order.deliveredDate,
+            value: parseInt(order.returnValue || 0),
+            id: order.id 
+        }
+    }
+
+    const handleOnUpdate = async (startDate, endDate)=>{
+        setLoading(true)
+        console.log(startDate, endDate)
+        const data = await orderService.getCompleteOrdersByDate(startDate, endDate)
+        
+        const financeData = data.map(v => orderToFinance(v))
+        console.log(financeData)
+         setIncomeEgressList(financeData)
+        
+        setLoading(false)
+    }
     
     return (
         <div className={classes.root}>
+            <Loader loading={loading} />
             <Grid container spacing={4}>
                 <Grid item xs={12}>
-                    <DateSelector/>
+                    <DateSelector onUpdate={handleOnUpdate}/>
                 </Grid>
 
                 <Grid
@@ -46,7 +80,7 @@ const Finance = props => {
                     xl={3}
                     xs={12}
                 >
-                    <Budget />
+                    <Budget list={incomeEgressList} />
                 </Grid>
                 <Grid
                     item
@@ -55,7 +89,7 @@ const Finance = props => {
                     xl={3}
                     xs={12}
                 >
-                    <TotalUsers />
+                    <TotalUsers list={incomeEgressList} />
                 </Grid>
                 <Grid
                     item
@@ -64,7 +98,7 @@ const Finance = props => {
                     xl={3}
                     xs={12}
                 >
-                    <TasksProgress />
+                    <TasksProgress list={incomeEgressList} />
                 </Grid>
                 <Grid
                     item
@@ -73,11 +107,11 @@ const Finance = props => {
                     xl={3}
                     xs={12}
                 >
-                    <TotalProfit />
+                    <TotalProfit list={incomeEgressList} />
                 </Grid>
 
                 <Grid item xs={12}>
-                    <FinanceResume/>
+                    <FinanceResume  list={incomeEgressList}/>
                 </Grid>
             </Grid>
         </div>

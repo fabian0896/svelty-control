@@ -5,6 +5,8 @@ import { orders as algoliaOrders } from '../../algoliaService'
 import {getRandomColor} from '../../helpers'
 import {stockService} from 'firebaseService'
 import _ from 'lodash'
+import moment from 'moment'
+
 
 const ORDERS = 'orders'
 
@@ -292,11 +294,12 @@ const updateOrderState = async (order, state, shipping)=>{
 
 const getCompleteOrdersByDate = async (startDate, endDate)=>{
     const db = firebase.firestore().collection(ORDERS)
-    const queryDelivered = db.where("state","==","delivered")
+
+    const queryDelivered = db.where("state","==","delivered").where('deliveredDate', '>=', startDate.toDate()).where('deliveredDate', '<=', endDate.toDate())
     const snapDelivered = await queryDelivered.get()
     const deliveredData = snapDelivered.docs.map(v => v.data())
 
-    const queryReturn = db.where("state","==","return")
+    const queryReturn = db.where("state","==","return").where('deliveredDate', '>=', startDate.toDate()).where('deliveredDate', '<=', endDate.toDate())
     const snapReturn = await queryReturn.get()
     const returnData = snapReturn.docs.map(v => v.data())
 
