@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Backdrop, CircularProgress } from '@material-ui/core';
 
-import { ClientInfo, ProducstInfo, ProductList } from './components';
+import { ClientInfo, ProducstInfo, ProductList, ProductListShow } from './components';
 
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -21,7 +21,6 @@ const validationSchema = Yup.object().shape({
   phone: Yup.number().required("Por favor ingresa el telefono"),
   city: Yup.object().required("Selecciona un destion"),
   address: Yup.string().required("Por favor ingresa la direción"),
-  paymentMethod: Yup.string().required(),
   products: Yup.array().min(1, "El pedido debe tener por lo menos una prenda")
 })
 
@@ -98,10 +97,7 @@ const NewOrder = () => {
         phone: orderData.phone,
         address: orderData.address,
         products: [], 
-        city: {
-          city: "CALI",
-          department: "VALLE DEL CAUCA"
-        },
+        city: orderData.city
       })
       setLoading(false)
       console.log(orderData)
@@ -219,6 +215,7 @@ const NewOrder = () => {
               xl={6}
               xs={12}
             >
+              <ProductListShow order={order}/>
 
               <ProducstInfo
                 productList={products}

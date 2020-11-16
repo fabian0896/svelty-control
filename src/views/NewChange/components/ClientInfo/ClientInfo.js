@@ -44,7 +44,6 @@ const ClientInfo = props => {
     ...rest
   } = props;
 
-  const [deliveryDays, setDeliveryDays] = useState(() => "---")
 
   const { handleChange, handleBlur, touched, values, errors, handleSubmit, isValid, setFieldValue, isSubmitting } = formik
 
@@ -61,10 +60,9 @@ const ClientInfo = props => {
 
   const handleAutocompleteChange = (e, value) => {
     setFieldValue("city", value)
-    const days = calculateShippingDays(value)
-    console.log(days, value)
-    setDeliveryDays(days)
   }
+
+ 
 
   return (
     <Card
@@ -164,50 +162,20 @@ const ClientInfo = props => {
 
             <Grid
               item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                helperText={errors.paymentMethod}
-                label="Medio de pago"
-                margin="dense"
-                name="paymentMethod"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                required
-                error={errors.paymentMethod && touched.paymentMethod}
-                value={values.paymentMethod}
-                variant="outlined"
-                select
-                SelectProps={{ native: true }}
-              >
-                {
-                  Object.keys(PAYMENT_METHOD).map(paymentMethod=>(
-                    <option key={paymentMethod} value={paymentMethod}>{PAYMENT_METHOD[paymentMethod].name}</option>
-                  ))
-                }
-              </TextField>
-            </Grid>
-
-
-            <Grid
-              item
-              md={6}
+              md={12}
               xs={12}>
               <Autocomplete
+                value={values.city}
                 fullWidth
                 getOptionSelected={(option, value) => {
                   return option._id === value._id
                 }}
                 onChange={handleAutocompleteChange}
-                options={values.paymentMethod === "mipaquete" ? contraentrega_mipaquete : mipaquete_towns}
+                options={mipaquete_towns}
                 getOptionLabel={(option) => `${option.name}(${option.department_name})`}
                 renderInput={(params) => <TextField {...params} autoComplete="off" label="Destino" margin="dense" variant="outlined" />}
               />
             </Grid>
-
-
 
             <Grid
               item
@@ -227,39 +195,7 @@ const ClientInfo = props => {
                 value={values.address}
                 variant="outlined"
               />
-
-
             </Grid>
-
-
-
-
-
-            <Grid item md={12}>
-              <Divider />
-            </Grid>
-
-            <Grid
-              item
-              md={12}
-              xs={12}
-            >
-              <div className={classes.resumeContainer}>
-                <div>
-                  <Typography align="center" variant="h1">{numeral(getTotal(values.products)).format('$0,0')}</Typography>
-                  <Typography align="center" variant="subtitle1" color="textSecondary">total</Typography>
-                </div>
-                <div>
-                  <Typography align="center" variant="h1">{values.products.length}</Typography>
-                  <Typography align="center" variant="subtitle1" color="textSecondary">{values.products.length > 1 ? "Prendas" : "Prenda"}</Typography>
-                </div>
-                <div>
-                  <Typography align="center" variant="h1">{deliveryDays}</Typography>
-                  <Typography align="center" variant="subtitle1" color="textSecondary">Dias de envio</Typography>
-                </div>
-              </div>
-            </Grid>
-
 
           </Grid>
         </CardContent>

@@ -152,9 +152,6 @@ const Product = props => {
             <Typography className={classes.title} color="inherit" align="center" variant="h6" >{color}</Typography>
             <Typography className={classes.subtitles} align="center" color="inherit" variant="subtitle2">Color</Typography>
           </div>
-          <div className={classes.price}>
-            <Typography className={classes.title} color="inherit" align="right" variant="h5">{numeral(price).format('$0,0')}</Typography>
-          </div>
           <div className={classes.delete}>
             <IconButton onClick={onDelete} size="medium" color="inherit">
               <Delete/>

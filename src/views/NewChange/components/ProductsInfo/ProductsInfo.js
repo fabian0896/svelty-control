@@ -30,7 +30,6 @@ const validationSchema = Yup.object().shape({
   name: Yup.string().required("El nombre es necesario"),
   size: Yup.string().required("Selecciona una talla"),
   color: Yup.string().required("El color es necesario"),
-  price: Yup.string().required("El valor de venta es necesario"),
   product: Yup.object().required()
 })
 
@@ -67,7 +66,6 @@ const ProductsInfo = props => {
       name: '',
       size: '',
       color: '',
-      price: '',
       product: null
     },
     validationSchema: validationSchema,
@@ -83,11 +81,9 @@ const ProductsInfo = props => {
   const handleChangeProduct = (event, value)=>{
     if(value){
       setFieldValue('name', value.name)
-      setFieldValue('price', value.price)
       setFieldValue('product', value)
     }else{
       setFieldValue('name', '')
-      setFieldValue('price', '')
       setFieldValue('product', null)
     }
   }
@@ -107,8 +103,8 @@ const ProductsInfo = props => {
         onSubmit={handleSubmit}
       >
         <CardHeader
-          subheader="Agrega Prendas al pedido"
-          title="Prendas"
+          subheader="Agrega las prendas de cambio del pedido"
+          title="Prendas De Cambio"
           action={
             <FormControlLabel
               control={<Switch onChange={handleChangeWithStock} color="primary" />}
@@ -212,11 +208,14 @@ const ProductsInfo = props => {
                   </Grid>
                 </Fragment>
             }
+             {
+              /*
             <Grid
               item
               md={12}
               xs={12}
             >
+           
               <TextField
                 fullWidth
                 label="Precio de venta"
@@ -233,7 +232,10 @@ const ProductsInfo = props => {
                   inputComponent: NumberFormatCustom,
                 }}
               />
+            
             </Grid>
+             */ 
+          }
           </Grid>
         </CardContent>
         <Divider />
