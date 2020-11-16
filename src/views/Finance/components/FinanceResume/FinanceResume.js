@@ -53,11 +53,11 @@ const statusColors = {
   pending: 'info',
   refunded: 'danger',
   income: "success",
-  egrees: "danger",
+  egress: "danger",
 };
 
 const LatestOrders = props => {
-  const { className, list, ...rest } = props;
+  const { className, list, onAddProfit, ...rest } = props;
 
   const classes = useStyles();
 
@@ -72,6 +72,7 @@ const LatestOrders = props => {
         action={
           <div>
             <Button
+              onClick={onAddProfit("income")}
               color="primary"
               size="small"
               variant="outlined"
@@ -79,6 +80,7 @@ const LatestOrders = props => {
               Nuevo Ingreso
             </Button>
             <Button
+              onClick={onAddProfit("egress")}
               className={classes.egreesButton}
               color="inherit"
               size="small"

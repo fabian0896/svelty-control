@@ -8,10 +8,12 @@ import {
     TasksProgress,
     TotalProfit,
     FinanceResume,
-    DateSelector
+    DateSelector,
+    Modal
   } from './components';
 
-import {orderService} from 'firebaseService'
+import {orderService, profitService} from 'firebaseService'
+import { merge } from 'lodash';
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,6 +27,8 @@ const Finance = props => {
     
     const [loading, setLoading] = useState(false)
     const [incomeEgressList, setIncomeEgressList] = useState([])
+    const [openModal, setOpenModal] = useState(false)
+    const [modalType, setModalType] = useState("egress")
 
     const orderToFinance = (order)=>{
         if(order.state === 'delivered'){
@@ -55,22 +59,48 @@ const Finance = props => {
 
     const handleOnUpdate = async (startDate, endDate)=>{
         setLoading(true)
-        console.log(startDate, endDate)
         const data = await orderService.getCompleteOrdersByDate(startDate, endDate)
-        
+        const profits = await profitService.getProfitsByDate(startDate, endDate)
+
         const financeData = data.map(v => orderToFinance(v))
         console.log(financeData)
-         setIncomeEgressList(financeData)
+        console.log(profits)
+
+        const mergeData = [...financeData, ...profits]
+
+        const finalData = mergeData.sort((a,b)=> b.date.seconds - a.date.seconds)
+        
+        setIncomeEgressList(finalData)
         
         setLoading(false)
+    }
+
+
+    const handleSave = async (value)=>{
+        console.log(value)
+        setOpenModal(false)
+        setLoading(true)
+        await profitService.addProfit(value)
+        setLoading(false)
+        return
+    }
+
+    const handleClose = ()=>{
+        setOpenModal(false)
+    }
+
+    const handleOpenModal = (type)=> ()=> {
+        setModalType(type)
+        setOpenModal(true)
     }
     
     return (
         <div className={classes.root}>
             <Loader loading={loading} />
+            <Modal type={modalType} onClose={handleClose} onSave={handleSave} open={openModal}/>
             <Grid container spacing={4}>
                 <Grid item xs={12}>
-                    <DateSelector onUpdate={handleOnUpdate}/>
+                    <DateSelector  onUpdate={handleOnUpdate}/>
                 </Grid>
 
                 <Grid
@@ -111,7 +141,7 @@ const Finance = props => {
                 </Grid>
 
                 <Grid item xs={12}>
-                    <FinanceResume  list={incomeEgressList}/>
+                    <FinanceResume onAddProfit={handleOpenModal}  list={incomeEgressList}/>
                 </Grid>
             </Grid>
         </div>
