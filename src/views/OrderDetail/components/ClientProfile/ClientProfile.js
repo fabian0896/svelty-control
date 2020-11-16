@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ClientProfile = props => {
-  const { className, order, onDeleteOrder, ...rest } = props;
+  const { className, order, onDeleteOrder,onAddChange, ...rest } = props;
 
   const classes = useStyles(props);
 
@@ -105,7 +105,14 @@ const ClientProfile = props => {
         >
           Eliminar
         </Button>
-        <Button variant="text">Editar</Button>
+        {
+          (order.state === "pending") &&
+          <Button variant="text">Editar</Button>
+        }
+        {
+          (order.state === 'dispatched' || order.state === 'delivered') &&
+          <Button onClick={onAddChange} variant="text">Agregar Cambio</Button>
+        }
       </CardActions>
     </Card>
   );

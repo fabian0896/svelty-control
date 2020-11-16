@@ -26,6 +26,7 @@ import {
   TrakingList as TrakingListView,
   TransitList as TransitListView,
   Finance as FinanceView,
+  NewChange as NewChangeView
 } from './views';
 
 const Routes = () => {
@@ -158,6 +159,13 @@ const Routes = () => {
             exact
             layout={MainLayout}
             path="/pedido/nuevo"
+          />
+          <RouteWithLayoutPrivate
+            user={user} 
+            component={NewChangeView}
+            exact
+            layout={MainLayout}
+            path="/cambios/nuevo/:orderId"
           />
         <RouteWithLayoutPrivate
           user={user} 

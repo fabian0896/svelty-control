@@ -8,7 +8,7 @@ import {
   ProductList,
   OrderState,
   EarningsSummary,
-  ShippingDetail
+  ShippingDetail,
 } from './components';
 
 import { useParams, useHistory } from 'react-router-dom'
@@ -56,6 +56,11 @@ const OrderDetail = () => {
     history.push({ pathname: '/pedidos' })
   }
 
+
+  const handleAddChange = ()=>{
+    history.push({ pathname: `/cambios/nuevo/${order.id}`, })
+  }
+
   return (
     <div className={classes.root}>
       {
@@ -75,7 +80,7 @@ const OrderDetail = () => {
               xl={5}
               xs={12}
             >
-              <ClientProfile onDeleteOrder={handleDeleteOrder} order={order} />
+              <ClientProfile onAddChange={handleAddChange} onDeleteOrder={handleDeleteOrder} order={order} />
               <EarningsSummary order={order} />
             </Grid>
             <Grid
