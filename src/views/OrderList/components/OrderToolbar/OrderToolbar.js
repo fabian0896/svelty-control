@@ -6,6 +6,8 @@ import { Button } from '@material-ui/core';
 
 import { SearchInput } from 'components';
 
+import {useFormik} from 'formik'
+
 const useStyles = makeStyles(theme => ({
   root: {},
   row: {
@@ -29,9 +31,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const OrderToolbar = props => {
-  const { className, onAddOrder, ...rest } = props;
+  const { className, onAddOrder,onSearch, ...rest } = props;
 
   const classes = useStyles();
+
+
+  const formik = useFormik({
+    initialValues:{
+      query: ""
+    },
+    onSubmit: (value, actions)=>{
+      const {query} = value
+      onSearch(query)
+    }
+  })
 
   return (
     <div
@@ -51,10 +64,15 @@ const OrderToolbar = props => {
         </Button>
       </div>
       <div className={classes.row}>
-        <SearchInput
-          className={classes.searchInput}
-          placeholder="Busaca un pedido"
-        />
+        <form onSubmit={formik.handleSubmit}>
+          <SearchInput
+            value={formik.values.query}
+            onChange={formik.handleChange}
+            name="query"
+            className={classes.searchInput}
+            placeholder="Busaca un pedido"
+          />
+        </form>
       </div>
     </div>
   );

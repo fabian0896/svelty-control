@@ -12,6 +12,8 @@ import { orderService } from 'firebaseService'
 
 import { Loader } from 'components'
 
+import {orders as searchService} from 'algoliaService'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,16 +48,17 @@ const OrderList = () => {
     history.push({ pathname: '/pedido/nuevo' })
   }
 
+  const fecthData = async () => {
+    const { data, next, back, disableBack, disableNext } = await orderService.getAllOrders()
+    setOrdersList(data)
+    setNextFunction(next)
+    setBackFunction(back)
+    setDisBack(disableBack)
+    setDisNex(disableNext)
+    setLoading(false)
+  }
+
   useEffect(() => {
-    const fecthData = async () => {
-      const { data, next, back, disableBack, disableNext } = await orderService.getAllOrders()
-      setOrdersList(data)
-      setNextFunction(next)
-      setBackFunction(back)
-      setDisBack(disableBack)
-      setDisNex(disableNext)
-      setLoading(false)
-    }
     fecthData()
   }, [])
 
@@ -89,10 +92,26 @@ const OrderList = () => {
     setLoading(false)
   }
 
+  const handleSearch = async (query) =>{
+    setLoading(true)
+    if(!query){
+      console.log("mostrar todos los pedidos")
+      await fecthData()
+      setLoading(false)
+      return
+    }
+    const result = await searchService.findOrder(query)
+    setOrdersList(result)
+    setDisBack(true)
+    setDisNex(true)
+    setLoading(false)
+  }
+
+
   return (
     <div className={classes.root}>
       <Loader loading={loading} />
-      <OrderToolbar onAddOrder={handleAddOrder} />
+      <OrderToolbar onSearch={handleSearch} onAddOrder={handleAddOrder} />
       <div className={classes.content}>
         <Grid
           container

@@ -62,6 +62,11 @@ const getOrderById = (id, cb)=>{
     })
 }
 
+const getOrderByIdPromise = async (id)=>{
+    const db = firebase.firestore()
+    const snap = await db.collection(ORDERS).doc(id).get()
+    return snap.data()
+}
 
 
 const getAllOrders = async (nextQuery)=>{
@@ -343,5 +348,6 @@ export default {
     getOrderByStates,
     updateOrderState,
     deleteOrder,
-    getCompleteOrdersByDate
+    getCompleteOrdersByDate,
+    getOrderByIdPromise
 }

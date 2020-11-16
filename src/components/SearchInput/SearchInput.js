@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SearchInput = props => {
-  const { className, onChange, style, ...rest } = props;
+  const { className, style, ...rest } = props;
 
   const classes = useStyles();
 
@@ -41,7 +41,6 @@ const SearchInput = props => {
         {...rest}
         className={classes.input}
         disableUnderline
-        onChange={onChange}
       />
     </Paper>
   );
