@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Backdrop, CircularProgress } from '@material-ui/core';
 
-import { ClientInfo, ProducstInfo, ProductList, ProductListShow } from './components';
+import { ClientInfo, ProducstInfo, ProductList, ProductListShow, Modal } from './components';
 
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 import { useHistory, useParams } from 'react-router-dom'
-import { productService, stockService, orderService } from 'firebaseService'
+import { productService, stockService, orderService, changeService } from 'firebaseService'
 import { Fragment } from 'react';
 
 
@@ -49,6 +49,7 @@ const NewOrder = () => {
   const [stock, setStock] = useState([])
   const [stockData, setStockData] = useState([])
   const [order, setOrder] = useState(null)
+  const [changeSerialNumber, setChangeSerliaNumber] = useState(null)
 
   const history = useHistory()
   const { orderId } = useParams()
@@ -57,12 +58,12 @@ const NewOrder = () => {
  
 
   const handleSaveOrder = async (values, actions) => {
-    console.log("se va a gregar")
+    console.log("se va a crear el cambio")
     setLoading(true)
-    await orderService.addOrder(values)
+    const serialNumber = await changeService.addChange(values, order)
     setLoading(false)
-    console.log("se agrego")
-    history.push({ pathname: '/pedidos' })
+    console.log("se creo el cambio")
+    setChangeSerliaNumber(serialNumber)
     return
   }
 
@@ -195,12 +196,16 @@ const NewOrder = () => {
     setStock(temArray)
   }, [stockData])
 
+  const handleCloseModal = ()=>{
+    history.push({ pathname: '/pedidos' })
+  }
 
   return (
     <div className={classes.root}>
       <Backdrop className={classes.backdrop} open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
+      <Modal open={!!changeSerialNumber} serialNumber={changeSerialNumber} onClose={handleCloseModal}/>
       {order &&
         <Fragment>
 
