@@ -8,7 +8,7 @@ import { OrderToolbar, OrderCard } from './components';
 
 import { useHistory } from 'react-router-dom'
 
-import { orderService } from 'firebaseService'
+import { orderService, changeService } from 'firebaseService'
 
 import { Loader } from 'components'
 
@@ -107,11 +107,24 @@ const OrderList = () => {
     setLoading(false)
   }
 
+  const handleChangeTab =async (tab) =>{
+    setLoading(true)
+    if(tab === "orders"){
+      //hacer un fetch de los pedidos
+      await fecthData()
+    }else{
+        // hacer un fetch de los cambios
+        const data = await changeService.getArrivedChanges()
+        setOrdersList(data)
+    }
+    setLoading(false)
+  }
+
 
   return (
     <div className={classes.root}>
       <Loader loading={loading} />
-      <OrderToolbar onSearch={handleSearch} onAddOrder={handleAddOrder} />
+      <OrderToolbar onChangeTab={handleChangeTab} onSearch={handleSearch} onAddOrder={handleAddOrder} />
       <div className={classes.content}>
         <Grid
           container

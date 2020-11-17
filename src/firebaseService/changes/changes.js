@@ -19,7 +19,8 @@ const addChange = async (change, order)=>{
         arrive: false, 
         state: "pending",
         serialNumber,
-        color: order.color
+        color: order.color,
+        change: true
     })
 
     await db.collection(ORDERS).doc(order.id).update({
@@ -78,10 +79,19 @@ const setArriveChange = async (changeId) =>{
 }
 
 
+const getArrivedChanges = async ()=>{
+    const db = firebase.firestore()
+    const snap = await db.collection(CHANGES).where("arrive", "==", true).get()
+    const data = snap.docs.map(v => v.data())
+    return data
+}
+
+
 
 export default {
     addChange,
     deleteChange,
     getChangesNotArrive,
-    setArriveChange
+    setArriveChange,
+    getArrivedChanges
 }

@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
       flex: 1
     }
   },
-  footer: props => ({
+  footer: props=>({
     background: ORDER_STATES[props.order.state].color,
     color: theme.palette.getContrastText(ORDER_STATES[props.order.state].color),
   })
@@ -70,10 +70,10 @@ const OrderCard = props => {
 
   const classes = useStyles(props);
 
-  const getTotalPrice = (products = []) => {
-    return products.reduce((prev, curr) => prev + curr.price, 0)
+  const getTotalPrice = (products=[])=>{
+    return products.reduce((prev, curr)=> prev + curr.price,0)
   }
-
+  
   const StateIcon = ORDER_STATES[order.state].icon
 
   return (
@@ -116,7 +116,7 @@ const OrderCard = props => {
                 variant="body1"
               >
                 {order.phone}
-              </Typography>
+          </Typography>
               <Typography
                 align="left"
                 variant="body1"
@@ -129,8 +129,8 @@ const OrderCard = props => {
                 align="left"
                 variant="body1"
               >
-                {order.change ? "Cambio" : PAYMENT_METHOD[order.paymentMethod].name}
-              </Typography>
+                {PAYMENT_METHOD[order.paymentMethod].name}
+          </Typography>
               <Typography
                 align="left"
                 variant="body1"
@@ -146,7 +146,7 @@ const OrderCard = props => {
                 variant="body1"
               >
                 {order.currier || "Sin asignar"}
-              </Typography>
+          </Typography>
               <Typography
                 align="right"
                 variant="body1"
@@ -160,14 +160,14 @@ const OrderCard = props => {
                 variant="body1"
               >
                 {order.trackNumber || "Sin guia"}
-              </Typography>
+          </Typography>
               <Typography
                 align="right"
                 variant="body1"
                 gutterBottom
                 color="textSecondary"
               >
-                Guia
+               Guia
           </Typography>
             </div>
           </div>
@@ -176,16 +176,13 @@ const OrderCard = props => {
 
 
           <div className={classes.resumeContainer}>
-            {
-              !order.change &&
-              <div>
-                <Typography align="center" variant="h4">{numeral(getTotalPrice(order.products)).format('$0,0')}</Typography>
-                <Typography align="center" variant="body1" color="textSecondary">Total</Typography>
-              </div>
-            }
             <div>
-              <Typography align="center" variant="h4">{order.products.length}</Typography>
-          <Typography align="center" variant="body1" color="textSecondary">{order.products.length === 1 ? "prenda" : "Prendas"} {order.change && "de cambio"}</Typography>
+      <Typography align="center" variant="h4">{numeral(getTotalPrice(order.products)).format('$0,0')}</Typography>
+              <Typography align="center" variant="body1" color="textSecondary">Total</Typography>
+            </div>
+            <div>
+      <Typography align="center" variant="h4">{order.products.length}</Typography>
+      <Typography align="center" variant="body1" color="textSecondary">{order.products.length === 1? "prenda" : "Prendas"}</Typography>
             </div>
           </div>
 
@@ -208,7 +205,7 @@ const OrderCard = props => {
               display="inline"
               variant="body2"
             >
-              {moment(order.createdAt.seconds * 1000).format('DD/MM/YYYY')}
+              {moment(order.createdAt.seconds*1000).format('DD/MM/YYYY')}
             </Typography>
           </Grid>
           {
@@ -222,7 +219,7 @@ const OrderCard = props => {
                 display="inline"
                 variant="body2"
               >
-                {order.changes.length} {order.changes.length === 1 ? "CAMBIO" : "CAMBIOS"}
+                {order.changes.length} {order.changes.length === 1? "CAMBIO":"CAMBIOS"}
               </Typography>
             </Grid>
           }

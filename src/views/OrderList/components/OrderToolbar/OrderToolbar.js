@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import { Button } from '@material-ui/core';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { Button} from '@material-ui/core';
 
 import { SearchInput } from 'components';
 
-import {useFormik} from 'formik'
+import { useFormik } from 'formik'
+import {
+  ShoppingCart as ShoppingCartIcon,
+  SwapVert as SwapVertIcon
+} from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -20,10 +26,13 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   importButton: {
-    marginRight: theme.spacing(1)
+    marginRight: 0
   },
   exportButton: {
-    marginRight: theme.spacing(1)
+    marginRight: 0
+  },
+  buttonGroup: {
+    marginRight: theme.spacing(3)
   },
   searchInput: {
     marginRight: theme.spacing(1)
@@ -31,20 +40,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const OrderToolbar = props => {
-  const { className, onAddOrder,onSearch, ...rest } = props;
+  const { className, onAddOrder, onSearch, onChangeTab, ...rest } = props;
 
   const classes = useStyles();
 
+  const [value, setValue] = useState(0)
+
+  const tabs = ["orders", "changes"]
 
   const formik = useFormik({
-    initialValues:{
+    initialValues: {
       query: ""
     },
-    onSubmit: (value, actions)=>{
-      const {query} = value
+    onSubmit: (value, actions) => {
+      const { query } = value
       onSearch(query)
     }
   })
+
+  const handlesChangeTap =(e, value) =>{
+    onChangeTab(tabs[value])
+    setValue(value);
+  }
 
   return (
     <div
@@ -53,8 +70,18 @@ const OrderToolbar = props => {
     >
       <div className={classes.row}>
         <span className={classes.spacer} />
-        <Button className={classes.importButton}>Import</Button>
-        <Button className={classes.exportButton}>Export</Button>
+
+        <BottomNavigation
+          value={value}
+          onChange={handlesChangeTap}
+          showLabels
+          className={classes.buttonGroup}
+        >
+          <BottomNavigationAction  label="Pedidos" icon={<ShoppingCartIcon />} />
+          <BottomNavigationAction  label="Cambios" icon={<SwapVertIcon />} />
+        </BottomNavigation>
+
+
         <Button
           color="primary"
           variant="contained"
