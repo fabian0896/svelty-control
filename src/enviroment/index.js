@@ -176,7 +176,7 @@ export const ORDER_STATES ={
         defaultMessage: "Se presento una novedad en el envio, hay que revisar la guia"
     },
     delivered:{
-        name: "Entregado",
+        name: "Completado",
         icon: Done,
         color: green[800],
         defaultMessage: "El pedido fue entregado en el destino. Vamos que vamos!!!"

@@ -42,6 +42,7 @@ const OrderList = () => {
   const [ordersList, setOrdersList] = useState([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
+  const [tab, setTab] = useState("orders")
 
 
   const handleAddOrder = () => {
@@ -55,6 +56,18 @@ const OrderList = () => {
     setBackFunction(back)
     setDisBack(disableBack)
     setDisNex(disableNext)
+    setPage(1)
+    setLoading(false)
+  }
+
+  const fecthChangeData = async () => {
+    const { data, next, back, disableBack, disableNext } = await changeService.getAllOrders()
+    setOrdersList(data)
+    setNextFunction(next)
+    setBackFunction(back)
+    setDisBack(disableBack)
+    setDisNex(disableNext)
+    setPage(1)
     setLoading(false)
   }
 
@@ -70,7 +83,7 @@ const OrderList = () => {
 
   const handleNextPage = async () => {
     setLoading(true)
-    const { data, next, back, disableBack, disableNext } = await orderService.getAllOrders(nextFunction)
+    const { data, next, back, disableBack, disableNext } = tab === "orders" ? await orderService.getAllOrders(nextFunction) : await changeService.getAllOrders(nextFunction)
     setOrdersList(data)
     setNextFunction(next)
     setBackFunction(back)
@@ -82,7 +95,7 @@ const OrderList = () => {
 
   const handleBackPage = async () => {
     setLoading(true)
-    const { data, next, back, disableBack, disableNext } = await orderService.getAllOrders(backFunction)
+    const { data, next, back, disableBack, disableNext } = tab === "orders" ? await orderService.getAllOrders(backFunction) : await changeService.getAllOrders(backFunction)
     setOrdersList(data)
     setNextFunction(next)
     setBackFunction(back)
@@ -114,8 +127,9 @@ const OrderList = () => {
       await fecthData()
     }else{
         // hacer un fetch de los cambios
-        const data = await changeService.getArrivedChanges()
-        setOrdersList(data)
+        //const data = await changeService.getArrivedChanges()
+        //setOrdersList(data)
+        await fecthChangeData()
     }
     setLoading(false)
   }
@@ -138,7 +152,7 @@ const OrderList = () => {
               md={6}
               xs={12}
             >
-              <OrderCard onClick={handleClickOrder(order.id)} order={order} />
+              <OrderCard onClick={handleClickOrder(order.change? order.orderId : order.id)} order={order} />
             </Grid>
           ))}
         </Grid>
