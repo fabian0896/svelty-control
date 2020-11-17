@@ -70,7 +70,7 @@ const ShippingForm = props => {
     const classes = useStyles(props)
 
 
-    const [mipaqueteSelect, setMipaqueteSelect] = useState(PAYMENT_METHOD[order.paymentMethod].mipaquete)
+    const [mipaqueteSelect, setMipaqueteSelect] = useState(order.change? false : PAYMENT_METHOD[order.paymentMethod].mipaquete)
 
 
 
@@ -94,7 +94,10 @@ const ShippingForm = props => {
     }
 
     useEffect(()=>{
-        if(!PAYMENT_METHOD[order.paymentMethod].customShipping){
+        if(order.change){
+            setMipaqueteSelect(false)
+        }
+        else if(!PAYMENT_METHOD[order.paymentMethod].customShipping){
             setMipaqueteSelect(PAYMENT_METHOD[order.paymentMethod].mipaquete)
         }
 
@@ -105,7 +108,7 @@ const ShippingForm = props => {
             <CardHeader
                 action={
                     <FormControlLabel
-                        disabled={!PAYMENT_METHOD[order.paymentMethod].customShipping}
+                        disabled={order.change? true : !PAYMENT_METHOD[order.paymentMethod].customShipping}
                         control={<Switch onChange={handleChangeSwitch} checked={mipaqueteSelect} color="primary" />}
                         label="Mipaquete"
                         labelPlacement="bottom"
@@ -149,7 +152,7 @@ const ShippingForm = props => {
 
                 <div className={classes.infoItem}>
                     <div>
-                        <Typography variant="h6">{order.address}</Typography>
+                        <Typography variant="h6">{order.address }</Typography>
                         <Typography variant="body2">Dirección</Typography>
                     </div>
                     <IconButton onClick={copyContent(order.address)} size="small" className={classes.copyIcon}>
@@ -159,32 +162,37 @@ const ShippingForm = props => {
 
                 <div className={classes.infoItem}>
                     <div>
-                        <Typography variant="h6">{order.email}</Typography>
+                        <Typography variant="h6">{order.email || "----"}</Typography>
                         <Typography variant="body2">Correo</Typography>
                     </div>
                     <IconButton onClick={copyContent(order.email)} size="small" className={classes.copyIcon}>
                         <FileCopy />
                     </IconButton>
                 </div>
-
-                <div className={classes.infoItem}>
-                    <div>
-                        <Typography variant="h6">{numeral(getTotal(order.products, 'wholesalePrice')).format('$0,0')}</Typography>
-                        <Typography variant="body2">Valor declarado</Typography>
+                {
+                    !order.change &&
+                    <div className={classes.infoItem}>
+                        <div>
+                            <Typography variant="h6">{numeral(getTotal(order.products, 'wholesalePrice')).format('$0,0')}</Typography>
+                            <Typography variant="body2">Valor declarado</Typography>
+                        </div>
+                        <IconButton onClick={copyContent(getTotal(order.products, 'wholesalePrice'))} size="small" className={classes.copyIcon}>
+                            <FileCopy />
+                        </IconButton>
                     </div>
-                    <IconButton onClick={copyContent(getTotal(order.products, 'wholesalePrice'))} size="small" className={classes.copyIcon}>
-                        <FileCopy />
-                    </IconButton>
-                </div>
-                <div className={classes.infoItem}>
-                    <div>
-                        <Typography align="center" variant="h4">{numeral(getTotal(order.products, 'price')).format('$0,0')}</Typography>
-                        <Typography align="center" variant="body2">Valor venta</Typography>
+                }
+                {
+                    !order.change &&
+                    <div className={classes.infoItem}>
+                        <div>
+                            <Typography align="center" variant="h4">{numeral(getTotal(order.products, 'price')).format('$0,0')}</Typography>
+                            <Typography align="center" variant="body2">Valor venta</Typography>
+                        </div>
+                        <IconButton onClick={copyContent(getTotal(order.products, 'price'))} size="small" className={classes.copyIcon}>
+                            <FileCopy />
+                        </IconButton>
                     </div>
-                    <IconButton onClick={copyContent(getTotal(order.products, 'price'))} size="small" className={classes.copyIcon}>
-                        <FileCopy />
-                    </IconButton>
-                </div>
+                }
             </CardContent>
             {
                 mipaqueteSelect ?
@@ -200,7 +208,7 @@ const ShippingForm = props => {
                         </Button>
                     </CardActions>
                     :
-                    <CustomShipping onAddShipping={onAddShipping} />
+                    <CustomShipping  onAddShipping={onAddShipping} />
             }
 
         </Card>

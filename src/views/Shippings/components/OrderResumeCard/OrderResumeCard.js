@@ -27,6 +27,11 @@ const useStyles = makeStyles(theme => ({
         background: theme.palette.info.main,
         color: theme.palette.info.contrastText
     },
+    change:{
+        padding: theme.spacing(1),
+        background: theme.palette.warning.main,
+        color: theme.palette.warning.contrastText
+    },
     avatar: props => ({
         background: props.order.color,
         color: theme.palette.getContrastText(props.order.color)
@@ -96,8 +101,8 @@ const OrderResumeCard = props => {
                     </div>
                 </div>
             </CardContent>
-            <CardActionArea className={classes.footer}>
-                <Typography color="inherit" align="center" variant="h5">{PAYMENT_METHOD[order.paymentMethod].name}</Typography>
+            <CardActionArea className={clsx({[classes.change]: order.change, [classes.footer]: !order.change})}>
+                <Typography color="inherit" align="center" variant="h5">{order.change? "CAMBIO" : PAYMENT_METHOD[order.paymentMethod].name}</Typography>
             </CardActionArea>
         </Card>
     )

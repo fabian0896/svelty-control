@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Backdrop, CircularProgress  } from '@material-ui/core';
+import { Grid, Backdrop, CircularProgress, Button  } from '@material-ui/core';
 
 import {OrderResumeCard, ShippingInfo} from './components'
-import {orderService, shippingService} from 'firebaseService'
+import {orderService, shippingService, changeService } from 'firebaseService'
 
 
 
@@ -15,11 +16,16 @@ const useStyles = makeStyles(theme => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  button:{
+    marginBottom: theme.spacing(2)
+  }
 }));
 
 const Shippings = () => {
   const classes = useStyles();
   const [orders, setOrders] = useState([])
+  const [changes, setChanges] = useState([])
+  const [mergeData, setMergeData] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectOrder, setSelectOrder] = useState(null)
 
@@ -30,12 +36,22 @@ const Shippings = () => {
       setLoading(false)
     },['packed', 'productReady'], ['withShipping','==', false])
 
+    const changeUnsubscribe = changeService.getOrderByStates((data)=>{
+      console.log(data)
+      setChanges(data)
+      setLoading(false)
+    },['packed', 'productReady'], ['withShipping','==', false])
+
     return ()=>{
       unsubscribe()
+      changeUnsubscribe()
     }
 
   },[])
 
+  useEffect(() => {
+    setMergeData([...orders, ...changes])
+  },  [changes, orders])
 
   const handleSelect = (order)=>()=>{
       if(!selectOrder){
@@ -55,7 +71,12 @@ const Shippings = () => {
       return 
     }
     setLoading(true)
-    await shippingService.newShippingToOrder(selectOrder,mipaquete, shipping)
+    if(selectOrder.change){
+      await changeService.newShippingToOrder(selectOrder,mipaquete,shipping)
+      console.log("Envio de cambio")
+    }else{
+      await shippingService.newShippingToOrder(selectOrder,mipaquete, shipping)
+    }
     setSelectOrder(null)
     setLoading(false)
   }
@@ -87,8 +108,13 @@ const Shippings = () => {
           xs={12}
         >
           {
-            orders.map(order=>(
+            !!changes.length &&
+            <Button className={classes.button} variant="contained" color="primary" fullWidth>Generar Rotulos de Cambios</Button>
+          }
+          {
+            mergeData.map(order=>(
               <OrderResumeCard
+                title="Guias De Pedidos"
                 selected={selectOrder && (order.id === selectOrder.id)}
                 onSelect={handleSelect(order)} 
                 order={order} 

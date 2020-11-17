@@ -1,6 +1,6 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
-
+import _ from 'lodash'
 
 const CHANGES = "changes"
 const ORDERS = 'orders'
@@ -20,7 +20,8 @@ const addChange = async (change, order)=>{
         state: "pending",
         serialNumber,
         color: order.color,
-        change: true
+        change: true,
+        withShipping: false
     })
 
     await db.collection(ORDERS).doc(order.id).update({
@@ -157,6 +158,49 @@ const setProductState = async (orderId, productIndex, state, provider={}) => {
 
 
 
+const getOrderByStates = (cb, states=[], customQuery) => {
+
+    const allData = {}
+
+
+    const callback = (index) => (data)=>{    
+        const newData = data.docs.map(doc=>doc.data())
+        const oldData = {...allData}
+        allData[states[index]] = newData
+        if(!(_.isEqual(oldData, allData))){
+            const result = Object.keys(allData).reduce((prev, state)=>{
+                return [...prev, ...allData[state]]
+            }, [])
+            cb(result)
+        }else{
+            console.log("los datos son los mismos, no hay que llamar al callback")
+        }
+    }
+
+
+    const db = firebase.firestore()
+    const collection = db.collection(CHANGES)
+
+    let queries = states.map(state => collection.where('state','==', state))
+
+    if(customQuery){
+        queries = queries.map(query => query.where(customQuery[0],customQuery[1], customQuery[2]))
+    }
+
+    const unsubscribes = queries.map((query, index) => {
+        return query.onSnapshot(callback(index))
+    })
+
+    return ()=>{
+        unsubscribes.forEach(unsubscribe=>{
+            unsubscribe()
+        })
+    }
+}
+
+
+
+
 //----------------------------------------------------
 
 const isEvryProductInAState = (products=[], state) =>{
@@ -175,6 +219,29 @@ const getOrderStateByProducts = (products=[])=>{
     }
 }
 
+const newShippingToOrder = async (order, mipaquete=true, shippingData)=>{
+    const db = firebase.firestore()
+    const doc = db.collection(CHANGES).doc(order.id)
+    
+    let updatObject = {}
+
+   
+    updatObject = {
+        withShipping: true,
+        mipaquete: false,
+        collection_date: 0,
+        guide_number: shippingData.guide_number,
+        company_name: shippingData.company_name,
+        shipping_price: parseInt(shippingData.price),
+        state: "delivered"
+    }
+
+    //tambien hay que actualizar algolia con el numero de guia y el codigo de mipaquete si tiene
+    await doc.update(updatObject)
+
+    return
+}
+
 
 export default {
     addChange,
@@ -183,5 +250,7 @@ export default {
     setArriveChange,
     getArrivedChanges,
     getProductionChanges,
-    setProductState
+    setProductState,
+    getOrderByStates,
+    newShippingToOrder
 }
