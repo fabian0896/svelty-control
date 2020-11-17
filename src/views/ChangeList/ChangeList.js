@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import {  Grid } from '@material-ui/core';
 
-import { OrderToolbar, OrderCard } from './components';
+import { OrderToolbar, OrderCard, Modal } from './components';
 
 import { useHistory } from 'react-router-dom'
 
@@ -36,7 +36,7 @@ const OrderList = () => {
   
   const [ordersList, setOrdersList] = useState([])
   const [loading, setLoading] = useState(true)
-  
+  const [change, setChange] = useState(null)
 
   const handleAddOrder = () => {
     history.push({ pathname: '/pedido/nuevo' })
@@ -53,6 +53,7 @@ const OrderList = () => {
         unsuscribe()
       }
   }, [])
+
 
   const handleClickOrder = (id) => () => {
     history.push({
@@ -75,9 +76,20 @@ const OrderList = () => {
     setLoading(false)
   }
 
+  const handleOpenModal = (change)=>()=>{
+      setChange(change)
+  }
+
+  const handleDeleteChange = async () => {
+    setLoading(true)
+    await changeService.deleteChange(change.id)
+    setChange(null)
+    setLoading(false)
+  }
 
   return (
     <div className={classes.root}>
+      <Modal onDelete={handleDeleteChange} open={!!change} serialNumber={change?.serialNumber} onClose={()=>setChange(null)}/>
       <Loader loading={loading} />
       <OrderToolbar onSearch={handleSearch} onAddOrder={handleAddOrder} />
       <div className={classes.content}>
@@ -93,7 +105,7 @@ const OrderList = () => {
               md={6}
               xs={12}
             >
-              <OrderCard onClick={handleClickOrder(order.orderId)} order={order} />
+              <OrderCard onOpenModal={handleOpenModal(order)}  onClick={handleClickOrder(order.orderId)} order={order} />
             </Grid>
           ))}
         </Grid>

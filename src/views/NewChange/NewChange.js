@@ -197,7 +197,7 @@ const NewOrder = () => {
   }, [stockData])
 
   const handleCloseModal = ()=>{
-    history.push({ pathname: '/pedidos' })
+    history.push({ pathname: '/cambios' })
   }
 
   return (

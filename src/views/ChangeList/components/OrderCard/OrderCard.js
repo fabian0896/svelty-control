@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const OrderCard = props => {
-  const { className, order, onClick, ...rest } = props;
+  const { className, order, onClick,  onOpenModal, ...rest } = props;
 
   const classes = useStyles(props);
 
@@ -181,7 +181,7 @@ const OrderCard = props => {
         <ButtonBase focusRipple className={clsx(classes.actions, classes.positive)}>
           Llego!
         </ButtonBase>
-        <ButtonBase focusRipple className={clsx(classes.actions, classes.negative)}>
+        <ButtonBase onClick={onOpenModal} focusRipple className={clsx(classes.actions, classes.negative)}>
           Cancelar
         </ButtonBase> 
         </div>
