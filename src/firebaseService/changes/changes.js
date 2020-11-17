@@ -69,9 +69,19 @@ const getSerial = async () =>{
 }
 
 
+const setArriveChange = async (changeId) =>{
+    const db = firebase.firestore()
+    const doc = db.collection(CHANGES).doc(changeId)
+    await doc.update({
+        arrive: true
+    })
+}
+
+
 
 export default {
     addChange,
     deleteChange,
-    getChangesNotArrive
+    getChangesNotArrive,
+    setArriveChange
 }

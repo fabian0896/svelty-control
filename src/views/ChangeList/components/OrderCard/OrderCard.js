@@ -83,15 +83,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const OrderCard = props => {
-  const { className, order, onClick,  onOpenModal, ...rest } = props;
+  const { className, order, onClick,  onOpenModal,onArrive, ...rest } = props;
 
   const classes = useStyles(props);
 
-  const getTotalPrice = (products = []) => {
-    return products.reduce((prev, curr) => prev + curr.price, 0)
-  }
-
-  const StateIcon = ORDER_STATES[order.state].icon
+ 
 
   return (
     <Card
@@ -178,7 +174,7 @@ const OrderCard = props => {
       <Divider />
       <CardActions className={classes.footer}>
         <div className={classes.actionsContainer}>
-        <ButtonBase focusRipple className={clsx(classes.actions, classes.positive)}>
+        <ButtonBase onClick={onArrive} focusRipple className={clsx(classes.actions, classes.positive)}>
           Llego!
         </ButtonBase>
         <ButtonBase onClick={onOpenModal} focusRipple className={clsx(classes.actions, classes.negative)}>

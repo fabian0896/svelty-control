@@ -87,6 +87,12 @@ const OrderList = () => {
     setLoading(false)
   }
 
+  const handleSetArriveChange = (changeId) => async ()=>{
+    setLoading(true)
+    await changeService.setArriveChange(changeId)
+    setLoading(false)
+  }
+
   return (
     <div className={classes.root}>
       <Modal onDelete={handleDeleteChange} open={!!change} serialNumber={change?.serialNumber} onClose={()=>setChange(null)}/>
@@ -105,7 +111,11 @@ const OrderList = () => {
               md={6}
               xs={12}
             >
-              <OrderCard onOpenModal={handleOpenModal(order)}  onClick={handleClickOrder(order.orderId)} order={order} />
+              <OrderCard 
+                onArrive={handleSetArriveChange(order.id)} 
+                onOpenModal={handleOpenModal(order)}  
+                onClick={handleClickOrder(order.orderId)} 
+                order={order} />
             </Grid>
           ))}
         </Grid>
