@@ -18,7 +18,8 @@ const addChange = async (change, order)=>{
         createdAt: new Date(),
         arrive: false, 
         state: "pending",
-        serialNumber
+        serialNumber,
+        color: order.color
     })
 
     await db.collection(ORDERS).doc(order.id).update({
@@ -46,6 +47,15 @@ const deleteChange = async (changeId) => {
 }
 
 
+const getChangesNotArrive = (cb)=>{
+    const db = firebase.firestore()
+    return db.collection(CHANGES).where("arrive", "==", false).onSnapshot((snap)=>{
+        const data = snap.docs.map(v => v.data())
+        cb(data)
+    })
+}
+
+
 const getSerial = async () =>{
     const doc = firebase.firestore().collection("serials").doc("changes")
     const snap = await doc.get()
@@ -62,5 +72,6 @@ const getSerial = async () =>{
 
 export default {
     addChange,
-    deleteChange
+    deleteChange,
+    getChangesNotArrive
 }

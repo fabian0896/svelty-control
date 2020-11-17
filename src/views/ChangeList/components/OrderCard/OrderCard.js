@@ -12,7 +12,8 @@ import {
   Avatar,
   CardHeader,
   CardActionArea,
-  IconButton
+  IconButton,
+  ButtonBase
 } from '@material-ui/core';
 
 import { MoreVert } from '@material-ui/icons'
@@ -59,10 +60,26 @@ const useStyles = makeStyles((theme) => ({
       flex: 1
     }
   },
-  footer: props=>({
-    background: ORDER_STATES[props.order.state].color,
-    color: theme.palette.getContrastText(ORDER_STATES[props.order.state].color),
-  })
+  footer: props => ({
+    padding: 0,
+  }),
+  actionsContainer:{
+    display: 'flex',
+    width: "100%",
+    height: "100%",
+  },
+  actions:{
+    flex: 1,
+    padding: theme.spacing(1)
+  },
+  positive:{
+    backgroundColor: theme.palette.success.main,
+    color: theme.palette.success.contrastText
+  },
+  negative:{
+    backgroundColor: theme.palette.error.main,
+    color: theme.palette.error.contrastText
+  }
 }));
 
 const OrderCard = props => {
@@ -70,10 +87,10 @@ const OrderCard = props => {
 
   const classes = useStyles(props);
 
-  const getTotalPrice = (products=[])=>{
-    return products.reduce((prev, curr)=> prev + curr.price,0)
+  const getTotalPrice = (products = []) => {
+    return products.reduce((prev, curr) => prev + curr.price, 0)
   }
-  
+
   const StateIcon = ORDER_STATES[order.state].icon
 
   return (
@@ -108,7 +125,15 @@ const OrderCard = props => {
       <CardActionArea onClick={onClick}>
 
         <CardContent>
-
+          <Typography  variant="h1" align="center">C{numeral(order.serialNumber).format("000")}</Typography>
+          <Typography
+                align="center"
+                variant="body1"
+                gutterBottom
+                color="textSecondary"
+              >
+              Identificador del cambio
+          </Typography>
           <div className={classes.resumeContainer}>
             <div>
               <Typography
@@ -116,7 +141,7 @@ const OrderCard = props => {
                 variant="body1"
               >
                 {order.phone}
-          </Typography>
+              </Typography>
               <Typography
                 align="left"
                 variant="body1"
@@ -125,118 +150,41 @@ const OrderCard = props => {
               >
                 Telefono
           </Typography>
-              <Typography
-                align="left"
-                variant="body1"
-              >
-                {PAYMENT_METHOD[order.paymentMethod].name}
-          </Typography>
-              <Typography
-                align="left"
-                variant="body1"
-                gutterBottom
-                color="textSecondary"
-              >
-                Medio de pago
-          </Typography>
+            
             </div>
             <div>
               <Typography
                 align="right"
                 variant="body1"
               >
-                {order.currier || "Sin asignar"}
-          </Typography>
+              {moment(order.createdAt.seconds * 1000).format('DD/MM/YYYY')}
+              </Typography>
               <Typography
                 align="right"
                 variant="body1"
                 gutterBottom
                 color="textSecondary"
               >
-                Medio de envio
-          </Typography>
-              <Typography
-                align="right"
-                variant="body1"
-              >
-                {order.trackNumber || "Sin guia"}
-          </Typography>
-              <Typography
-                align="right"
-                variant="body1"
-                gutterBottom
-                color="textSecondary"
-              >
-               Guia
+               Fecha de creación
           </Typography>
             </div>
           </div>
 
-
-
-
-          <div className={classes.resumeContainer}>
-            <div>
-      <Typography align="center" variant="h4">{numeral(getTotalPrice(order.products)).format('$0,0')}</Typography>
-              <Typography align="center" variant="body1" color="textSecondary">Total</Typography>
-            </div>
-            <div>
       <Typography align="center" variant="h4">{order.products.length}</Typography>
-      <Typography align="center" variant="body1" color="textSecondary">{order.products.length === 1? "prenda" : "Prendas"}</Typography>
-            </div>
-          </div>
-
+      <Typography align="center" variant="body1" color="textSecondary">Prendas de cambio</Typography>
 
         </CardContent>
       </CardActionArea>
       <Divider />
       <CardActions className={classes.footer}>
-        <Grid
-          container
-          justify="space-between"
-        >
-          <Grid
-            className={classes.statsItem}
-            item
-          >
-            <AccessTimeIcon color="inherit" className={classes.statsIcon} />
-            <Typography
-              color="inherit"
-              display="inline"
-              variant="body2"
-            >
-              {moment(order.createdAt.seconds*1000).format('DD/MM/YYYY')}
-            </Typography>
-          </Grid>
-          {
-            !!order.changes?.length &&
-            <Grid
-              className={classes.statsItem}
-              item
-            >
-              <Typography
-                color="inherit"
-                display="inline"
-                variant="body2"
-              >
-                {order.changes.length} {order.changes.length === 1? "CAMBIO":"CAMBIOS"}
-              </Typography>
-            </Grid>
-          }
-          <Grid
-            className={classes.statsItem}
-            item
-          >
-            <StateIcon color="inherit" className={classes.statsIcon} />
-            <Typography
-              color="inherit"
-              display="inline"
-              variant="body2"
-            >
-              {ORDER_STATES[order.state].name}
-            </Typography>
-          </Grid>
-        </Grid>
+        <div className={classes.actionsContainer}>
+        <ButtonBase focusRipple className={clsx(classes.actions, classes.positive)}>
+          Llego!
+        </ButtonBase>
+        <ButtonBase focusRipple className={clsx(classes.actions, classes.negative)}>
+          Cancelar
+        </ButtonBase> 
+        </div>
       </CardActions>
     </Card>
   );

@@ -26,7 +26,8 @@ import {
   TrakingList as TrakingListView,
   TransitList as TransitListView,
   Finance as FinanceView,
-  NewChange as NewChangeView
+  NewChange as NewChangeView,
+  ChangeList as ChangeListView,
 } from './views';
 
 const Routes = () => {
@@ -166,6 +167,13 @@ const Routes = () => {
             exact
             layout={MainLayout}
             path="/cambios/nuevo/:orderId"
+          />
+          <RouteWithLayoutPrivate
+            user={user} 
+            component={ChangeListView}
+            exact
+            layout={MainLayout}
+            path="/cambios"
           />
         <RouteWithLayoutPrivate
           user={user} 

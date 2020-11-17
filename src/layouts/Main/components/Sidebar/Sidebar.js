@@ -19,7 +19,8 @@ import {
   Archive as ArchiveIcon,
   AllInbox as AllInboxIcon,
   FlightTakeoff as FlightTakeoffIcon,
-  AttachMoneyRounded as AttachMoneyIcon
+  AttachMoneyRounded as AttachMoneyIcon,
+  SwapVert as SwapVertIcon
 } from '@material-ui/icons'
 
 
@@ -61,6 +62,11 @@ const Sidebar = props => {
       title: 'Pedidos',
       href: '/pedidos',
       icon: <ShoppingCartIcon />
+    },
+    {
+      title: 'Cambios En Transito',
+      href: '/cambios',
+      icon: <SwapVertIcon />
     },
     {
       title: 'Producción',
