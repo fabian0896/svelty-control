@@ -88,10 +88,100 @@ const getArrivedChanges = async ()=>{
 
 
 
+const getProductionChanges = (cb)=>{
+
+    let dataPending = []
+    let dataProduction = []
+    
+    const callBackPending = (data)=>{
+        dataPending = data
+        cb([...dataPending, ...dataProduction])
+    }
+
+    const callBackProduction = (data)=>{
+        dataProduction = data
+        cb([...dataPending, ...dataProduction])
+    }
+
+    const db = firebase.firestore()
+    const collection = db.collection(CHANGES)
+    const queryPending = collection.where('state','==', 'pending').where("arrive", "==", true)
+    const queryProduction = collection.where('state','==', 'production').where("arrive", "==", true)
+
+    const unsuscribePending = queryPending.onSnapshot((snap)=>{
+        const data = snap.docs.map(doc=>doc.data()) 
+        callBackPending(data)
+    })
+    const unsuscribeProduction = queryProduction.onSnapshot((snap)=>{
+        const data = snap.docs.map(doc=>doc.data())
+        callBackProduction(data) 
+    })
+    
+
+
+    return ()=>{
+        unsuscribePending()
+        unsuscribeProduction()
+    }
+}
+
+
+const setProductState = async (orderId, productIndex, state, provider={}) => {
+    const {price, name} = provider
+    const db = firebase.firestore()
+    const orderRef = db.collection(CHANGES).doc(orderId)
+
+    await db.runTransaction(async transaction =>{
+        const orderSnap = await transaction.get(orderRef)
+        const order = orderSnap.data()
+
+        const products = [...order.products]
+
+        products[productIndex] = {
+            ...products[productIndex],
+            wholesalePrice: price || products[productIndex].wholesalePrice,
+            provider: name || products[productIndex].provider,
+            state
+        }
+
+
+        const newState = getOrderStateByProducts(products)
+
+        await transaction.update(orderRef,{
+            products,
+            state: newState 
+        })
+    })
+    return
+}
+
+
+
+//----------------------------------------------------
+
+const isEvryProductInAState = (products=[], state) =>{
+    return products.reduce((prev, curr)=>{
+        return prev && (curr.state === state)
+    }, true)
+}
+
+const getOrderStateByProducts = (products=[])=>{
+    if(isEvryProductInAState(products, 'ready')){
+        return 'productReady'
+    }else if(isEvryProductInAState(products, 'production')){
+        return 'production'
+    }else{
+        return 'pending'
+    }
+}
+
+
 export default {
     addChange,
     deleteChange,
     getChangesNotArrive,
     setArriveChange,
-    getArrivedChanges
+    getArrivedChanges,
+    getProductionChanges,
+    setProductState
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import {ProductList, ProviderCardList} from './components'
-import { orderService, productService } from 'firebaseService'
+import { orderService, productService, changeService } from 'firebaseService'
 import {getProvidersFromProductsList} from 'helpers'
 
 
@@ -17,6 +17,7 @@ const Production = () => {
   const classes = useStyles();
 
   const [orders, setOrders] =  useState([])
+  const [changes, setChanges] =  useState([])
   const [productList, setProductList] = useState([])
   const [selectedProduct, setSelectedProduct] = useState(-1)
   const [isSelecting, setIsSelecting] = useState(false)
@@ -26,7 +27,7 @@ const Production = () => {
 
   const getProductsFromOrders = (orderList)=>{
     return orderList.reduce((prev,curr)=>{
-        const products = curr.products.map((value,index)=> ({...value, orderId: curr.id, index}))
+        const products = curr.products.map((value,index)=> ({...value, orderId: curr.id, index, change: !!curr.change}))
         return [...prev, ...products]
     }, [])
 }
@@ -36,6 +37,12 @@ const Production = () => {
     const unsuscribeOrders = orderService.getProductionOrders((data)=>{
       setOrders(data)
     })
+    const unsuscribeChanges = changeService.getProductionChanges((data)=>{
+      setChanges(data)
+    })
+    
+
+
 
     const unsuscribeProducts = productService.getAllProducts((data)=>{
       setAllProducts(data)
@@ -63,14 +70,16 @@ const Production = () => {
     return ()=>{
       unsuscribeProducts()
       unsuscribeOrders()
+      unsuscribeChanges()
     }
   },[])
 
 
   useEffect(()=>{
     const products = getProductsFromOrders(orders)
-    setProductList(products)
-}, [orders])
+    const changeProducts = getProductsFromOrders(changes)
+    setProductList([...products, ...changeProducts])
+}, [orders, changes])
 
 
   const handleSelectProduct = (value)=>{
@@ -83,25 +92,39 @@ const Production = () => {
   }
 
 
-  const handleSetProduccion = async (provider, orderId, index) =>{
-    console.log(provider, index, orderId)
-    await orderService.setProductState(orderId,index,'production', provider)
+  const handleSetProduccion = async (provider, orderId, index, change) =>{
+    
+    console.log(provider, index, orderId, change)
+    if(change){
+      await changeService.setProductState(orderId, index, 'production', provider)
+    }else{
+      await orderService.setProductState(orderId,index,'production', provider)
+    }
     console.log("se actualizo")
     setSelectedProduct(-1)
     setIsSelecting(false)
   }
 
 
-  const handleProductReady = async (orderId, index)=>{
+  const handleProductReady = async (orderId, index, change)=>{
+    if(change){
+      await changeService.setProductState(orderId, index, 'ready')
+    }else{
       await orderService.setProductState(orderId, index, 'ready')
+    }
   }
 
-  const handleProductPending = async (orderId, index) => {
+  const handleProductPending = async (orderId, index, change) => {
+    console.log(orderId, index, change)
     const provider = {
       name: null,
       price: null
     }
-    await orderService.setProductState(orderId, index, 'pending', provider)
+    if(change){
+      await changeService.setProductState(orderId, index, 'pending', provider)
+    }else{
+      await orderService.setProductState(orderId, index, 'pending', provider)
+    }
   }
 
   const handleCancelSelect = ()=>{

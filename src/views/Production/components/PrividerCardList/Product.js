@@ -80,7 +80,7 @@ const Product = props => {
                     <Typography align="center" variant="subtitle2">Por mayor</Typography>
                 </div>
                 <div className={classes.sellPrice}>
-                    <Typography align="center" variant="h6">{numeral(product.price).format('$0,0')}</Typography>
+                    <Typography align="center" variant="h6">{product.change? "CAMBIO" : numeral(product.price).format('$0,0')}</Typography>
                     <Typography align="center" variant="subtitle2">Venta</Typography>
                 </div>
                 <div className={classes.icon}>

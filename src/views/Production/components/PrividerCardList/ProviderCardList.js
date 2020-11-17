@@ -23,14 +23,14 @@ const ProviderCardList = props => {
       };
 
     const handleReady = ()=>{
-        const {orderId, index} = editingProduct
-        onProductReady(orderId, index)
+        const {orderId, index, change} = editingProduct
+        onProductReady(orderId, index, change)
         handleClose()
     }
 
     const handlePending = ()=>{
-        const {orderId, index} = editingProduct
-        onProductPending(orderId, index)
+        const {orderId, index, change} = editingProduct
+        onProductPending(orderId, index, change)
         handleClose()
     }
 

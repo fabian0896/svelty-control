@@ -43,7 +43,7 @@ const ProductSelect = props => {
             name: provider.name,
             price: parseInt(price)
         }
-        onSetProduction(providerObject, product.orderId, product.index)
+        onSetProduction(providerObject, product.orderId, product.index, product.change)
     }
 
 

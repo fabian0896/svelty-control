@@ -83,7 +83,7 @@ const Product = props => {
                 <Typography align="center" variant="subtitle2">Color</Typography>
             </div>
             <div className={classes.price}>
-                <Typography align="center" variant="h6">{numeral(product.price).format('$0,0')}</Typography>
+                <Typography align="center" variant="h6">{product.price? numeral(product.price).format('$0,0'): "CAMBIO"}</Typography>
                 <Typography align="center" variant="subtitle2">venta</Typography>
             </div>
 
