@@ -41,6 +41,7 @@ const Transit = props => {
   useEffect(() => {
     let firstTime = true
     orderService.getOrderByStates((data) => {
+      console.log("Pedidos en transito: " + data.length)
       const mipaqueteOrdersData = data.filter(v => v.mipaquete)
       const otherOrdersData = data.filter(v => !v.mipaquete)
       setOtherOrders(otherOrdersData)

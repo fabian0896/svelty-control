@@ -20,6 +20,12 @@ const add = async ({firstName, lastName, phone, city, id}) =>{
 }
 
 
+const deleteOrder = async(ObjectID)=>{
+    const result = await index.deleteObject(ObjectID)
+    return result
+}
+
+
 const findOrder = async (query) =>{
     const hits = await index.search(query)
 
@@ -34,5 +40,6 @@ const findOrder = async (query) =>{
 
 export default {
     add,
-    findOrder
+    findOrder,
+    deleteOrder,
 }

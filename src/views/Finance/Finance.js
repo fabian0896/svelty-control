@@ -62,9 +62,11 @@ const Finance = props => {
         const data = await orderService.getCompleteOrdersByDate(startDate, endDate)
         const profits = await profitService.getProfitsByDate(startDate, endDate)
 
+        console.log("Pedidos finalizados: " + data.length)
+
         const financeData = data.map(v => orderToFinance(v))
-        console.log(financeData)
-        console.log(profits)
+        //console.log(financeData)
+        //console.log(profits)
 
         const mergeData = [...financeData, ...profits]
 

@@ -48,7 +48,7 @@ const addOrder = async (value)=>{
 const deleteOrder = async (order) => {
     const id = order.id
     const db = firebase.firestore()
-
+    await algoliaOrders.deleteOrder(order.id)
     await db.collection(ORDERS).doc(id).delete()
     return
 }
@@ -314,6 +314,16 @@ const getCompleteOrdersByDate = async (startDate, endDate)=>{
 }
 
 
+
+
+const test = async ()=>{
+    const db = firebase.firestore()
+    const collection = db.collection(ORDERS)
+    const snap = await collection.get()
+    const res = snap.docs.map(v => v.data())
+    return res
+}
+
 //-----------------------------------------------------------------------------
 
 const isEvryProductInAState = (products=[], state) =>{
@@ -349,5 +359,6 @@ export default {
     updateOrderState,
     deleteOrder,
     getCompleteOrdersByDate,
-    getOrderByIdPromise
+    getOrderByIdPromise,
+    test,
 }
