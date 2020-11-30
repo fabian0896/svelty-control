@@ -69,6 +69,13 @@ const getOrderByIdPromise = async (id)=>{
 }
 
 
+const getAllOrdersFull = async ()=>{
+    const db = firebase.firestore()
+    const snap = await db.collection(ORDERS).get()
+    return snap.docs.map(v => v.data())
+}
+
+
 const getAllOrders = async (nextQuery)=>{
     const limit = 12
     let query = null
@@ -360,5 +367,6 @@ export default {
     deleteOrder,
     getCompleteOrdersByDate,
     getOrderByIdPromise,
+    getAllOrdersFull,
     test,
 }
