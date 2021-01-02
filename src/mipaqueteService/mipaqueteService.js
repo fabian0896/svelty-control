@@ -12,6 +12,7 @@ const SENDINGS_TYPE = "sendings-type/"
 
 
 
+
 //ESTADOS DE ENVIO
 
 //COORDINADORA
@@ -195,6 +196,12 @@ const getShippingById = async (id) => {
     //si tiene collection_date es que ya se despacho, el problema es que al parecer
     //este valor se actualiza cada dia
 }
+
+
+
+
+
+
 
 //-------------------------------------------------------------------------------
 

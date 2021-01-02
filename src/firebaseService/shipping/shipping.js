@@ -3,8 +3,15 @@ import 'firebase/firestore'
 import {mipaqueteService} from 'mipaqueteService'
 import {orderService} from 'firebaseService'
 import {MIPAQUETE_STATES} from 'enviroment'
+import jsreport from 'jsreport-browser-client-dist'
 
 const ORDERS = 'orders'
+
+//datos para api de JsReport
+const JsUser = "sveltyfajas@gmail.com"
+const JsPassword = "Fabian08*"
+const JsTemplateId = "HkxrDbEApw"
+const JsServerUrl = "https://svelty-fajas.jsreportonline.net"
 
 
 const newShippingToOrder = async (order, mipaquete=true, shippingData)=>{
@@ -161,6 +168,26 @@ const updateMipaqueteOrders = async (orderList=[])=>{
 
 
 
+const getChangesLabels = async (data)=> {
+    jsreport.headers['Authorization'] = "Basic " + btoa(`${JsUser}:${JsPassword}`)
+    jsreport.serverUrl = JsServerUrl
+    
+    const res = await jsreport.renderAsync({
+        "template":{
+            "shortid": JsTemplateId
+        },
+        "data": data
+    })
+
+    res.download('test.pdf')
+    return
+}
+
+
+
+
+
+
 //------------------------------------------------------------------------------------
 
 
@@ -222,5 +249,6 @@ export default {
     setOrderDispatched,
     updateMipaqueteOrders,
     setDeliveredOrder,
-    setReturnOrder
+    setReturnOrder,
+    getChangesLabels
 }

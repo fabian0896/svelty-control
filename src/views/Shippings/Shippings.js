@@ -81,8 +81,11 @@ const Shippings = () => {
     setLoading(false)
   }
 
-  const  handleGenerateChangeLabel = () => {
+  const  handleGenerateChangeLabel = async () => {
     console.log(JSON.stringify(changes))
+    setLoading(true)
+    await shippingService.getChangesLabels(changes)
+    setLoading(false)
   }
 
   return (
