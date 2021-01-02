@@ -17,21 +17,31 @@ const Packaging = () => {
   const classes = useStyles();
 
   const [pakagingList, setPakagingList] = useState([])
+  const [pakagingChageList, setPakagingChageList] = useState([])
   const [orderDispatched, setOrderDispatched] = useState([])
+  const [orderChageDispatched, setOrderChageDispatched] = useState([])
   const [loading, setLoading] = useState(null)
 
   useEffect(()=>{
     const unsuscribePackagin = orderService.getOrdersForPackaging(data=>{
       setPakagingList(data)
     })
+    const unsuscribePackaginChages = orderService.getOrdersChangesForPackaging(data=>{
+      setPakagingChageList(data)
+    })
 
     const unsuscribedPacked = orderService.getOrderpacked((data)=>{
       setOrderDispatched(data)
+    })
+    const unsuscribedChagePacked = orderService.getOrderCahegepacked((data)=>{
+      setOrderChageDispatched(data)
     })
 
     return ()=>{
       unsuscribedPacked()
       unsuscribePackagin()
+      unsuscribePackaginChages()
+      unsuscribedChagePacked()
     }
   }, [])
 
@@ -70,7 +80,7 @@ const Packaging = () => {
             selectable
             loading={loading} 
             onActionClick={handlePackage} 
-            orders={pakagingList} />
+            orders={[...pakagingList, ...pakagingChageList]} />
         </Grid>
         <Grid
           item
@@ -87,7 +97,7 @@ const Packaging = () => {
             iconColor='error' 
             loading={loading} 
             onActionClick={handleCancelPackage} 
-            orders={orderDispatched} />
+            orders={[...orderDispatched, ...orderChageDispatched]} />
         </Grid>
       </Grid>
     </div>

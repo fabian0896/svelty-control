@@ -81,6 +81,9 @@ const Shippings = () => {
     setLoading(false)
   }
 
+  const  handleGenerateChangeLabel = () => {
+    console.log(JSON.stringify(changes))
+  }
 
   return (
     <div className={classes.root}>
@@ -109,7 +112,7 @@ const Shippings = () => {
         >
           {
             !!changes.length &&
-            <Button className={classes.button} variant="contained" color="primary" fullWidth>Generar Rotulos de Cambios</Button>
+            <Button onClick={handleGenerateChangeLabel} className={classes.button} variant="contained" color="primary" fullWidth>Generar Rotulos de Cambios</Button>
           }
           {
             mergeData.map(order=>(

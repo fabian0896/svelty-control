@@ -9,6 +9,7 @@ import moment from 'moment'
 
 
 const ORDERS = 'orders'
+const CHANGES = 'changes'
 
 const addOrder = async (value)=>{
 
@@ -204,6 +205,20 @@ const getOrdersForPackaging =  (cb)=>{
 
 }
 
+
+const getOrdersChangesForPackaging =  (cb)=>{
+    const db = firebase.firestore()
+    const query = db.collection(CHANGES).where('state', '==', 'productReady')
+
+    const unsuscribe = query.onSnapshot((snap)=>{
+        const data = snap.docs.map(doc=>doc.data())
+        cb(data)
+    })
+
+    return unsuscribe
+
+}
+
 const getOrderdispatched = (cb)=>{
     const db = firebase.firestore()
     const query = db.collection(ORDERS).where('state', '==', 'dispatched')
@@ -217,6 +232,15 @@ const getOrderdispatched = (cb)=>{
 const getOrderpacked = (cb)=>{
     const db = firebase.firestore()
     const query = db.collection(ORDERS).where('state', '==', 'packed')
+    const unsuscribe = query.onSnapshot(snap=>{
+        const data = snap.docs.map(doc=>doc.data())
+        cb(data)
+    })
+    return unsuscribe
+}
+const getOrderCahegepacked = (cb)=>{
+    const db = firebase.firestore()
+    const query = db.collection(CHANGES).where('state', '==', 'packed')
     const unsuscribe = query.onSnapshot(snap=>{
         const data = snap.docs.map(doc=>doc.data())
         cb(data)
@@ -368,5 +392,7 @@ export default {
     getCompleteOrdersByDate,
     getOrderByIdPromise,
     getAllOrdersFull,
+    getOrdersChangesForPackaging,
+    getOrderCahegepacked,
     test,
 }

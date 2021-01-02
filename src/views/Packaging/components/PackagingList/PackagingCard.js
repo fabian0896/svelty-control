@@ -52,7 +52,7 @@ const PackagingCard = props=>{
                         {order.lastName.charAt(0).toUpperCase()}
                     </Avatar>
                 }
-                title={`${order.firstName} ${order.lastName}`}
+                title={`${order.firstName} ${order.lastName} ${order.change? " (CAMBIO)" : ""}`}
                 subheader={`${order.city.name}(${order.city.department_name})`}
                 action={
                     loading === order.id?
