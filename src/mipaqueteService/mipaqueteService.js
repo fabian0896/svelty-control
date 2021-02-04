@@ -127,7 +127,8 @@ const createShipping = async (order) => {
             "payment_type": PAYMENT_METHOD[order.paymentMethod].payment_type,
             "collection_information": COLLECTION_INFORMATION,
             "value_collection": totalPrice,
-            "alternative": 3
+            "alternative": 3,
+            "delivery": "5cb0f5fd244fe2796e65f9fc"
         }
     }else{
         shippingData = {
@@ -143,7 +144,8 @@ const createShipping = async (order) => {
             "special_service": PAYMENT_METHOD[order.paymentMethod].special_service,
             "payment_type": PAYMENT_METHOD[order.paymentMethod].payment_type,
             "collection_information": COLLECTION_INFORMATION,     
-            "alternative": 3
+            "alternative": 3,
+            "delivery": "5cb0f5fd244fe2796e65f9fc"
         }
     }
 
